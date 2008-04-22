@@ -1,3 +1,3 @@
-# $Id: Build.PL,v 1.1.1.1 2004/05/29 17:29:56 btrott Exp $
+# $Id: Build.PL 918 2004-05-29 17:29:55Z btrott $
 
 require 'Makefile.PL';

@@ -1,4 +1,4 @@
-# $Id: Atom.pm,v 1.2 2004/06/20 15:20:37 btrott Exp $
+# $Id: Atom.pm 942 2004-12-31 23:01:21Z btrott $
 
 package XML::Feed::Atom;
 use strict;
@@ -11,8 +11,10 @@ use List::Util qw( first );
 sub init_string {
     my $feed = shift;
     my($str) = @_;
-    $feed->{atom} = XML::Atom::Feed->new(Stream => \$str)
-        or return $feed->error(XML::Atom::Feed->errstr);
+    if ($str) {
+        $feed->{atom} = XML::Atom::Feed->new(Stream => $str)
+            or return $feed->error(XML::Atom::Feed->errstr);
+    }
     $feed;
 }
 

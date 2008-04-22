@@ -1,4 +1,4 @@
-# $Id: 01-parse.t,v 1.5 2004/07/29 16:43:33 btrott Exp $
+# $Id: 01-parse.t 933 2004-07-29 16:43:33Z btrott $
 
 use strict;
 use Test;

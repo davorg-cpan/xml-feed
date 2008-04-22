@@ -1,6 +1,17 @@
-# $Id: Changes,v 1.7 2004/10/09 07:02:01 btrott Exp $
+# $Id: Changes 1750 2005-01-01 00:46:40Z btrott $
 
 Revision history for XML::Feed
+
+0.04  2004.12.31
+    - Use "loose" parsing in DateTime::Format::Mail so that we don't die
+      on invalid RFC-822 dates.
+    - XML::Feed::Entry->link on RSS feeds will now use a <guid> element
+      if a <link> element isn't found.
+    - Switched to using URI::Fetch when fetching feeds. Since we're not
+      storing or caching feeds currently, this basically just buys us
+      GZIP support, but that's something.
+    - Use Class::ErrorHandler instead of XML::Feed::ErrorHandler. Thanks
+      to Tim Appnel for the patch.
 
 0.03  2004.10.09
     - Fixed bug with feed format detection: properly detect format even in

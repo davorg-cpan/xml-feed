@@ -1,12 +1,13 @@
 name: XML-Feed
-version: 0.03
+version: 0.04
 abstract: XML Syndication Feed Support
-author: Benjamin Trott <cpan@stupidfool.org>
+author: Benjamin Trott <ben+cpan@stupidfool.org>
 license: perl
 distribution_type: module
 requires:
   Class::ErrorHandler: 0
   Feed::Find: 0
+  URI::Fetch: 0
   XML::RSS: 1.01
   XML::Atom: 0.08
   LWP: 0
@@ -20,4 +21,4 @@ no_index:
   directory:
     - t
     - inc
-generated_by: Module::Install version 0.35
+generated_by: Module::Install version 0.36

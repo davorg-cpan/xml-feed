@@ -1,4 +1,4 @@
-# $Id: Content.pm,v 1.2 2004/10/04 03:38:11 btrott Exp $
+# $Id: Content.pm 937 2004-10-04 03:38:11Z btrott $
 
 package XML::Feed::Content;
 use strict;

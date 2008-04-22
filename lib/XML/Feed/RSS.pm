@@ -1,4 +1,4 @@
-# $Id: RSS.pm,v 1.5 2004/07/29 16:42:29 btrott Exp $
+# $Id: RSS.pm 942 2004-12-31 23:01:21Z btrott $
 
 package XML::Feed::RSS;
 use strict;
@@ -13,7 +13,7 @@ sub init_string {
     my($str) = @_;
     my $rss = $feed->{rss} = XML::RSS->new;
     if ($str) {
-        $rss->parse($str);
+        $rss->parse($$str);
     }
     $feed;
 }
@@ -70,7 +70,7 @@ use XML::Feed::Content;
 use base qw( XML::Feed::Entry );
 
 sub title { $_[0]->{entry}{title} }
-sub link { $_[0]->{entry}{link} }
+sub link { $_[0]->{entry}{link} || $_[0]->{entry}{guid} }
 
 sub summary {
     my $item = $_[0]->{entry};
@@ -113,7 +113,9 @@ sub id {
 
 sub issued {
     if (my $ts = $_[0]->{entry}{pubDate}) {
-        return DateTime::Format::Mail->parse_datetime($ts);
+        my $parser = DateTime::Format::Mail->new;
+        $parser->loose;
+        return $parser->parse_datetime($ts);
     } elsif ($ts = $_[0]->{entry}{dc}{date}) {
         return DateTime::Format::W3CDTF->parse_datetime($ts);
     }

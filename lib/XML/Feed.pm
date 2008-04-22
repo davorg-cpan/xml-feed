@@ -1,15 +1,13 @@
-# $Id: Feed.pm,v 1.10 2004/10/09 07:05:08 btrott Exp $
+# $Id: Feed.pm 942 2004-12-31 23:01:21Z btrott $
 
 package XML::Feed;
 use strict;
 
 use base qw( Class::ErrorHandler );
-use LWP::UserAgent;
-use HTML::Parser;
 use Feed::Find;
+use URI::Fetch;
 
-use vars qw( $VERSION );
-$VERSION = '0.03';
+our $VERSION = '0.04';
 
 sub parse {
     my $class = shift;
@@ -18,12 +16,11 @@ sub parse {
     my $feed = bless {}, $class;
     my $xml = '';
     if (UNIVERSAL::isa($stream, 'URI')) {
-        my $ua = LWP::UserAgent->new;
-        my $req = HTTP::Request->new(GET => $stream);
-        my $res = $ua->request($req);
-        if ($res->is_success) {
-            $xml = $res->content;
-        }
+        my $res = URI::Fetch->fetch($stream)
+            or return $class->error(URI::Fetch->errstr);
+        return $class->error("This feed has been permanently removed")
+            if $res->status == URI::Fetch::FEED_GONE();
+        $xml = $res->content;
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
     } elsif (ref($stream)) {
@@ -40,28 +37,37 @@ sub parse {
     }
     return $class->error("Can't get feed XML content from $stream")
         unless $xml;
+    my $format = $feed->identify_format(\$xml)
+        or return $class->error($feed->errstr);
+    my $format_class = join '::', __PACKAGE__, $format;
+    eval "use $format_class";
+    return $class->error("Unsupported format $format: $@") if $@;
+    bless $feed, $format_class;
+    $feed->init_string(\$xml) or return $class->error($feed->errstr);
+    $feed;
+}
+
+sub identify_format {
+    my $feed = shift;
+    my($xml) = @_;
     ## Auto-detect feed type based on first element. This is prone
     ## to breakage, but then again we don't want to parse the whole
     ## feed ourselves.
     my $tag;
-    while ($xml =~ /<(\S+)/sg) {
+    while ($$xml =~ /<(\S+)/sg) {
         (my $t = $1) =~ tr/a-zA-Z0-9:\-\?!//cd;
         my $first = substr $t, 0, 1;
         $tag = $t, last unless $first eq '?' || $first eq '!';
     }
-    return $class->error("Cannot find first element") unless $tag;
+    return $feed->error("Cannot find first element") unless $tag;
     $tag =~ s/^.*://;
     if ($tag eq 'rss' || $tag eq 'RDF') {
-        require XML::Feed::RSS;
-        bless $feed, 'XML::Feed::RSS';
+        return 'RSS';
     } elsif ($tag eq 'feed') {
-        require XML::Feed::Atom;
-        bless $feed, 'XML::Feed::Atom';
+        return 'Atom';
     } else {
-        return $class->error("Cannot detect feed type");
+        return $feed->error("Cannot detect feed type");
     }
-    $feed->init_string($xml) or return;
-    $feed;
 }
 
 sub find_feeds {
@@ -217,6 +223,6 @@ under the same terms as Perl itself.
 =head1 AUTHOR & COPYRIGHT
 
 Except where otherwise noted, I<XML::Feed> is Copyright 2004 Benjamin
-Trott, cpan@stupidfool.org. All rights reserved.
+Trott, ben+cpan@stupidfool.org. All rights reserved.
 
 =cut

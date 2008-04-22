@@ -1,4 +1,4 @@
-# $Id: Entry.pm,v 1.3 2004/07/29 16:42:29 btrott Exp $
+# $Id: Entry.pm 942 2004-12-31 23:01:21Z btrott $
 
 package XML::Feed::Entry;
 use strict;
@@ -47,7 +47,7 @@ The title of the entry.
 =head2 $entry->link
 
 The permalink of the entry, in most cases, except in cases where it points
-instead of an offsite URI referenced in the entry.
+instead to an offsite URI referenced in the entry.
 
 =head2 $entry->content
 
