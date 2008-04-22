@@ -1,6 +1,11 @@
-# $Id: Changes 1945 2006-07-11 03:31:58Z btrott $
+# $Id: Changes 1948 2006-07-17 16:06:18Z btrott $
 
 Revision history for XML::Feed
+
+0.10  2006.07.17
+    - Oops, an Atom test in 01-parse.t was previously succeeding only because
+      of a bug in XML::Atom. Now that that bug is fixed, this one is now
+      fixed, too.
 
 0.09  2006.07.10
     - Fixed date format errors with XML::Feed::RSS. Thanks to Tatsuhiko

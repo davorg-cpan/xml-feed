@@ -22,4 +22,4 @@ requires:
   URI::Fetch: 0
   XML::Atom: 0.08
   XML::RSS: 1.01
-version: 0.09
+version: 0.10
