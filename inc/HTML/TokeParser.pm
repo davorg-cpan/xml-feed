@@ -1,11 +1,11 @@
-#line 1 "inc/HTML/TokeParser.pm - /System/Library/Perl/Extras/5.8.6/darwin-thread-multi-2level/HTML/TokeParser.pm"
+#line 1
 package HTML::TokeParser;
 
-# $Id: TokeParser.pm,v 2.28 2003/10/14 10:11:05 gisle Exp $
+# $Id: TokeParser.pm,v 2.35 2005/12/02 16:08:17 gisle Exp $
 
 require HTML::PullParser;
 @ISA=qw(HTML::PullParser);
-$VERSION = sprintf("%d.%02d", q$Revision: 2.28 $ =~ /(\d+)\.(\d+)/);
+$VERSION = sprintf("%d.%02d", q$Revision: 2.35 $ =~ /(\d+)\.(\d+)/);
 
 use strict;
 use Carp ();
@@ -20,6 +20,9 @@ my %ARGS =
  process     => "'PI',token0,text",
  comment     => "'C',text",
  declaration => "'D',text",
+
+ # options that default on
+ unbroken_text => 1,
 );
 
 
@@ -152,4 +155,4 @@ sub get_phrase {
 
 __END__
 
-#line 341
+#line 367

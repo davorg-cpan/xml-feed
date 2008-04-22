@@ -1,4 +1,4 @@
-# $Id: RSS.pm 1917 2006-02-07 07:11:44Z btrott $
+# $Id: RSS.pm 1934 2006-04-22 05:13:55Z btrott $
 
 package XML::Feed::RSS;
 use strict;
@@ -13,6 +13,8 @@ sub init_empty {
     my $feed = shift;
     eval "use $PREFERRED_PARSER"; die $@ if $@;
     $feed->{rss} = $PREFERRED_PARSER->new( version => '2.0' );
+    $feed->{rss}->add_module(prefix => "content", uri => 'http://purl.org/rss/1.0/modules/content/');
+    $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/rss/1.0/modules/dcterms/');
     $feed;
 }
 
@@ -81,12 +83,16 @@ sub modified {
         ## this date is formatted for an RSS 1.0 feed. So it's commented out.
         #$rss->channel->{dc}{date} =
         #    DateTime::Format::W3CDTF->format_datetime($_[0]);
-    } else { 
-        if (my $ts = $rss->channel('pubDate')) {
-            return DateTime::Format::Mail->parse_datetime($ts);
-        } elsif ($ts = $rss->channel->{dc}{date}) {
-            return DateTime::Format::W3CDTF->parse_datetime($ts);
-        }
+    } else {
+        my $date;
+        eval {
+            if (my $ts = $rss->channel('pubDate')) {
+                $date = DateTime::Format::Mail->parse_datetime($ts);
+            } elsif ($ts = $rss->channel->{dc}{date}) {
+                $date = DateTime::Format::W3CDTF->parse_datetime($ts);
+            }
+        };
+        return $date;
     }
 }
 
@@ -140,9 +146,9 @@ sub summary {
         ## Because of the logic below, we need to add some dummy content,
         ## so that we'll properly recognize the description we enter as
         ## the summary.
-        if (!$item->{'http://purl.org/rss/1.0/modules/content/'}{encoded} &&
+        if (!$item->{content}{encoded} &&
             !$item->{'http://www.w3.org/1999/xhtml'}{body}) {
-            $item->{'http://purl.org/rss/1.0/modules/content/'}{encoded} = ' ';
+            $item->{content}{encoded} = ' ';
         }
     } else {
         ## Some RSS feeds use <description> for a summary, and some use it
@@ -152,7 +158,7 @@ sub summary {
         ## typically used for the full content, use <description> as summary.
         my $txt;
         if ($item->{description} &&
-            ($item->{'http://purl.org/rss/1.0/modules/content/'}{encoded} ||
+            ($item->{content}{encoded} ||
              $item->{'http://www.w3.org/1999/xhtml'}{body})) {
             $txt = $item->{description};
         }
@@ -164,10 +170,10 @@ sub content {
     my $item = shift->{entry};
     if (@_) {
         my $c = ref($_[0]) eq 'XML::Feed::Content' ? $_[0]->body : $_[0];
-        $item->{'http://purl.org/rss/1.0/modules/content/'}{encoded} = $c;
+        $item->{content}{encoded} = $c;
     } else {
         my $body =
-            $item->{'http://purl.org/rss/1.0/modules/content/'}{encoded} ||
+            $item->{content}{encoded} ||
             $item->{'http://www.w3.org/1999/xhtml'}{body} ||
             $item->{description};
         XML::Feed::Content->wrap({ type => 'text/html', body => $body });
@@ -227,10 +233,10 @@ sub issued {
 sub modified {
     my $item = shift->{entry};
     if (@_) {
-        $item->{'http://purl.org/rss/1.0/modules/dcterms/'}{modified} =
+        $item->{dcterms}{modified} =
             DateTime::Format::W3CDTF->format_datetime($_[0]);
     } else {
-        if (my $ts = $item->{'http://purl.org/rss/1.0/modules/dcterms/'}{modified}) {
+        if (my $ts = $item->{dcterms}{modified}) {
             return eval { DateTime::Format::W3CDTF->parse_datetime($ts) };
         }
     }

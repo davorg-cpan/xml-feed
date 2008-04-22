@@ -1,10 +1,10 @@
-#line 1 "inc/Module/Install/WriteAll.pm - /Library/Perl/5.8.6/Module/Install/WriteAll.pm"
+#line 1
 package Module::Install::WriteAll;
 
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.57';
+$VERSION = '0.61';
 
 use strict;
 

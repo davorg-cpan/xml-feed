@@ -1,7 +1,7 @@
 # $Id$
 
 use strict;
-use Test::More tests => 66;
+use Test::More tests => 69;
 use XML::Feed;
 use XML::Feed::Entry;
 use XML::Feed::Content;
@@ -71,4 +71,9 @@ for my $format (qw( Atom RSS )) {
     my @e = $feed->entries;
     is(scalar @e, 1, 'One post in the feed');
     is($e[0]->title, 'Foo Bar', 'Correct post');
+    is($e[0]->content->body, 'This is the content (again).', 'content is still correct');
+
+    if ($format eq 'Atom') {
+        like $feed->as_xml, qr/This is the content/;
+    }
 }

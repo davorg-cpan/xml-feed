@@ -1,4 +1,4 @@
-#line 1 "inc/LWP.pm - /Library/Perl/5.8.6/LWP.pm"
+#line 1
 #
 # $Id: LWP.pm,v 1.149 2005/12/08 12:06:22 gisle Exp $
 

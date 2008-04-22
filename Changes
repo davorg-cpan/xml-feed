@@ -1,6 +1,12 @@
-# $Id: Changes 1924 2006-03-03 17:34:15Z btrott $
+# $Id: Changes 1945 2006-07-11 03:31:58Z btrott $
 
 Revision history for XML::Feed
+
+0.09  2006.07.10
+    - Fixed date format errors with XML::Feed::RSS. Thanks to Tatsuhiko
+      Miyagawa for the patch.
+    - Use add_module to properly add namespaces to the RSS document. Thanks
+      to Tatsuhiko Miyagawa for the patch.
 
 0.08  2006.03.03
     - $feed->author wasn't being converted properly by Feed->convert. Thanks

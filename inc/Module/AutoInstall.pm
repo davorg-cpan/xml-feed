@@ -1,12 +1,14 @@
-#line 1 "inc/Module/AutoInstall.pm - /Library/Perl/5.8.6/Module/AutoInstall.pm"
+#line 1
 package Module::AutoInstall;
-$Module::AutoInstall::VERSION = '1.01';
 
 use strict;
 use Cwd                 ();
 use ExtUtils::MakeMaker ();
 
-#line 218
+use vars qw{$VERSION};
+BEGIN {
+	$VERSION = '1.02';
+}
 
 # special map on pre-defined feature sets
 my %FeatureMap = (
@@ -19,7 +21,8 @@ my ( @Missing, @Existing,  %DisabledTests, $UnderCPAN,     $HasCPANPLUS );
 my ( $Config,  $CheckOnly, $SkipInstall,   $AcceptDefault, $TestOnly );
 my ( $PostambleActions, $PostambleUsed );
 
-_accept_default( !-t STDIN );      # see if it's a non-interactive session
+# See if it's a testing or non-interactive session
+_accept_default( $ENV{AUTOMATED_TESTING} or ! -t STDIN ); 
 _init();
 
 sub _accept_default {
@@ -92,7 +95,7 @@ sub import {
     my $core_all;
 
     print "*** $class version " . $class->VERSION . "\n";
-    print "*** Checking for dependencies...\n";
+    print "*** Checking for Perl dependencies...\n";
 
     my $cwd = Cwd::cwd();
 
@@ -690,7 +693,7 @@ sub _make_args {
     $PostambleActions = (
         $missing
         ? "\$(PERL) $0 --config=$config --installdeps=$missing"
-        : "\@\$(NOOP)"
+        : "\$(NOECHO) \$(NOOP)"
     );
 
     return %args;
@@ -731,7 +734,7 @@ sub postamble {
     return << ".";
 
 config :: installdeps
-\t\@\$(NOOP)
+\t\$(NOECHO) \$(NOOP)
 
 checkdeps ::
 \t\$(PERL) $0 --checkdeps
@@ -747,4 +750,4 @@ installdeps ::
 
 __END__
 
-#line 979
+#line 988

@@ -4,7 +4,7 @@ build_requires:
   HTML::TokeParser: 0
   LWP: 0
 distribution_type: module
-generated_by: Module::Install version 0.57
+generated_by: Module::Install version 0.61
 license: perl
 name: XML-Feed
 no_index:
@@ -22,4 +22,4 @@ requires:
   URI::Fetch: 0
   XML::Atom: 0.08
   XML::RSS: 1.01
-version: 0.08
+version: 0.09
