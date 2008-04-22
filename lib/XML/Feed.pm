@@ -1,4 +1,4 @@
-# $Id: Feed.pm,v 1.6 2004/05/30 16:59:02 btrott Exp $
+# $Id: Feed.pm,v 1.8 2004/07/29 16:44:18 btrott Exp $
 
 package XML::Feed;
 use strict;
@@ -8,7 +8,7 @@ use LWP::UserAgent;
 use HTML::Parser;
 
 use vars qw( $VERSION );
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use constant FEED_MIME_TYPES => [
     'application/x.atom+xml',
@@ -50,7 +50,12 @@ sub parse {
     ## Auto-detect feed type based on first element. This is prone
     ## to breakage, but then again we don't want to parse the whole
     ## feed ourselves.
-    my($tag) = $xml =~ /<([a-zA-Z]\S+)/s;
+    my $tag;
+    while ($xml =~ /<(\S+)/sg) {
+        (my $t = $1) =~ tr/a-zA-Z0-9:\-\?//cd;
+        $tag = $t, last unless substr($t, 0, 1) eq '?';
+    }
+    return $class->error("Cannot find first element") unless $tag;
     $tag =~ s/^.*://;
     if ($tag eq 'rss' || $tag eq 'RDF') {
         require XML::Feed::RSS;

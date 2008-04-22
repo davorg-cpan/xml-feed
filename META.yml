@@ -1,5 +1,5 @@
 name: XML-Feed
-version: 0.01
+version: 0.02
 abstract: XML Syndication Feed Support
 author: Benjamin Trott <cpan@stupidfool.org>
 license: perl

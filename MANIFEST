@@ -14,6 +14,7 @@ inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/XML/Feed.pm
 lib/XML/Feed/Atom.pm
+lib/XML/Feed/Content.pm
 lib/XML/Feed/Entry.pm
 lib/XML/Feed/ErrorHandler.pm
 lib/XML/Feed/RSS.pm
@@ -25,4 +26,5 @@ t/00-compile.t
 t/01-parse.t
 t/samples/atom.xml
 t/samples/rss10.xml
+t/samples/rss20-no-summary.xml
 t/samples/rss20.xml

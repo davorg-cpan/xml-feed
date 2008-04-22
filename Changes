@@ -1,2 +1,16 @@
+# $Id: Changes,v 1.4 2004/07/29 16:42:29 btrott Exp $
+
+Revision history for XML::Feed
+
+0.02
+    - Changed behavior of Entry->summary to prevent it from returning the
+      full contents of the entry. Now, in an RSS feed, summary only returns
+      a value if there is both a <description> element *and* one of the
+      other elements typically used for the full content.
+    - Changed content model for Entry->content and Entry->summary.
+      They now return an XML::Feed::Content object, which knows about both
+      the actual content and the MIME type of the content.
+    - Improved feed format detection by first tag in feed.
+
 0.01  2004.06.01
     - Initial distribution.

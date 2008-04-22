@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<channel>
+<title>First Weblog</title>
+<link>http://localhost/weblog/</link>
+<description>This is a test weblog.</description>
+
+<item>
+<title>Test</title>
+<description>&lt;p&gt;This is a test.&lt;/p&gt;
+
+&lt;p&gt;Why don&apos;t you come down to our place for a coffee and a &lt;strong&gt;chat&lt;/strong&gt;?&lt;/p&gt;</description>
+<link>http://localhost/weblog/2004/05/test.html</link>
+</item>
+</channel>
+</rss>

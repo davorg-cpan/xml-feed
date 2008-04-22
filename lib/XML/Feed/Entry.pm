@@ -1,4 +1,4 @@
-# $Id: Entry.pm,v 1.1.1.1 2004/05/29 17:29:56 btrott Exp $
+# $Id: Entry.pm,v 1.3 2004/07/29 16:42:29 btrott Exp $
 
 package XML::Feed::Entry;
 use strict;
@@ -51,7 +51,8 @@ instead of an offsite URI referenced in the entry.
 
 =head2 $entry->content
 
-The full entry body, or as much as is available in the feed.
+Bn I<XML::Feed::Content> object representing the full entry body, or as
+much as is available in the feed.
 
 In RSS feeds, this method will look first for
 I<http://purl.org/rss/1.0/modules/content/#encoded> and
@@ -60,14 +61,16 @@ I<E<lt>descriptionE<gt>> element.
 
 =head2 $entry->summary
 
-A short summary of the entry. Possibly.
+An I<XML::Feed::Content> object representing a short summary of the entry.
+Possibly.
 
 Since RSS feeds do not have the idea of a summary separate from the entry
-body, this may return the same value as the I<$entry-E<gt>content> method.
-But it won't always, even with RSS feeds. For example, a number of RSS feeds
-use an element like I<http://purl.org/rss/1.0/modules/content/#encoded>
-for the entry body and put an excerpt in the I<E<lt>descriptionE<gt>> element;
-in those cases, this method will return the excerpt.
+body, this may not always be what you want. If the entry contains both a
+I<E<lt>descriptionE<gt>> element B<and> another element typically used for
+the full content of the entry--either I<http://www.w3.org/1999/xhtml/body>
+or I<http://purl.org/rss/1.0/modules/content/#encoded>--we treat that as
+the summary. Otherwise, we assume that there isn't a summary, and return
+an I<XML::Feed::Content> object with an empty string in the I<body>.
 
 =head2 $entry->category
 

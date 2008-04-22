@@ -1,11 +1,11 @@
-# $Id: 01-parse.t,v 1.2 2004/05/30 09:39:52 btrott Exp $
+# $Id: 01-parse.t,v 1.5 2004/07/29 16:43:33 btrott Exp $
 
 use strict;
 use Test;
 use XML::Feed;
 use URI;
 
-BEGIN { plan tests => 68 }
+BEGIN { plan tests => 70 }
 
 my %Feeds = (
     't/samples/atom.xml' => 'Atom',
@@ -53,9 +53,15 @@ for my $file (sort keys %Feeds) {
     ok(ref($dt), 'DateTime');
     $dt->set_time_zone('UTC');
     ok($dt->iso8601, '2004-05-30T07:39:25');
-    ok($entry->content =~ /<p>Hello!<\/p>/);
-    ok($entry->summary, 'Hello!...');
+    ok($entry->content->body =~ /<p>Hello!<\/p>/);
+    ok($entry->summary->body, 'Hello!...');
     ok($entry->category, 'Travel');
     ok($entry->author, 'Melody');
     ok($entry->id);
 }
+
+$feed = XML::Feed->parse('t/samples/rss20-no-summary.xml')
+    or die XML::Feed->errstr;
+my $entry = ($feed->entries)[0];
+ok(!$entry->summary->body);
+ok($entry->content->body =~ m!<p>This is a test.</p>!);

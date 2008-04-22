@@ -1,4 +1,4 @@
-# $Id: RSS.pm,v 1.3 2004/05/30 09:39:52 btrott Exp $
+# $Id: RSS.pm,v 1.5 2004/07/29 16:42:29 btrott Exp $
 
 package XML::Feed::RSS;
 use strict;
@@ -65,17 +65,36 @@ sub entries {
 package XML::Feed::RSS::Entry;
 use strict;
 
+use XML::Feed::Content;
+
 use base qw( XML::Feed::Entry );
 
 sub title { $_[0]->{entry}{title} }
 sub link { $_[0]->{entry}{link} }
-sub summary { $_[0]->{entry}{description} }
+
+sub summary {
+    my $item = $_[0]->{entry};
+    ## Some RSS feeds use <description> for a summary, and some use it
+    ## for the full content. Pretty gross. We don't want to return the
+    ## full content if the caller expects a summary, so the heuristic is:
+    ## if the <entry> contains both a <description> and one of the elements
+    ## typically used for the full content, use <description> as the summary.
+    my $txt;
+    if ($item->{description} &&
+        ($item->{'http://purl.org/rss/1.0/modules/content/'}{encoded} ||
+         $item->{'http://www.w3.org/1999/xhtml'}{body})) {
+        $txt = $item->{description};
+    }
+    XML::Feed::Content->wrap({ type => 'text/plain', body => $txt });
+}
 
 sub content {
     my $item = $_[0]->{entry};
-    $_[0]->{entry}{'http://purl.org/rss/1.0/modules/content/'}{encoded} ||
-    $_[0]->{entry}{'http://www.w3.org/1999/xhtml'}{body} ||
-    $_[0]->{entry}{description};
+    my $body =
+        $_[0]->{entry}{'http://purl.org/rss/1.0/modules/content/'}{encoded} ||
+        $_[0]->{entry}{'http://www.w3.org/1999/xhtml'}{body} ||
+        $_[0]->{entry}{description};
+    XML::Feed::Content->wrap({ type => 'text/html', body => $body });
 }
 
 sub category {

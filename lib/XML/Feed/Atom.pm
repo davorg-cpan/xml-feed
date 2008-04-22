@@ -1,4 +1,4 @@
-# $Id: Atom.pm,v 1.1.1.1 2004/05/29 17:29:56 btrott Exp $
+# $Id: Atom.pm,v 1.2 2004/06/20 15:20:37 btrott Exp $
 
 package XML::Feed::Atom;
 use strict;
@@ -43,6 +43,7 @@ use strict;
 
 use base qw( XML::Feed::Entry );
 use XML::Atom::Util qw( iso2dt );
+use XML::Feed::Content;
 use List::Util qw( first );
 
 sub title { $_[0]->{entry}->title }
@@ -50,8 +51,17 @@ sub link {
     my $l = first { $_->rel eq 'alternate' } $_[0]->{entry}->link;
     $l ? $l->href : undef;
 }
-sub summary { $_[0]->{entry}->summary }
-sub content { $_[0]->{entry}->content ? $_[0]->{entry}->content->body : undef }
+
+sub summary {
+    XML::Feed::Content->wrap({ type => 'text/html',
+                               body => $_[0]->{entry}->summary });
+}
+
+sub content {
+    my $c = $_[0]->{entry}->content;
+    XML::Feed::Content->wrap({ type => $c ? $c->type : undef,
+                               body => $c ? $c->body : undef });
+}
 
 sub category {
     my $ns = XML::Atom::Namespace->new(dc => 'http://purl.org/dc/elements/1.1/');
