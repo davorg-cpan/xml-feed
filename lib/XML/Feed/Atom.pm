@@ -1,4 +1,4 @@
-# $Id: Atom.pm 1865 2005-08-09 20:15:31Z btrott $
+# $Id: Atom.pm 1924 2006-03-03 17:34:15Z btrott $
 
 package XML::Feed::Atom;
 use strict;
@@ -7,6 +7,7 @@ use base qw( XML::Feed );
 use XML::Atom::Feed;
 use XML::Atom::Util qw( iso2dt );
 use List::Util qw( first );
+use DateTime::Format::W3CDTF;
 
 sub init_empty {
     my $feed = shift;
@@ -56,7 +57,7 @@ sub author {
 sub modified {
     my $feed = shift;
     if (@_) {
-        $feed->{atom}->modified($_[0]->iso8601 . 'Z');
+        $feed->{atom}->modified(DateTime::Format::W3CDTF->format_datetime($_[0]));
     } else {
         iso2dt($feed->{atom}->modified);
     }
@@ -159,7 +160,7 @@ sub id { shift->{entry}->id(@_) }
 sub issued {
     my $entry = shift;
     if (@_) {
-        $entry->{entry}->issued($_[0]->iso8601 . 'Z') if $_[0];
+        $entry->{entry}->issued(DateTime::Format::W3CDTF->format_datetime($_[0])) if $_[0];
     } else {
         $entry->{entry}->issued ? iso2dt($entry->{entry}->issued) : undef;
     }
@@ -168,7 +169,7 @@ sub issued {
 sub modified {
     my $entry = shift;
     if (@_) {
-        $entry->{entry}->modified($_[0]->iso8601 . 'Z') if $_[0];
+        $entry->{entry}->modified(DateTime::Format::W3CDTF->format_datetime($_[0])) if $_[0];
     } else {
         $entry->{entry}->modified ? iso2dt($entry->{entry}->modified) : undef;
     }

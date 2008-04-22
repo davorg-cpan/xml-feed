@@ -1,12 +1,32 @@
-#line 1 "inc/Module/Install/Can.pm - /Library/Perl/5.8.1/Module/Install/Can.pm"
+#line 1 "inc/Module/Install/Can.pm - /Library/Perl/5.8.6/Module/Install/Can.pm"
 package Module::Install::Can;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
-$VERSION = '0.01';
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
+
+$VERSION = '0.57';
 
 use strict;
 use Config ();
-use File::Spec ();
 use ExtUtils::MakeMaker ();
+
+# This may introduce a 5.005 dependency, or at the very least it may
+# not bootstrap properly under 5.004.
+use File::Spec ();
+ 
+# check if we can load some module
+sub can_use {
+    my ($self, $mod, $ver) = @_;
+    $mod =~ s{::|\\}{/}g;
+    $mod .= ".pm" unless $mod =~ /\.pm$/i;
+
+    my $pkg = $mod;
+    $pkg =~ s{/}{::}g;
+    $pkg =~ s{\.pm$}{}i;
+
+    local $@;
+    eval { require $mod; $pkg->VERSION($ver || 0); 1 };
+}
 
 # check if we can run some command
 sub can_run {
@@ -33,6 +53,23 @@ sub can_cc {
     }
 
     return;
+}
+
+# Fix Cygwin bug on maybe_command();
+if ($^O eq 'cygwin') {
+    require ExtUtils::MM_Cygwin;
+    require ExtUtils::MM_Win32;
+    if ( ! defined(&ExtUtils::MM_Cygwin::maybe_command) ) {
+        *ExtUtils::MM_Cygwin::maybe_command = sub {
+            my ($self, $file) = @_;
+            if ($file =~ m{^/cygdrive/}i and ExtUtils::MM_Win32->can('maybe_command')) {
+                ExtUtils::MM_Win32->maybe_command($file);
+            }
+            else {
+                ExtUtils::MM_Unix->maybe_command($file);
+            }
+        }
+    }
 }
 
 1;

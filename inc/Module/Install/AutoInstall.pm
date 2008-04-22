@@ -1,6 +1,12 @@
-#line 1 "inc/Module/Install/AutoInstall.pm - /Library/Perl/5.8.1/Module/Install/AutoInstall.pm"
+#line 1 "inc/Module/Install/AutoInstall.pm - /Library/Perl/5.8.6/Module/Install/AutoInstall.pm"
 package Module::Install::AutoInstall;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw{Module::Install::Base};
+
+$VERSION = '0.57';
+
+use strict;
 
 sub AutoInstall { $_[0] }
 
@@ -18,45 +24,35 @@ sub auto_install {
     my $self = shift;
     return if $self->{done}++;
 
-# ExtUtils::AutoInstall Bootstrap Code, version 7.
-AUTO:{my$p='ExtUtils::AutoInstall';my$v=0.49;$p->VERSION||0>=$v
-or+eval"use $p $v;1"or+do{my$e=$ENV{PERL_EXTUTILS_AUTOINSTALL};
-(!defined($e)||$e!~m/--(?:default|skip|testonly)/and-t STDIN or
-eval"use ExtUtils::MakeMaker;WriteMakefile(PREREQ_PM=>{'$p',$v}
-);1"and exit)and print"==> $p $v required. Install it from CP".
-"AN? [Y/n] "and<STDIN>!~/^n/i and print"*** Installing $p\n"and
-do{if (eval '$>' and lc(`sudo -V`) =~ /version/){system('sudo',
-$^X,"-MCPANPLUS","-e","CPANPLUS::install $p");eval"use $p $v;1"
-||system('sudo', $^X, "-MCPAN", "-e", "CPAN::install $p")}eval{
-require CPANPLUS;CPANPLUS::install$p};eval"use $p $v;1"or eval{
-require CPAN;CPAN::install$p};eval"use $p $v;1"||die"*** Please
-manually install $p $v from cpan.org first...\n"}}}
-
     # Flatten array of arrays into a single array
     my @core = map @$_, map @$_, grep ref,
                $self->build_requires, $self->requires;
 
-    while ( @core and @_ > 1 and $_[0] =~ /^-\w+$/ ) {
-        push @core, splice(@_, 0, 2);
-    }
+    my @config = @_;
 
-    ExtUtils::AutoInstall->import(
-        (@core ? (-core => \@core) : ()), @_, $self->features
+    # We'll need Module::AutoInstall
+    $self->include('Module::AutoInstall');
+    require Module::AutoInstall;
+
+    Module::AutoInstall->import(
+        (@config ? (-config => \@config) : ()),
+        (@core   ? (-core   => \@core)   : ()),
+        $self->features,
     );
 
-    $self->makemaker_args( ExtUtils::AutoInstall::_make_args() );
+    $self->makemaker_args( Module::AutoInstall::_make_args() );
 
     my $class = ref($self);
     $self->postamble(
         "# --- $class section:\n" .
-        ExtUtils::AutoInstall::postamble()
+        Module::AutoInstall::postamble()
     );
 }
 
 sub auto_install_now {
     my $self = shift;
-    $self->auto_install;
-    ExtUtils::AutoInstall::do_install();
+    $self->auto_install(@_);
+    Module::AutoInstall::do_install();
 }
 
 1;

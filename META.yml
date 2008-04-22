@@ -1,24 +1,25 @@
-name: XML-Feed
-version: 0.07
 abstract: XML Syndication Feed Support
 author: Six Apart <cpan@sixapart.com>
-license: perl
-distribution_type: module
-requires:
-  Class::ErrorHandler: 0
-  Feed::Find: 0
-  URI::Fetch: 0
-  XML::RSS: 1.01
-  XML::Atom: 0.08
+build_requires:
+  HTML::TokeParser: 0
   LWP: 0
-  HTML::Parser: 0
-  URI: 0
-  DateTime: 0
-  DateTime::Format::Mail: 0
-  DateTime::Format::W3CDTF: 0
-  List::Util: 0
+distribution_type: module
+generated_by: Module::Install version 0.57
+license: perl
+name: XML-Feed
 no_index:
   directory:
     - t
     - inc
-generated_by: Module::Install version 0.36
+    - t
+requires:
+  Class::ErrorHandler: 0
+  DateTime: 0
+  DateTime::Format::Mail: 0
+  DateTime::Format::W3CDTF: 0
+  Feed::Find: 0
+  List::Util: 0
+  URI::Fetch: 0
+  XML::Atom: 0.08
+  XML::RSS: 1.01
+version: 0.08

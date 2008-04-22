@@ -1,7 +1,7 @@
-# $Id: 01-parse.t 1867 2005-08-09 20:41:15Z btrott $
+# $Id: 01-parse.t 1921 2006-02-28 02:50:52Z btrott $
 
 use strict;
-use Test::More tests => 70;
+use Test::More tests => 72;
 use XML::Feed;
 use URI;
 
@@ -68,3 +68,9 @@ $feed = XML::Feed->parse('t/samples/rss20-no-summary.xml')
 my $entry = ($feed->entries)[0];
 ok(!$entry->summary->body);
 like($entry->content->body, qr/<p>This is a test.<\/p>/);
+
+$feed = XML::Feed->parse('t/samples/rss10-invalid-date.xml')
+    or die XML::Feed->errstr;
+$entry = ($feed->entries)[0];
+ok(!$entry->issued);   ## Should return undef, but not die.
+ok(!$entry->modified); ## Same.

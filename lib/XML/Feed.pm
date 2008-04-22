@@ -1,4 +1,4 @@
-# $Id: Feed.pm 1872 2005-08-12 04:28:42Z btrott $
+# $Id: Feed.pm 1920 2006-02-28 00:00:56Z btrott $
 
 package XML::Feed;
 use strict;
@@ -8,7 +8,7 @@ use Feed::Find;
 use URI::Fetch;
 use Carp;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 sub new {
     my $class = shift;
@@ -97,7 +97,7 @@ sub convert {
     my $feed = shift;
     my($format) = @_;
     my $new = __PACKAGE__->new($format);
-    for my $field (qw( title link description language copyright modified generator )) {
+    for my $field (qw( title link description language author copyright modified generator )) {
         my $val = $feed->$field();
         next unless defined $val;
         $new->$field($val);

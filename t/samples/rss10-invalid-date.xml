@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:dcterms="http://purl.org/rss/1.0/modules/dcterms/"
+xmlns="http://purl.org/rss/1.0/">
+
+<channel rdf:about="http://localhost/weblog/">
+<title>First Weblog</title>
+<items>
+<rdf:Seq>
+<rdf:li rdf:resource="http://localhost/weblog/2004/05/entry_two.html" />
+</rdf:Seq>
+</items>
+</channel>
+
+<item rdf:about="http://localhost/weblog/2004/05/entry_two.html">
+<dc:date>May 29, 2004 23:39:25</dc:date>
+<dcterms:modified>May 29, 2004 23:39:25</dcterms:modified>
+</item>
+
+</rdf:RDF>

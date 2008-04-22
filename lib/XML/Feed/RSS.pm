@@ -1,4 +1,4 @@
-# $Id: RSS.pm 1865 2005-08-09 20:15:31Z btrott $
+# $Id: RSS.pm 1917 2006-02-07 07:11:44Z btrott $
 
 package XML::Feed::RSS;
 use strict;
@@ -209,13 +209,18 @@ sub issued {
         $item->{dc}{date} = DateTime::Format::W3CDTF->format_datetime($_[0]);
         $item->{pubDate} = DateTime::Format::Mail->format_datetime($_[0]);
     } else {
-        if (my $ts = $item->{pubDate}) {
-            my $parser = DateTime::Format::Mail->new;
-            $parser->loose;
-            return $parser->parse_datetime($ts);
-        } elsif ($ts = $item->{dc}{date}) {
-            return DateTime::Format::W3CDTF->parse_datetime($ts);
-        }
+        ## Either of these could die if the format is invalid.
+        my $date;
+        eval {
+            if (my $ts = $item->{pubDate}) {
+                my $parser = DateTime::Format::Mail->new;
+                $parser->loose;
+                $date = $parser->parse_datetime($ts);
+            } elsif ($ts = $item->{dc}{date}) {
+                $date = DateTime::Format::W3CDTF->parse_datetime($ts);
+            }
+        };
+        return $date;
     }
 }
 
@@ -226,7 +231,7 @@ sub modified {
             DateTime::Format::W3CDTF->format_datetime($_[0]);
     } else {
         if (my $ts = $item->{'http://purl.org/rss/1.0/modules/dcterms/'}{modified}) {
-            return DateTime::Format::W3CDTF->parse_datetime($ts);
+            return eval { DateTime::Format::W3CDTF->parse_datetime($ts) };
         }
     }
 }

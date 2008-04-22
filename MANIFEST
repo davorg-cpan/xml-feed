@@ -1,6 +1,9 @@
 Build.PL
 Changes
 inc/ExtUtils/AutoInstall.pm
+inc/HTML/TokeParser.pm
+inc/LWP.pm
+inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
 inc/Module/Install/Base.pm
@@ -26,6 +29,7 @@ t/01-parse.t
 t/02-create.t
 t/04-splice.t
 t/samples/atom.xml
+t/samples/rss10-invalid-date.xml
 t/samples/rss10.xml
 t/samples/rss20-no-summary.xml
 t/samples/rss20.xml

@@ -1,15 +1,17 @@
-#line 1 "inc/Module/Install/Fetch.pm - /Library/Perl/5.8.1/Module/Install/Fetch.pm"
+#line 1 "inc/Module/Install/Fetch.pm - /Library/Perl/5.8.6/Module/Install/Fetch.pm"
 package Module::Install::Fetch;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
+
+$VERSION = '0.57';
 
 sub get_file {
     my ($self, %args) = @_;
     my ($scheme, $host, $path, $file) = 
         $args{url} =~ m|^(\w+)://([^/]+)(.+)/(.+)| or return;
 
-    if ($scheme eq 'http' and !eval { require LWP::Simple; 1 }) {
+    if ( $scheme eq 'http' and ! eval { require LWP::Simple; 1 } ) {
         $args{url} = $args{ftp_url}
             or (warn("LWP support unavailable!\n"), return);
         ($scheme, $host, $path, $file) = 

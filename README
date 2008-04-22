@@ -1,4 +1,4 @@
-$Id: README 1869 2005-08-10 00:02:25Z btrott $
+$Id: README 1925 2006-03-03 17:37:50Z btrott $
 
 This is XML::Feed, an abstraction above the RSS and Atom syndication
 feed formats. It supports both parsing and autodiscovery of feeds.
@@ -8,9 +8,6 @@ PREREQUISITES
     * Class::ErrorHandler
     * XML::RSS
     * XML::Atom
-    * LWP
-    * HTML::Parser
-    * URI
     * DateTime
     * DateTime::Format::Mail
     * DateTime::Format::W3CDTF

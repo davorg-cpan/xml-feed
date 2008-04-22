@@ -1,8 +1,10 @@
-#line 1 "inc/Module/Install/Win32.pm - /Library/Perl/5.8.1/Module/Install/Win32.pm"
+#line 1 "inc/Module/Install/Win32.pm - /Library/Perl/5.8.6/Module/Install/Win32.pm"
 package Module::Install::Win32;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.02';
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
+
+$VERSION = '0.57';
 
 use strict;
 
