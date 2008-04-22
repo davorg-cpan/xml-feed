@@ -1,4 +1,4 @@
-# $Id: Feed.pm 942 2004-12-31 23:01:21Z btrott $
+# $Id: Feed.pm 1762 2005-01-01 17:35:44Z btrott $
 
 package XML::Feed;
 use strict;
@@ -7,7 +7,7 @@ use base qw( Class::ErrorHandler );
 use Feed::Find;
 use URI::Fetch;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 sub parse {
     my $class = shift;
@@ -19,7 +19,7 @@ sub parse {
         my $res = URI::Fetch->fetch($stream)
             or return $class->error(URI::Fetch->errstr);
         return $class->error("This feed has been permanently removed")
-            if $res->status == URI::Fetch::FEED_GONE();
+            if $res->status == URI::Fetch::URI_GONE();
         $xml = $res->content;
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
