@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+xmlns:admin="http://webns.net/mvcb/"
+xmlns:cc="http://web.resource.org/cc/"
+xmlns:content="http://purl.org/rss/1.0/modules/content/"
+xmlns="http://purl.org/rss/1.0/">
+
+<channel rdf:about="http://localhost/weblog/">
+<title>First Weblog</title>
+<link>http://localhost/weblog/</link>
+<description>This is a test weblog.</description>
+<dc:language>en-us</dc:language>
+<dc:creator>Melody</dc:creator>
+<dc:date>2004-05-29T23:39:57-08:00</dc:date>
+<admin:generatorAgent rdf:resource="http://www.movabletype.org/?v=3.0D" />
+
+
+<items>
+<rdf:Seq><rdf:li rdf:resource="http://localhost/weblog/2004/05/entry_two.html" />
+<rdf:li rdf:resource="http://localhost/weblog/2004/05/test.html" />
+</rdf:Seq>
+</items>
+
+</channel>
+
+<item rdf:about="http://localhost/weblog/2004/05/entry_two.html">
+<title>Entry Two</title>
+<link>http://localhost/weblog/2004/05/entry_two.html</link>
+<description>Hello!...</description>
+<content:encoded><![CDATA[<p>Hello!</p>]]></content:encoded>
+<dc:subject>Travel</dc:subject>
+<dc:creator>Melody</dc:creator>
+<dc:date>2004-05-29T23:39:25-08:00</dc:date>
+</item>
+<item rdf:about="http://localhost/weblog/2004/05/test.html">
+<title>Test</title>
+<link>http://localhost/weblog/2004/05/test.html</link>
+<description>This is a test. Why don&apos;t you come down to our place for a coffee and a chat?...</description>
+<content:encoded><![CDATA[<p>This is a test.</p>
+
+<p>Why don't you come down to our place for a coffee and a <strong>chat</strong>?</p>]]></content:encoded>
+<dc:subject>Sports</dc:subject>
+<dc:creator>Melody</dc:creator>
+<dc:date>2004-05-08T23:03:28-08:00</dc:date>
+</item>
+
+
+</rdf:RDF>
