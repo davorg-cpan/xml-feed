@@ -1,4 +1,4 @@
-# $Id: Entry.pm 1865 2005-08-09 20:15:31Z btrott $
+# $Id: Entry.pm 1872 2005-08-12 04:28:42Z btrott $
 
 package XML::Feed::Entry;
 use strict;
@@ -33,7 +33,9 @@ sub convert {
     my($format) = @_;
     my $new = __PACKAGE__->new($format);
     for my $field (qw( title link content summary category author id issued modified )) {
-        $new->$field($entry->$field());
+        my $val = $entry->$field();
+        next unless defined $val;
+        $new->$field($val);
     }
     $new;
 }

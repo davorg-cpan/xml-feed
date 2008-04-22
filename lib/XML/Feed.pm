@@ -1,4 +1,4 @@
-# $Id: Feed.pm 1869 2005-08-10 00:02:25Z btrott $
+# $Id: Feed.pm 1872 2005-08-12 04:28:42Z btrott $
 
 package XML::Feed;
 use strict;
@@ -8,7 +8,7 @@ use Feed::Find;
 use URI::Fetch;
 use Carp;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 sub new {
     my $class = shift;
@@ -98,12 +98,23 @@ sub convert {
     my($format) = @_;
     my $new = __PACKAGE__->new($format);
     for my $field (qw( title link description language copyright modified generator )) {
-        $new->$field($feed->$field());
+        my $val = $feed->$field();
+        next unless defined $val;
+        $new->$field($val);
     }
     for my $entry ($feed->entries) {
         $new->add_entry($entry->convert($format));
     }
     $new;
+}
+
+sub splice {
+    my $feed = shift;
+    my($other) = @_;
+    my %ids = map { $_->id => 1 } $feed->entries;
+    for my $entry ($other->entries) {
+        $feed->add_entry($entry) unless $ids{$entry->id}++;
+    }
 }
 
 sub format;
@@ -213,6 +224,11 @@ Returns a list of feed URIs.
 
 Converts the I<XML::Feed> object into the I<$format> format, and returns
 the new object.
+
+=head2 $feed->splice($other_feed)
+
+Splices in all of the entries from the feed I<$other_feed> into I<$feed>,
+skipping posts that are already in I<$feed>.
 
 =head2 $feed->format
 
