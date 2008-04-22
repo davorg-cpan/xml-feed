@@ -1,22 +1,15 @@
-# $Id: Feed.pm,v 1.8 2004/07/29 16:44:18 btrott Exp $
+# $Id: Feed.pm,v 1.10 2004/10/09 07:05:08 btrott Exp $
 
 package XML::Feed;
 use strict;
 
-use base qw( XML::Feed::ErrorHandler );
+use base qw( Class::ErrorHandler );
 use LWP::UserAgent;
 use HTML::Parser;
+use Feed::Find;
 
 use vars qw( $VERSION );
-$VERSION = '0.02';
-
-use constant FEED_MIME_TYPES => [
-    'application/x.atom+xml',
-    'application/atom+xml',
-    'text/xml',
-    'application/rss+xml',
-    'application/rdf+xml',
-];
+$VERSION = '0.03';
 
 sub parse {
     my $class = shift;
@@ -52,8 +45,9 @@ sub parse {
     ## feed ourselves.
     my $tag;
     while ($xml =~ /<(\S+)/sg) {
-        (my $t = $1) =~ tr/a-zA-Z0-9:\-\?//cd;
-        $tag = $t, last unless substr($t, 0, 1) eq '?';
+        (my $t = $1) =~ tr/a-zA-Z0-9:\-\?!//cd;
+        my $first = substr $t, 0, 1;
+        $tag = $t, last unless $first eq '?' || $first eq '!';
     }
     return $class->error("Cannot find first element") unless $tag;
     $tag =~ s/^.*://;
@@ -73,35 +67,8 @@ sub parse {
 sub find_feeds {
     my $class = shift;
     my($uri) = @_;
-    my $ua = LWP::UserAgent->new;
-    my $req = HTTP::Request->new(GET => $uri);
-    my $res = $ua->request($req);
-    return unless $res->is_success;
-    my @feeds;
-    my %is_feed = map { $_ => 1 } @{ FEED_MIME_TYPES() };
-    my $ct = $res->content_type;
-    if ($is_feed{$ct}) {
-        @feeds = ($uri);
-    } elsif ($ct eq 'text/html' || $ct eq 'application/xhtml+xml') {
-        my $base_uri = $uri;
-        my $find_links = sub {
-            my($tag, $attr) = @_;
-            if ($tag eq 'link') {
-                return unless $attr->{rel};
-                my %rel = map { $_ => 1 } split /\s+/, lc($attr->{rel});
-                (my $type = lc $attr->{type}) =~ s/^\s*//;
-                $type =~ s/\s*$//;
-                push @feeds, URI->new_abs($attr->{href}, $base_uri)->as_string
-                   if $is_feed{$type} &&
-                      ($rel{alternate} || $rel{'service.feed'});
-            } elsif ($tag eq 'base') {
-                $base_uri = $attr->{href};
-            }
-        };
-        my $p = HTML::Parser->new(api_version => 3,
-                                  start_h => [ $find_links, "tagname, attr" ]);
-        $p->parse($res->content);
-    }
+    my @feeds = Feed::Find->find($uri)
+        or return $class->error(Feed::Find->errstr);
     @feeds;
 }
 

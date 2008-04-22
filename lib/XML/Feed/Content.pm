@@ -1,9 +1,9 @@
-# $Id: Content.pm,v 1.1 2004/06/20 15:20:38 btrott Exp $
+# $Id: Content.pm,v 1.2 2004/10/04 03:38:11 btrott Exp $
 
 package XML::Feed::Content;
 use strict;
 
-use base qw( XML::Feed::ErrorHandler );
+use base qw( Class::ErrorHandler );
 
 sub wrap {
     my $class = shift;

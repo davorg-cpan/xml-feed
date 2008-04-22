@@ -1,8 +1,16 @@
-# $Id: Changes,v 1.4 2004/07/29 16:42:29 btrott Exp $
+# $Id: Changes,v 1.7 2004/10/09 07:02:01 btrott Exp $
 
 Revision history for XML::Feed
 
-0.02
+0.03  2004.10.09
+    - Fixed bug with feed format detection: properly detect format even in
+      feeds with <!DOCTYPE> at the top. (Thanks to Alberto Quario for the
+      note.)
+    - Use Class::ErrorHandler instead of XML::Feed::ErrorHandler.
+    - Moved auto-discovery code into Feed::Find. XML::Feed->find_feeds is
+      now just a wrapper around that module.
+
+0.02  2004.07.29
     - Changed behavior of Entry->summary to prevent it from returning the
       full contents of the entry. Now, in an RSS feed, summary only returns
       a value if there is both a <description> element *and* one of the

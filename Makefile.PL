@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1.1.1 2004/05/29 17:29:56 btrott Exp $
+# $Id: Makefile.PL,v 1.2 2004/10/04 03:38:11 btrott Exp $
 
 use inc::Module::Install;
 
@@ -12,6 +12,8 @@ sign(1);
 
 include('ExtUtils::AutoInstall');
 
+requires('Class::ErrorHandler');
+requires('Feed::Find');
 requires('XML::RSS' => 1.01);
 requires('XML::Atom' => 0.08);
 requires('LWP');
