@@ -1,12 +1,41 @@
-# $Id: Entry.pm 942 2004-12-31 23:01:21Z btrott $
+# $Id: Entry.pm 1865 2005-08-09 20:15:31Z btrott $
 
 package XML::Feed::Entry;
 use strict;
+use base qw( Class::ErrorHandler );
+
+use Carp;
 
 sub wrap {
     my $class = shift;
     my($item) = @_;
     bless { entry => $item }, $class;
+}
+
+sub unwrap { $_[0]->{entry} }
+
+sub new {
+    my $class = shift;
+    my($format) = @_;
+    $format ||= 'Atom';
+    my $format_class = 'XML::Feed::' . $format;
+    eval "use $format_class";
+    Carp::croak("Unsupported format $format: $@") if $@;
+    my $entry = bless {}, join('::', __PACKAGE__, $format);
+    $entry->init_empty or return $class->error($entry->errstr);
+    $entry;
+}
+
+sub init_empty { 1 }
+
+sub convert {
+    my $entry = shift;
+    my($format) = @_;
+    my $new = __PACKAGE__->new($format);
+    for my $field (qw( title link content summary category author id issued modified )) {
+        $new->$field($entry->$field());
+    }
+    $new;
 }
 
 sub title;
@@ -40,16 +69,26 @@ feed.
 
 =head1 USAGE
 
-=head2 $entry->title
+=head2 XML::Feed::Entry->new($format)
+
+Creates a new I<XML::Feed::Entry> object in the format I<$format>, which
+should be either I<RSS> or I<Atom>.
+
+=head2 $entry->convert($format)
+
+Converts the I<XML::Feed::Entry> object into the I<$format> format, and
+returns the new object.
+
+=head2 $entry->title([ $title ])
 
 The title of the entry.
 
-=head2 $entry->link
+=head2 $entry->link([ $uri ])
 
 The permalink of the entry, in most cases, except in cases where it points
 instead to an offsite URI referenced in the entry.
 
-=head2 $entry->content
+=head2 $entry->content([ $content ])
 
 Bn I<XML::Feed::Content> object representing the full entry body, or as
 much as is available in the feed.
@@ -59,7 +98,7 @@ I<http://purl.org/rss/1.0/modules/content/#encoded> and
 I<http://www.w3.org/1999/xhtml#body> elements, then fall back to a
 I<E<lt>descriptionE<gt>> element.
 
-=head2 $entry->summary
+=head2 $entry->summary([ $summary ])
 
 An I<XML::Feed::Content> object representing a short summary of the entry.
 Possibly.
@@ -72,26 +111,30 @@ or I<http://purl.org/rss/1.0/modules/content/#encoded>--we treat that as
 the summary. Otherwise, we assume that there isn't a summary, and return
 an I<XML::Feed::Content> object with an empty string in the I<body>.
 
-=head2 $entry->category
+=head2 $entry->category([ $category ])
 
 The category in which the entry was posted.
 
-=head2 $entry->author
+=head2 $entry->author([ $author ])
 
 The name or email address of the person who posted the entry.
 
-=head2 $entry->id
+=head2 $entry->id([ $id ])
 
 The unique ID of the entry.
 
-=head2 $entry->issued
+=head2 $entry->issued([ $issued ])
 
 A I<DateTime> object representing the date and time at which the entry
 was posted.
 
-=head2 $entry->modified
+If present, I<$issued> should be a I<DateTime> object.
+
+=head2 $entry->modified([ $modified ])
 
 A I<DateTime> object representing the last-modified date of the entry.
+
+If present, I<$modified> should be a I<DateTime> object.
 
 =head1 AUTHOR & COPYRIGHT
 

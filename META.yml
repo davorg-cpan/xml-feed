@@ -1,7 +1,7 @@
 name: XML-Feed
-version: 0.05
+version: 0.06
 abstract: XML Syndication Feed Support
-author: Benjamin Trott <ben+cpan@stupidfool.org>
+author: Six Apart <cpan@sixapart.com>
 license: perl
 distribution_type: module
 requires:

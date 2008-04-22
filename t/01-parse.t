@@ -1,11 +1,9 @@
-# $Id: 01-parse.t 933 2004-07-29 16:43:33Z btrott $
+# $Id: 01-parse.t 1867 2005-08-09 20:41:15Z btrott $
 
 use strict;
-use Test;
+use Test::More tests => 70;
 use XML::Feed;
 use URI;
-
-BEGIN { plan tests => 70 }
 
 my %Feeds = (
     't/samples/atom.xml' => 'Atom',
@@ -16,47 +14,52 @@ my %Feeds = (
 ## First, test all of the various ways of calling parse.
 my $feed;
 my $file = 't/samples/atom.xml';
-ok($feed = XML::Feed->parse($file));
-ok($feed->title, 'First Weblog');
+$feed = XML::Feed->parse($file);
+isa_ok($feed, 'XML::Feed::Atom');
+is($feed->title, 'First Weblog');
 open my $fh, $file or die "Can't open $file: $!";
-ok($feed = XML::Feed->parse($fh));
-ok($feed->title, 'First Weblog');
+$feed = XML::Feed->parse($fh);
+isa_ok($feed, 'XML::Feed::Atom');
+is($feed->title, 'First Weblog');
 seek $fh, 0, 0;
 my $xml = do { local $/; <$fh> };
-ok($feed = XML::Feed->parse(\$xml));
-ok($feed->title, 'First Weblog');
-ok($feed = XML::Feed->parse(URI->new("file:$file")));
-ok($feed->title, 'First Weblog');
+$feed = XML::Feed->parse(\$xml);
+isa_ok($feed, 'XML::Feed::Atom');
+is($feed->title, 'First Weblog');
+$feed = XML::Feed->parse(URI->new("file:$file"));
+isa_ok($feed, 'XML::Feed::Atom');
+is($feed->title, 'First Weblog');
 
 ## Then try calling all of the unified API methods.
 for my $file (sort keys %Feeds) {
     my $feed = XML::Feed->parse($file) or die XML::Feed->errstr;
-    ok($feed);
-    ok($feed->format, $Feeds{$file});
-    ok($feed->language, 'en-us');
-    ok($feed->title, 'First Weblog');
-    ok($feed->link, 'http://localhost/weblog/');
-    ok($feed->tagline, 'This is a test weblog.');
-    ok($feed->description, 'This is a test weblog.');
+    my($subclass) = $Feeds{$file} =~ /^(\w+)/;
+    isa_ok($feed, 'XML::Feed::' . $subclass);
+    is($feed->format, $Feeds{$file});
+    is($feed->language, 'en-us');
+    is($feed->title, 'First Weblog');
+    is($feed->link, 'http://localhost/weblog/');
+    is($feed->tagline, 'This is a test weblog.');
+    is($feed->description, 'This is a test weblog.');
     my $dt = $feed->modified;
-    ok(ref($dt), 'DateTime');
+    isa_ok($dt, 'DateTime');
     $dt->set_time_zone('UTC');
-    ok($dt->iso8601, '2004-05-30T07:39:57');
-    ok($feed->author, 'Melody');
+    is($dt->iso8601, '2004-05-30T07:39:57');
+    is($feed->author, 'Melody');
 
     my @entries = $feed->entries;
-    ok(scalar @entries, 2);
+    is(scalar @entries, 2);
     my $entry = $entries[0];
-    ok($entry->title, 'Entry Two');
-    ok($entry->link, 'http://localhost/weblog/2004/05/entry_two.html');
+    is($entry->title, 'Entry Two');
+    is($entry->link, 'http://localhost/weblog/2004/05/entry_two.html');
     $dt = $entry->issued;
-    ok(ref($dt), 'DateTime');
+    isa_ok($dt, 'DateTime');
     $dt->set_time_zone('UTC');
-    ok($dt->iso8601, '2004-05-30T07:39:25');
-    ok($entry->content->body =~ /<p>Hello!<\/p>/);
-    ok($entry->summary->body, 'Hello!...');
-    ok($entry->category, 'Travel');
-    ok($entry->author, 'Melody');
+    is($dt->iso8601, '2004-05-30T07:39:25');
+    like($entry->content->body, qr/<p>Hello!<\/p>/);
+    is($entry->summary->body, 'Hello!...');
+    is($entry->category, 'Travel');
+    is($entry->author, 'Melody');
     ok($entry->id);
 }
 
@@ -64,4 +67,4 @@ $feed = XML::Feed->parse('t/samples/rss20-no-summary.xml')
     or die XML::Feed->errstr;
 my $entry = ($feed->entries)[0];
 ok(!$entry->summary->body);
-ok($entry->content->body =~ m!<p>This is a test.</p>!);
+like($entry->content->body, qr/<p>This is a test.<\/p>/);

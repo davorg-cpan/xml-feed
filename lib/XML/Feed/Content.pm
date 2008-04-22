@@ -1,4 +1,4 @@
-# $Id: Content.pm 937 2004-10-04 03:38:11Z btrott $
+# $Id: Content.pm 1862 2005-06-20 17:26:11Z btrott $
 
 package XML::Feed::Content;
 use strict;
@@ -10,6 +10,7 @@ sub wrap {
     my($c) = @_;
     bless { %$c }, $class;
 }
+*new = \&wrap;
 
 sub _var {
     my $content = shift;

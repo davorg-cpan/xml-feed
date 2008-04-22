@@ -1,4 +1,4 @@
-$Id: README 942 2004-12-31 23:01:21Z btrott $
+$Id: README 1869 2005-08-10 00:02:25Z btrott $
 
 This is XML::Feed, an abstraction above the RSS and Atom syndication
 feed formats. It supports both parsing and autodiscovery of feeds.
@@ -34,4 +34,4 @@ Then install it:
 
     % make install
 
-Benjamin Trott / ben+cpan@stupidfool.org
+Six Apart / cpan@sixapart.com

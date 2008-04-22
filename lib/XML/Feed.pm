@@ -1,4 +1,4 @@
-# $Id: Feed.pm 1762 2005-01-01 17:35:44Z btrott $
+# $Id: Feed.pm 1869 2005-08-10 00:02:25Z btrott $
 
 package XML::Feed;
 use strict;
@@ -6,8 +6,23 @@ use strict;
 use base qw( Class::ErrorHandler );
 use Feed::Find;
 use URI::Fetch;
+use Carp;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
+
+sub new {
+    my $class = shift;
+    my($format) = @_;
+    $format ||= 'Atom';
+    my $format_class = 'XML::Feed::' . $format;
+    eval "use $format_class";
+    Carp::croak("Unsupported format $format: $@") if $@;
+    my $feed = bless {}, join('::', __PACKAGE__, $format);
+    $feed->init_empty or return $class->error($feed->errstr);
+    $feed;
+}
+
+sub init_empty { 1 }
 
 sub parse {
     my $class = shift;
@@ -78,17 +93,33 @@ sub find_feeds {
     @feeds;
 }
 
+sub convert {
+    my $feed = shift;
+    my($format) = @_;
+    my $new = __PACKAGE__->new($format);
+    for my $field (qw( title link description language copyright modified generator )) {
+        $new->$field($feed->$field());
+    }
+    for my $entry ($feed->entries) {
+        $new->add_entry($entry->convert($format));
+    }
+    $new;
+}
+
 sub format;
 sub title;
 sub link;
 sub description;
 sub language;
+sub author;
 sub copyright;
 sub modified;
 sub generator;
+sub add_entry;
 sub entries;
+sub as_xml;
 
-sub tagline { $_[0]->description }
+sub tagline { shift->description(@_) }
 sub items   { $_[0]->entries     }
 
 1;
@@ -142,6 +173,10 @@ I<DateTime> objects, which it then returns to the caller.
 
 =head1 USAGE
 
+=head2 XML::Feed->new($format)
+
+Creates a new empty I<XML::Feed> object using the format I<$format>.
+
 =head2 XML::Feed->parse($stream)
 
 Parses a syndication feed identified by I<$stream>. I<$stream> can be any
@@ -174,39 +209,50 @@ from that page (using I<E<lt>linkE<gt>> tags).
 
 Returns a list of feed URIs.
 
+=head2 $feed->convert($format)
+
+Converts the I<XML::Feed> object into the I<$format> format, and returns
+the new object.
+
 =head2 $feed->format
 
 Returns the format of the feed (C<Atom>, or some version of C<RSS>).
 
-=head2 $feed->title
+=head2 $feed->title([ $title ])
 
 The title of the feed/channel.
 
-=head2 $feed->link
+=head2 $feed->link([ $uri ])
 
 The permalink of the feed/channel.
 
-=head2 $feed->tagline
+=head2 $feed->tagline([ $tagline ])
 
 The description or tagline of the feed/channel.
 
-=head2 $feed->description
+=head2 $feed->description([ $description ])
 
 Alias for I<$feed-E<gt>tagline>.
 
-=head2 $feed->language
+=head2 $feed->author([ $author ])
+
+The author of the feed/channel.
+
+=head2 $feed->language([ $language ])
 
 The language of the feed.
 
-=head2 $feed->copyright
+=head2 $feed->copyright([ $copyright ])
 
 The copyright notice of the feed.
 
-=head2 $feed->modified
+=head2 $feed->modified([ $modified ])
 
 A I<DateTime> object representing the last-modified date of the feed.
 
-=head2 $feed->generator
+If present, I<$modified> should be a I<DateTime> object.
+
+=head2 $feed->generator([ $generator ])
 
 The generator of the feed.
 
@@ -215,6 +261,32 @@ The generator of the feed.
 A list of the entries/items in the feed. Returns an array containing
 I<XML::Feed::Entry> objects.
 
+=head2 $feed->add_entry($entry)
+
+Adds an entry to the feed. I<$entry> should be an I<XML::Feed::Entry>
+object in the correct format for the feed.
+
+=head2 $feed->as_xml
+
+Returns an XML representation of the feed, in the format determined by
+the current format of the I<$feed> object.
+
+=head1 PACKAGE VARIABLES
+
+=over 4
+
+=item C<$XML::Feed::RSS::PREFERRED_PARSER>
+
+If you want to use another RSS parser class than XML::RSS (default), you can
+change the class by setting C<$PREFERRED_PARSER> variable in XML::Feed::RSS
+package.
+
+    $XML::Feed::RSS::PREFERRED_PARSER = "XML::RSS::LibXML";
+
+B<Note:> this will only work for parsing feeds, not creating feeds.
+
+=back
+
 =head1 LICENSE
 
 I<XML::Feed> is free software; you may redistribute it and/or modify it
@@ -222,7 +294,7 @@ under the same terms as Perl itself.
 
 =head1 AUTHOR & COPYRIGHT
 
-Except where otherwise noted, I<XML::Feed> is Copyright 2004 Benjamin
-Trott, ben+cpan@stupidfool.org. All rights reserved.
+Except where otherwise noted, I<XML::Feed> is Copyright 2004-2005
+Six Apart, cpan@sixapart.com. All rights reserved.
 
 =cut

@@ -23,6 +23,7 @@ META.yml
 README
 t/00-compile.t
 t/01-parse.t
+t/02-create.t
 t/samples/atom.xml
 t/samples/rss10.xml
 t/samples/rss20-no-summary.xml

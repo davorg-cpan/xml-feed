@@ -1,10 +1,10 @@
-# $Id: Makefile.PL 942 2004-12-31 23:01:21Z btrott $
+# $Id: Makefile.PL 1869 2005-08-10 00:02:25Z btrott $
 
 use inc::Module::Install;
 
 name('XML-Feed');
 abstract('XML Syndication Feed Support');
-author('Benjamin Trott <ben+cpan@stupidfool.org>');
+author('Six Apart <cpan@sixapart.com>');
 version_from('lib/XML/Feed.pm');
 license('perl');
 no_index(directory => 't');
