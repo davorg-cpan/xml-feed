@@ -30,7 +30,10 @@ t/01-parse.t
 t/02-create.t
 t/04-splice.t
 t/05-atom10-link.t
+t/06-atom10.t
+t/07-atom10-create.t
 t/samples/atom-10-example.xml
+t/samples/atom-full.xml
 t/samples/atom.xml
 t/samples/rss10-invalid-date.xml
 t/samples/rss10.xml

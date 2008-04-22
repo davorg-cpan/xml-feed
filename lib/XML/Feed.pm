@@ -1,4 +1,4 @@
-# $Id: Feed.pm 1956 2006-08-08 04:34:54Z btrott $
+# $Id: Feed.pm 1958 2006-08-14 05:31:27Z btrott $
 
 package XML::Feed;
 use strict;
@@ -8,7 +8,7 @@ use Feed::Find;
 use URI::Fetch;
 use Carp;
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 sub new {
     my $class = shift;

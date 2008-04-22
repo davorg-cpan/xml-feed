@@ -1,6 +1,10 @@
-# $Id: Changes 1956 2006-08-08 04:34:54Z btrott $
+# $Id: Changes 1958 2006-08-14 05:31:27Z btrott $
 
 Revision history for XML::Feed
+
+0.12  2006.08.13
+    - Generate Atom 1.0 feeds by default. Thanks to Tatsuhiko Miyagawa for
+      the patch.
 
 0.11  2006.08.07
     - Fixed a bug in XML::Feed::Atom where entry->link and feed->link didn't

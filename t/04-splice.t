@@ -1,4 +1,4 @@
-# $Id: 04-splice.t 1872 2005-08-12 04:28:42Z btrott $
+# $Id: 04-splice.t 1958 2006-08-14 05:31:27Z btrott $
 
 use strict;
 use Test::More tests => 3;
@@ -6,7 +6,7 @@ use XML::Feed;
 
 my $feed = XML::Feed->new('Atom');
 
-my $other = XML::Feed->parse('t/samples/atom.xml');
+my $other = XML::Feed->parse('t/samples/atom.xml')->convert('Atom');
 $feed->splice($other);
 is(scalar $feed->entries, 2, '2 entries in the feed after splicing');
 
