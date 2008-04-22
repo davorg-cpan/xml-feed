@@ -1,4 +1,4 @@
-# $Id: Makefile.PL 1925 2006-03-03 17:37:50Z btrott $
+# $Id: Makefile.PL 1955 2006-08-02 05:59:58Z btrott $
 
 use inc::Module::Install;
 
@@ -23,6 +23,7 @@ requires('DateTime::Format::W3CDTF');
 requires('List::Util');
 build_requires('LWP');
 build_requires('HTML::TokeParser');
+build_requires('Test::More');
 
 auto_include();
 auto_install();

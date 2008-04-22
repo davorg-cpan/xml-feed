@@ -15,6 +15,7 @@ inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
+inc/Test/More.pm
 lib/XML/Feed.pm
 lib/XML/Feed/Atom.pm
 lib/XML/Feed/Content.pm
@@ -28,6 +29,8 @@ t/00-compile.t
 t/01-parse.t
 t/02-create.t
 t/04-splice.t
+t/05-atom10-link.t
+t/samples/atom-10-example.xml
 t/samples/atom.xml
 t/samples/rss10-invalid-date.xml
 t/samples/rss10.xml

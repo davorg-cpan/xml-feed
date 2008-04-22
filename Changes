@@ -1,6 +1,11 @@
-# $Id: Changes 1948 2006-07-17 16:06:18Z btrott $
+# $Id: Changes 1956 2006-08-08 04:34:54Z btrott $
 
 Revision history for XML::Feed
+
+0.11  2006.08.07
+    - Fixed a bug in XML::Feed::Atom where entry->link and feed->link didn't
+      return the proper link element if the "rel" attribute wasn't defined for
+      a <link /> tag. Thanks to Tatsuhiko Miyagawa for the patch.
 
 0.10  2006.07.17
     - Oops, an Atom test in 01-parse.t was previously succeeding only because

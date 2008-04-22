@@ -3,6 +3,7 @@ author: Six Apart <cpan@sixapart.com>
 build_requires:
   HTML::TokeParser: 0
   LWP: 0
+  Test::More: 0
 distribution_type: module
 generated_by: Module::Install version 0.61
 license: perl
@@ -22,4 +23,4 @@ requires:
   URI::Fetch: 0
   XML::Atom: 0.08
   XML::RSS: 1.01
-version: 0.10
+version: 0.11

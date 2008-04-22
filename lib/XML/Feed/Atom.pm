@@ -1,4 +1,4 @@
-# $Id: Atom.pm 1924 2006-03-03 17:34:15Z btrott $
+# $Id: Atom.pm 1955 2006-08-02 05:59:58Z btrott $
 
 package XML::Feed::Atom;
 use strict;
@@ -34,7 +34,7 @@ sub link {
         $feed->{atom}->add_link({ rel => 'alternate', href => $_[0],
                                   type => 'text/html', });
     } else {
-        my $l = first { $_->rel eq 'alternate' } $feed->{atom}->link;
+        my $l = first { !defined $_->rel || $_->rel eq 'alternate' } $feed->{atom}->link;
         $l ? $l->href : undef;
     }
 }
@@ -101,7 +101,7 @@ sub link {
         $entry->{entry}->add_link({ rel => 'alternate', href => $_[0],
                                     type => 'text/html', });
     } else {
-        my $l = first { $_->rel eq 'alternate' } $entry->{entry}->link;
+        my $l = first { !defined $_->rel || $_->rel eq 'alternate' } $entry->{entry}->link;
         $l ? $l->href : undef;
     }
 }
