@@ -8,7 +8,7 @@ use Feed::Find;
 use URI::Fetch;
 use Carp;
 
-our $VERSION = '0.12';
+our $VERSION = '0.20';
 
 sub new {
     my $class = shift;
