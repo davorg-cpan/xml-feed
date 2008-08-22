@@ -4,6 +4,8 @@ package XML::Feed::Entry;
 use strict;
 use base qw( Class::ErrorHandler );
 
+use Scalar::Util qw( blessed );
+
 use Carp;
 
 sub wrap {
@@ -35,6 +37,7 @@ sub convert {
     for my $field (qw( title link content summary category author id issued modified )) {
         my $val = $entry->$field();
         next unless defined $val;
+        next if blessed $val && $val->isa('XML::Feed::Content') && ! defined $val->body;
         $new->$field($val);
     }
     $new;
