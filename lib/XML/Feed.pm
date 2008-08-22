@@ -12,13 +12,12 @@ our $VERSION = '0.12';
 
 sub new {
     my $class = shift;
-    my($format) = @_;
-    $format ||= 'Atom';
+    my $format = shift || 'Atom';
     my $format_class = 'XML::Feed::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
     my $feed = bless {}, join('::', __PACKAGE__, $format);
-    $feed->init_empty or return $class->error($feed->errstr);
+    $feed->init_empty(@_) or return $class->error($feed->errstr);
     $feed;
 }
 

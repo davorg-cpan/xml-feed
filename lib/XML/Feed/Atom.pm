@@ -10,8 +10,10 @@ use List::Util qw( first );
 use DateTime::Format::W3CDTF;
 
 sub init_empty {
-    my $feed = shift;
-    $feed->{atom} = XML::Atom::Feed->new(Version => 1.0);
+    my ($feed, %args) = @_;
+    $args{'Version'} ||= '1.0';
+    
+    $feed->{atom} = XML::Atom::Feed->new(%args);
     $feed;
 }
 
