@@ -12,6 +12,9 @@ Revision history for XML::Feed
     - Force working version XML::Atom 
       http://rt.cpan.org/Public/Bug/Display.html?id=22548
       http://rt.cpan.org/Public/Bug/Display.html?id=19920
+    - Allow extra Atom accessors
+      http://rt.cpan.org/Public/Bug/Display.html?id=33881
+      (Paul Mison PMISON)
   
 0.12  2006.08.13
     - Generate Atom 1.0 feeds by default. Thanks to Tatsuhiko Miyagawa for

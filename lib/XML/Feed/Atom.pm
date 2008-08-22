@@ -44,6 +44,9 @@ sub description { shift->{atom}->tagline(@_) }
 sub copyright   { shift->{atom}->copyright(@_) }
 sub language    { shift->{atom}->language(@_) }
 sub generator   { shift->{atom}->generator(@_) }
+sub id          { shift->{atom}->id(@_) }
+sub updated     { shift->{atom}->updated(@_) }
+sub add_link    { shift->{atom}->add_link(@_) }
 
 sub author {
     my $feed = shift;
@@ -98,6 +101,9 @@ sub init_empty {
 }
 
 sub title { shift->{entry}->title(@_) }
+sub source { shift->{entry}->source(@_) }
+sub updated { shift->{entry}->updated(@_) }
+
 sub link {
     my $entry = shift;
     if (@_) {
@@ -152,7 +158,7 @@ sub category {
         $entry->{entry}->add_category({ term => $_[0] });
     } else {
         my $category = $entry->{entry}->category;
-        $category ? ($category->label || $category->term) : $entry->{entry}->get($ns, 'subject');
+        $category ? ($category->label || $category->term) : $entry->{entry}->getlist($ns, 'subject');
     }
 }
 
