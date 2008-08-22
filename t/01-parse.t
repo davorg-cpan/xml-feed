@@ -1,7 +1,7 @@
 # $Id: 01-parse.t 1921 2006-02-28 02:50:52Z btrott $
 
 use strict;
-use Test::More tests => 72;
+use Test::More tests => 75;
 use XML::Feed;
 use URI;
 
@@ -58,6 +58,7 @@ for my $file (sort keys %Feeds) {
     is($dt->iso8601, '2004-05-30T07:39:25');
     like($entry->content->body, qr/<p>Hello!<\/p>/);
     is($entry->summary->body, 'Hello!...');
+    is(($entry->category)[0], 'Travel');
     is($entry->category, 'Travel');
     is($entry->author, 'Melody');
     ok($entry->id);

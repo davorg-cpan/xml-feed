@@ -160,7 +160,8 @@ sub category {
         $entry->{entry}->add_category({ term => $_[0] });
     } else {
         my $category = $entry->{entry}->category;
-        $category ? ($category->label || $category->term) : $entry->{entry}->getlist($ns, 'subject');
+        my @return = $category ? ($category->label || $category->term) : $entry->{entry}->getlist($ns, 'subject');
+        return wantarray? @return : $return[0];
     }
 }
 
