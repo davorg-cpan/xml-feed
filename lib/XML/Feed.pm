@@ -55,7 +55,7 @@ sub parse {
     if ($specified_format) {
         $format = $specified_format;
     } else {
-        $feed->identify_format(\$xml) or return $class->error($feed->errstr);
+        $format = $feed->identify_format(\$xml) or return $class->error($feed->errstr);
     }
 
     my $format_class = join '::', __PACKAGE__, $format;
