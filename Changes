@@ -23,6 +23,10 @@ Revision history for XML::Feed
       http://rt.cpan.org/Public/Bug/Display.html?id=20763
       http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=380498
       (Gregor Herrmann and Joey Hess)
+    - Switch to Module::Build
+      http://rt.cpan.org/Public/Bug/Display.html?id=38283
+      http://rt.cpan.org/Public/Bug/Display.html?id=20575
+      http://rt.cpan.org/Public/Bug/Display.html?id=21300
   
 0.12  2006.08.13
     - Generate Atom 1.0 feeds by default. Thanks to Tatsuhiko Miyagawa for
