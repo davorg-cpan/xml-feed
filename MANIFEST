@@ -32,6 +32,7 @@ t/04-splice.t
 t/05-atom10-link.t
 t/06-atom10.t
 t/07-atom10-create.t
+t/08-convert-summary-bug.t
 t/samples/atom-10-example.xml
 t/samples/atom-full.xml
 t/samples/atom.xml
