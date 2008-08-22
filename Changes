@@ -2,6 +2,11 @@
 
 Revision history for XML::Feed
 
+0.20  
+    - Allow specification of the parsing format. Fixes bugs
+      http://rt.cpan.org/Public/Bug/Display.html?id=35580 and
+      http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=477394
+
 0.12  2006.08.13
     - Generate Atom 1.0 feeds by default. Thanks to Tatsuhiko Miyagawa for
       the patch.
