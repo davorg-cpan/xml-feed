@@ -64,7 +64,9 @@ sub modified {
     if (@_) {
         $feed->{atom}->modified(DateTime::Format::W3CDTF->format_datetime($_[0]));
     } else {
-        $feed->{atom}->modified ? iso2dt($feed->{atom}->modified) : undef;
+        return iso2dt($feed->{atom}->modified) if $feed->{atom}->modified;
+        return iso2dt($feed->{atom}->updated)  if $feed->{atom}->updated;
+        return undef;
     }
 }
 
@@ -189,7 +191,9 @@ sub modified {
     if (@_) {
         $entry->{entry}->modified(DateTime::Format::W3CDTF->format_datetime($_[0])) if $_[0];
     } else {
-        $entry->{entry}->modified ? iso2dt($entry->{entry}->modified) : undef;
+        return iso2dt($entry->{entry}->modified) if $entry->{entry}->modified;
+        return iso2dt($entry->{entry}->updated)  if $entry->{entry}->updated;
+        return undef;
     }
 }
 

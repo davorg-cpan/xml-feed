@@ -6,6 +6,7 @@ Revision history for XML::Feed
     - Allow specification of the parsing format. Fixes bugs
       http://rt.cpan.org/Public/Bug/Display.html?id=35580 and
       http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=477394
+      (Gregor Herrmann and Martin F Krafft)
     - Allow pass through of initialisation options
       http://rt.cpan.org/Public/Bug/Display.html?id=24729
       (Christopher H. Laco CLACO)
@@ -18,6 +19,10 @@ Revision history for XML::Feed
     - Prevent empty content
       http://rt.cpan.org/Public/Bug/Display.html?id=29684
       (Dave Rolsky DROLSKY)
+    - Cope with "updated" and "published" elements
+      http://rt.cpan.org/Public/Bug/Display.html?id=20763
+      http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=380498
+      (Gregor Herrmann and Joey Hess)
   
 0.12  2006.08.13
     - Generate Atom 1.0 feeds by default. Thanks to Tatsuhiko Miyagawa for
