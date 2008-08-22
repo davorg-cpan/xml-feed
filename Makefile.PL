@@ -16,7 +16,7 @@ requires('Class::ErrorHandler');
 requires('Feed::Find');
 requires('URI::Fetch');
 requires('XML::RSS' => 1.01);
-requires('XML::Atom' => 0.08);
+requires('XML::Atom' => 0.23);
 requires('DateTime');
 requires('DateTime::Format::Mail');
 requires('DateTime::Format::W3CDTF');
