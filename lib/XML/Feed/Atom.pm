@@ -133,7 +133,7 @@ sub content {
     if (@_) {
         my %param;
         if (ref($_[0]) eq 'XML::Feed::Content') {
-            %param = (Body => $_[0]->body);
+            %param = (Body => $_[0]->body, Type => ($_[0]->type eq 'text/html')? 'html' : 'text');
         } else {
             %param = (Body => $_[0]);
         }
