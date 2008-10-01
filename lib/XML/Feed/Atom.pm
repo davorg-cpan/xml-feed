@@ -128,12 +128,22 @@ sub summary {
     }
 }
 
+my %types = (
+	'text/xhtml' => 'xhtml',
+	'text/html'  => 'html',
+	'text/plain' => 'text',
+);
+
 sub content {
     my $entry = shift;
     if (@_) {
         my %param;
         if (ref($_[0]) eq 'XML::Feed::Content') {
-            %param = (Body => $_[0]->body, Type => ($_[0]->type eq 'text/html')? 'html' : 'text');
+			if (defined $_[0]->type && defined $types{$_[0]->type}) {
+	            %param = (Body => $_[0]->body, Type => $types{$_[0]->type});
+			} else {
+	            %param = (Body => $_[0]->body);
+			}
         } else {
             %param = (Body => $_[0]);
         }
