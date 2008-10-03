@@ -120,11 +120,27 @@ sub link {
 sub summary {
     my $entry = shift;
     if (@_) {
-        $entry->{entry}->summary(ref($_[0]) eq 'XML::Feed::Content' ?
-            $_[0]->body : $_[0]);
+		my %param;
+		if (ref($_[0]) eq 'XML::Feed::Content') {
+			%param = (Body => $_[0]->body);
+		} else {
+			 %param = (Body => $_[0]);
+		}
+		$entry->{entry}->summary(XML::Atom::Content->new(%param, Version => 1.0));
     } else {
-        XML::Feed::Content->wrap({ type => 'html',
-                                   body => $entry->{entry}->summary });
+		my $s = $entry->{entry}->summary;
+        # map Atom types to MIME types
+        my $type = ($s && ref($s) eq 'XML::Feed::Content') ? $s->type : undef;
+        if ($type) {
+            $type = 'text/html'  if $type eq 'xhtml' || $type eq 'html';
+            $type = 'text/plain' if $type eq 'text';
+        }
+		my $body = $s;	
+		if (defined $s && ref($s) eq 'XML::Feed::Content') {
+			$body = $s->body;
+		}
+        XML::Feed::Content->wrap({ type => $type,
+                                   body => $body });
     }
 }
 
