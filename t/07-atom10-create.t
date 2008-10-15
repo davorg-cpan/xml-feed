@@ -37,7 +37,7 @@ is $feed->title, "foo";
 is $feed->description, "Atom 1.0 feed";
 is $feed->link, "http://example.org/";
 is $feed->id, "tag:cpan.org;xml-feed-atom";
-is $feed->updated, $now;
+is "".$feed->updated, "".$now;
 
 my @entries = $feed->entries;
 is @entries, 1;
@@ -50,6 +50,6 @@ is $entry->content->type, 'text/html';
 like $entry->content->body, qr!\s*<p>Hello world.</p>\s*!s;
 
 is $entry->id, "tag:cpan.org;xml-feed-atom-entry";
-is $entry->updated, $now;
+is "".$entry->updated, "".$now;
 
 
