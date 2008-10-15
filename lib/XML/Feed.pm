@@ -318,7 +318,13 @@ under the same terms as Perl itself.
 
 =head1 AUTHOR & COPYRIGHT
 
-Except where otherwise noted, I<XML::Feed> is Copyright 2004-2005
+Except where otherwise noted, I<XML::Feed> is Copyright 2004-2008
 Six Apart, cpan@sixapart.com. All rights reserved.
+
+=head1 SUBVERSION 
+
+The latest version of I<XML::Feed> can be found at
+
+    http://code.sixapart.com/svn/XML-Feed/trunk/
 
 =cut
