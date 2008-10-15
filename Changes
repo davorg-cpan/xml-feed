@@ -2,7 +2,10 @@
 
 Revision history for XML::Feed
 
-0.20  
+0.21 2008.10.15
+    - Remove the inc directory because it's not needed anymore
+
+0.20 2008.10.15 
     - Allow specification of the parsing format. Fixes bugs
       http://rt.cpan.org/Public/Bug/Display.html?id=35580 and
       http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=477394
