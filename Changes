@@ -6,7 +6,12 @@ Revision history for XML::Feed
     - Correct namespace for terms in RSS
       http://rt.cpan.org/Ticket/Display.html?id=25393
       (Kent Cowgill KCOWGILL)
-    
+    - Up the minimum requirement for XML::RSS to 1.31
+      http://rt.cpan.org/Ticket/Display.html?id=23588
+      (Andreas König ANDK)    
+    - Created test for
+      http://rt.cpan.org/Ticket/Display.html?id=18810
+      (Ryan Tate)
 
 0.21 2008.10.15
     - Remove the inc directory because it's not needed anymore
