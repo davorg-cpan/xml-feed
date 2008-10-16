@@ -18,7 +18,7 @@ my $build = Module::Build
                           'URI::Fetch'                 => 0,
                           'XML::Atom'                  => 0.23,
                           'XML::LibXML'                => 1.66,
-                          'XML::RSS'                   => 1.01,
+                          'XML::RSS'                   => 1.31,
                           'Test::More'                 => 0,
                         },
          create_makefile_pl => 'traditional',
