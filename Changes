@@ -2,6 +2,12 @@
 
 Revision history for XML::Feed
 
+0.22 
+    - Correct namespace for terms in RSS
+      http://rt.cpan.org/Ticket/Display.html?id=25393
+      (Kent Cowgill KCOWGILL)
+    
+
 0.21 2008.10.15
     - Remove the inc directory because it's not needed anymore
 

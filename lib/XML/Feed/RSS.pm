@@ -15,7 +15,11 @@ sub init_empty {
     eval "use $PREFERRED_PARSER"; die $@ if $@;
     $feed->{rss} = $PREFERRED_PARSER->new(%args);
     $feed->{rss}->add_module(prefix => "content", uri => 'http://purl.org/rss/1.0/modules/content/');
-    $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/rss/1.0/modules/dcterms/');
+    if ($args{'version'} >= 2.0) {
+        $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/dc/terms/');    
+    } else {
+        $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/rss/1.0/modules/dcterms/');
+    }
     $feed;
 }
 
