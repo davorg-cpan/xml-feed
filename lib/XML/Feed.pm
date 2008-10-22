@@ -133,6 +133,7 @@ sub generator;
 sub add_entry;
 sub entries;
 sub as_xml;
+sub id;
 
 sub tagline { shift->description(@_) }
 sub items   { $_[0]->entries     }
@@ -191,6 +192,10 @@ I<DateTime> objects, which it then returns to the caller.
 =head2 XML::Feed->new($format)
 
 Creates a new empty I<XML::Feed> object using the format I<$format>.
+
+    $feed = XML::Feed->new('Atom');
+    $feed = XML::Feed->new('RSS');
+    $feed = XML::Feed->new('RSS', version => '0.91');
 
 =head2 XML::Feed->parse($stream)
 

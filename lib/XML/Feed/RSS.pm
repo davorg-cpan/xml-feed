@@ -15,11 +15,7 @@ sub init_empty {
     eval "use $PREFERRED_PARSER"; die $@ if $@;
     $feed->{rss} = $PREFERRED_PARSER->new(%args);
     $feed->{rss}->add_module(prefix => "content", uri => 'http://purl.org/rss/1.0/modules/content/');
-    if ($args{'version'} >= 2.0) {
-        $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/dc/terms/');    
-    } else {
-        $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/rss/1.0/modules/dcterms/');
-    }
+    $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/dc/terms/');    
     $feed;
 }
 
@@ -39,6 +35,9 @@ sub format { 'RSS ' . $_[0]->{rss}->{'version'} }
 sub title       { shift->{rss}->channel('title', @_) }
 sub link        { shift->{rss}->channel('link', @_) }
 sub description { shift->{rss}->channel('description', @_) }
+
+# This doesn't exist in RSS
+sub id          { }
 
 ## This is RSS 2.0 only--what's the equivalent in RSS 1.0?
 sub copyright   { shift->{rss}->channel('copyright', @_) }
