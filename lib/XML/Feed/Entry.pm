@@ -34,7 +34,7 @@ sub convert {
     my $entry = shift;
     my($format) = @_;
     my $new = __PACKAGE__->new($format);
-    for my $field (qw( title link content summary category author id issued modified )) {
+    for my $field (qw( title link content summary category author id issued modified lat long )) {
         my $val = $entry->$field();
         next unless defined $val;
         next if blessed $val && $val->isa('XML::Feed::Content') && ! defined $val->body;
@@ -52,6 +52,8 @@ sub author;
 sub id;
 sub issued;
 sub modified;
+sub lat;
+sub long;
 
 1;
 __END__

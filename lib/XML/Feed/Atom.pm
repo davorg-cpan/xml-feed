@@ -9,6 +9,9 @@ use XML::Atom::Util qw( iso2dt );
 use List::Util qw( first );
 use DateTime::Format::W3CDTF;
 
+use XML::Atom::Entry;
+XML::Atom::Entry->mk_elem_accessors(qw( lat long ), ['http://www.w3.org/2003/01/geo/wgs84_pos#']);
+
 sub init_empty {
     my ($feed, %args) = @_;
     $args{'Version'} ||= '1.0';
@@ -40,6 +43,26 @@ sub link {
         $l ? $l->href : undef;
     }
 }
+
+sub self_link {
+    my $feed = shift;
+    if (@_) {
+        my $uri = shift;
+        $feed->{atom}->add_link({type => "application/atom+xml", rel => "self", href => $uri});
+        return $uri;
+    } 
+    else
+    {
+        my $l =
+            first
+            { !defined $_->rel || $_->rel eq 'self' }
+            $feed->{atom}->link;
+            ;
+
+        return $l ? $l->href : undef;
+    }
+}
+
 sub description { shift->{atom}->tagline(@_) }
 sub copyright   { shift->{atom}->copyright(@_) }
 sub language    { shift->{atom}->language(@_) }
@@ -221,6 +244,24 @@ sub modified {
         return iso2dt($entry->{entry}->modified) if $entry->{entry}->modified;
         return iso2dt($entry->{entry}->updated)  if $entry->{entry}->updated;
         return undef;
+    }
+}
+
+sub lat {
+    my $entry = shift;
+    if (@_) {
+   $entry->{entry}->lat($_[0]) if $_[0];
+    } else {
+   $entry->{entry}->lat;
+    }
+}
+
+sub long {
+    my $entry = shift;
+    if (@_) {
+   $entry->{entry}->long($_[0]) if $_[0];
+    } else {
+   $entry->{entry}->long;
     }
 }
 

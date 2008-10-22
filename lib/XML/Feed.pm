@@ -124,6 +124,7 @@ sub splice {
 sub format;
 sub title;
 sub link;
+sub self_link;
 sub description;
 sub language;
 sub author;
@@ -284,6 +285,14 @@ If present, I<$modified> should be a I<DateTime> object.
 =head2 $feed->generator([ $generator ])
 
 The generator of the feed.
+
+=head2 $feed->self_link ([ $uri ])
+
+The Atom Self-link of the feed:
+
+L<http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html>
+
+A string.
 
 =head2 $feed->entries
 

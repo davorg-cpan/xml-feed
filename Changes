@@ -12,6 +12,13 @@ Revision history for XML::Feed
     - Created test for
       http://rt.cpan.org/Ticket/Display.html?id=18810
       (Ryan Tate)
+    - Allow creation of a self link
+      http://rt.cpan.org/Ticket/Display.html?id=39924
+      (Shlomi Fish SHLOMIF)
+    - Add support for GEORSS
+      http://rt.cpan.org/Ticket/Display.html?id=39924
+      (Scott Gifford GIFF)
+
 
 0.21 2008.10.15
     - Remove the inc directory because it's not needed anymore
