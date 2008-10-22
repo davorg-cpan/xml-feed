@@ -6,6 +6,7 @@ use strict;
 use base qw( Class::ErrorHandler );
 use Feed::Find;
 use URI::Fetch;
+use LWP::UserAgent;
 use Carp;
 
 our $VERSION = '0.21';
@@ -30,7 +31,9 @@ sub parse {
     my $feed = bless {}, $class;
     my $xml = '';
     if (UNIVERSAL::isa($stream, 'URI')) {
-        my $res = URI::Fetch->fetch($stream)
+        my $ua  = LWP::UserAgent->new;
+        $ua->env_proxy; # force allowing of proxies
+        my $res = URI::Fetch->fetch($stream, UserAgent => $ua)
             or return $class->error(URI::Fetch->errstr);
         return $class->error("This feed has been permanently removed")
             if $res->status == URI::Fetch::URI_GONE();

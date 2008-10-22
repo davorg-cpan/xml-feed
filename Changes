@@ -2,7 +2,7 @@
 
 Revision history for XML::Feed
 
-0.22 
+0.22 2008-10-22
     - Correct namespace for terms in RSS
       http://rt.cpan.org/Ticket/Display.html?id=25393
       (Kent Cowgill KCOWGILL)
@@ -18,7 +18,9 @@ Revision history for XML::Feed
     - Add support for GEORSS
       http://rt.cpan.org/Ticket/Display.html?id=39924
       (Scott Gifford GIFF)
-
+    - Fix fetching through proxies
+      http://rt.cpan.org/Ticket/Display.html?id=36233
+      (Trevor Vallender)
 
 0.21 2008.10.15
     - Remove the inc directory because it's not needed anymore
