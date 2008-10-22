@@ -124,6 +124,15 @@ sub splice {
     }
 }
 
+sub _convert_entry {
+    my $feed   = shift;
+    my $entry  = shift;
+    my $feed_format  = ref($feed);   $feed_format  =~ s!^XML::Feed::!!;
+    my $entry_format = ref($entry);  $entry_format =~ s!^XML::Feed::Entry::!!;
+    return $entry if $entry_format eq $feed_format;
+    return $entry->convert($feed_format); 
+}
+
 sub format;
 sub title;
 sub link;

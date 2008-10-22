@@ -130,9 +130,9 @@ sub entries {
 }
 
 sub add_entry {
-    my $feed = shift;
-    my($entry) = @_;
-    use Data::Dumper;
+    my $feed  = shift;
+    my $entry = shift || return;
+    $entry    = $feed->_convert_entry($entry);
     $feed->{rss}->add_item(%{ $entry->unwrap });
 }
 

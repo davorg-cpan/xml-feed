@@ -2,6 +2,14 @@
 
 Revision history for XML::Feed
 
+0.23 
+    - Fix mixing and matching of RSS and Atom
+      http://rt.cpan.org/Ticket/Display.html?id=21335
+      (Shlomi Fish SHLOMIF)
+    - Note that multiple categories was fixed at some point
+      http://rt.cpan.org/Ticket/Display.html?id=30234
+      (mattn)
+
 0.22 2008-10-22
     - Correct namespace for terms in RSS
       http://rt.cpan.org/Ticket/Display.html?id=25393

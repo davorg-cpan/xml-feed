@@ -103,8 +103,9 @@ sub entries {
 }
 
 sub add_entry {
-    my $feed = shift;
-    my($entry) = @_;
+    my $feed  = shift;
+    my $entry = shift || return;
+    $entry    = $feed->_convert_entry($entry);
     $feed->{atom}->add_entry($entry->unwrap);
 }
 
