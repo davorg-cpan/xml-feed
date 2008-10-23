@@ -9,6 +9,10 @@ Revision history for XML::Feed
     - Note that multiple categories was fixed at some point
       http://rt.cpan.org/Ticket/Display.html?id=30234
       (mattn)
+    - Work with xml:base (depending on version of XML::RSS)
+      http://rt.cpan.org/Ticket/Display.html?id=21135
+      http://bugs.debian.org/381359
+      (Gregor Herrmann and Joey Hess)
 
 0.22 2008-10-22
     - Correct namespace for terms in RSS
