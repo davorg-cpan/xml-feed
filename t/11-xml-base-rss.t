@@ -1,11 +1,18 @@
 # $Id: $
 
 use strict;
-use Test::More tests => 13;
+use Test::More;
 use XML::Feed;
+use XML::RSS;
 
+if ($XML::RSS::VERSION <= 1.36) {
+    plan skip_all => "Version of XML::RSS is too old to do xml:base";
+} else {
+    plan tests => 13;
+}
 
 my $feed    = XML::Feed->parse('t/samples/base_rss.xml');
+
 my ($entry) = $feed->entries;
 my $content = $entry->content;
 is($feed->base,    "http://example.org/",                         "Got feed base");

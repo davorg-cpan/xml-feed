@@ -208,19 +208,28 @@ sub summary {
 sub content {
     my $item = shift->{entry};
     if (@_) {
+        my $c;
+        if (ref($_[0]) eq 'XML::Feed::Content') {
+            if (defined $_[0]->base) {
+                $c = { 'content' => $_[0]->body, 'xml:base' => $_[0]->base };
+            } else {
+                $c = $_[0]->body;
+            }
+        } else {
+            $c = $_[0];
+        }
         my $c = ref($_[0]) eq 'XML::Feed::Content' ? $_[0]->body : $_[0];
         $item->{content}{encoded} = $c;
     } else {
-        my $description = $item->{description};
         my $base;
-        if ('HASH' eq ref($description)) {
-            $base = $description->{'xml:base'};
-            $description = $description->{content};
-        }
         my $body =
             $item->{content}{encoded} ||
             $item->{'http://www.w3.org/1999/xhtml'}{body} ||
-            $description;
+            $item->{description};
+        if ('HASH' eq ref($body)) {
+            $base = $body->{'xml:base'};
+            $body = $body->{content};
+        }
         XML::Feed::Content->wrap({ type => 'text/html', body => $body, base => $base });
     }
 }
