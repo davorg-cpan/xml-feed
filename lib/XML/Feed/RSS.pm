@@ -211,11 +211,17 @@ sub content {
         my $c = ref($_[0]) eq 'XML::Feed::Content' ? $_[0]->body : $_[0];
         $item->{content}{encoded} = $c;
     } else {
+        my $description = $item->{description};
+        my $base;
+        if ('HASH' eq ref($description)) {
+            $base = $description->{'xml:base'};
+            $description = $description->{content};
+        }
         my $body =
             $item->{content}{encoded} ||
             $item->{'http://www.w3.org/1999/xhtml'}{body} ||
-            $item->{description};
-        XML::Feed::Content->wrap({ type => 'text/html', body => $body });
+            $description;
+        XML::Feed::Content->wrap({ type => 'text/html', body => $body, base => $base });
     }
 }
 
