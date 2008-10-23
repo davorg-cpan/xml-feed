@@ -21,6 +21,7 @@ sub _var {
 
 sub type { shift->_var('type', @_) }
 sub body { shift->_var('body', @_) }
+sub base { shift->_var('base', @_) }
 
 1;
 __END__
@@ -55,6 +56,10 @@ The MIME type of the content in I<body>.
 This is really only useful in Atom feeds, because RSS feeds do not specify
 the type of content included in an entry. In RSS feeds, generally the MIME
 type defaults to I<text/html>.
+
+=head2 $content->base
+
+The url base of the content.
 
 =head1 AUTHOR & COPYRIGHT
 

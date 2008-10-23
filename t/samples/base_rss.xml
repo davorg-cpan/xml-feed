@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rss version="2.0" xml:base="http://example.org/">
+<channel>
+<title>Sample Feed</title>
+<link>index.html</link>
+<item xml:base="http://example.org/archives/">
+<title>First entry title</title>
+<link>000001.html</link>
+<description xml:base="http://example.org/archives/000001.html">
+(<a href="/index.html">relative</a>, 
+<a href="http://weblog.infoworld.com/udell/index.html">fully-qualified</a>)
+</description>
+</item>
+</channel>
+</rss>
+

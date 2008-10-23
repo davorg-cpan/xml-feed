@@ -90,6 +90,10 @@ returns the new object.
 
 The title of the entry.
 
+=head2 $entry->base([ $base ])
+
+The url base of the entry.
+
 =head2 $entry->link([ $uri ])
 
 The permalink of the entry, in most cases, except in cases where it points

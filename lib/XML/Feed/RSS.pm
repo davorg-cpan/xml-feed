@@ -44,6 +44,15 @@ sub id          { }
 ## This is RSS 2.0 only--what's the equivalent in RSS 1.0?
 sub copyright   { shift->{rss}->channel('copyright', @_) }
 
+sub base {
+    my $feed = shift;
+    if (@_) {
+        $feed->{rss}->{'xml:base'} = $_[0];
+    } else {
+        $feed->{rss}->{'xml:base'};
+    }
+}
+
 ## The following all work transparently in any RSS version.
 sub language {
     my $feed = shift;
@@ -146,6 +155,11 @@ use XML::Feed::Content;
 use base qw( XML::Feed::Entry );
 
 sub init_empty { $_[0]->{entry} = { } }
+
+sub base {
+    my $entry = shift;
+    @_ ? $entry->{entry}->{'xml:base'} = $_[0] : $entry->{entry}->{'xml:base'};
+}
 
 sub title {
     my $entry = shift;

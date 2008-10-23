@@ -133,6 +133,7 @@ sub _convert_entry {
     return $entry->convert($feed_format); 
 }
 
+sub base;
 sub format;
 sub title;
 sub link;
@@ -263,6 +264,10 @@ Returns the format of the feed (C<Atom>, or some version of C<RSS>).
 =head2 $feed->title([ $title ])
 
 The title of the feed/channel.
+
+=head2 $feed->base([ $base ])
+
+The url base of the feed/channel.
 
 =head2 $feed->link([ $uri ])
 

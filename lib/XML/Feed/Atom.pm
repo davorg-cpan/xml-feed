@@ -12,12 +12,39 @@ use DateTime::Format::W3CDTF;
 use XML::Atom::Entry;
 XML::Atom::Entry->mk_elem_accessors(qw( lat long ), ['http://www.w3.org/2003/01/geo/wgs84_pos#']);
 
+use XML::Atom::Content;
+
 sub init_empty {
     my ($feed, %args) = @_;
     $args{'Version'} ||= '1.0';
     
     $feed->{atom} = XML::Atom::Feed->new(%args);
     $feed;
+}
+
+# monkey patch
+{
+    my $sub =  sub {
+        my $item = shift;
+        if (XML::Atom::LIBXML) {
+            my $elem = $item->elem;
+            if (@_) {
+                $elem->setAttributeNS('http://www.w3.org/XML/1998/namespace',
+                    'base', $_[0]);
+            }
+            return $elem->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'base');
+        } else {
+            if (@_) {
+                $item->elem->setAttribute('xml:base', $_[0]);
+            }
+            return $item->elem->getAttribute('xml:base');
+        }
+
+    };
+    no strict 'refs';
+    *XML::Atom::Feed::base    = $sub unless XML::Atom::Feed->can('base');
+    *XML::Atom::Entry::base   = $sub unless XML::Atom::Entry->can('base');
+    *XML::Atom::Content::base = $sub unless XML::Atom::Content->can('base');
 }
 
 sub init_string {
@@ -70,6 +97,7 @@ sub generator   { shift->{atom}->generator(@_) }
 sub id          { shift->{atom}->id(@_) }
 sub updated     { shift->{atom}->updated(@_) }
 sub add_link    { shift->{atom}->add_link(@_) }
+sub base        { shift->{atom}->base(@_) }
 
 sub author {
     my $feed = shift;
@@ -81,6 +109,9 @@ sub author {
         $feed->{atom}->author ? $feed->{atom}->author->name : undef;
     }
 }
+
+
+
 
 sub modified {
     my $feed = shift;
@@ -129,6 +160,7 @@ sub init_empty {
 sub title { shift->{entry}->title(@_) }
 sub source { shift->{entry}->source(@_) }
 sub updated { shift->{entry}->updated(@_) }
+sub base { shift->{entry}->base(@_) }
 
 sub link {
     my $entry = shift;
@@ -178,16 +210,19 @@ sub content {
     my $entry = shift;
     if (@_) {
         my %param;
+        my $base;
         if (ref($_[0]) eq 'XML::Feed::Content') {
 			if (defined $_[0]->type && defined $types{$_[0]->type}) {
 	            %param = (Body => $_[0]->body, Type => $types{$_[0]->type});
 			} else {
 	            %param = (Body => $_[0]->body);
 			}
+            $base = $_[0]->base if defined $_[0]->base;
         } else {
             %param = (Body => $_[0]);
         }
         $entry->{entry}->content(XML::Atom::Content->new(%param, Version => 1.0));
+        $entry->{entry}->content->base($base) if defined $base;
     } else {
         my $c = $entry->{entry}->content;
 
@@ -199,6 +234,7 @@ sub content {
         }
 
         XML::Feed::Content->wrap({ type => $type,
+                                   base => $c ? $c->base : undef, 
                                    body => $c ? $c->body : undef });
     }
 }
