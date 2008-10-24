@@ -1,4 +1,3 @@
-Build.PL
 Changes
 lib/XML/Feed.pm
 lib/XML/Feed/Atom.pm
@@ -13,14 +12,21 @@ README
 t/00-compile.t
 t/01-parse.t
 t/02-create.t
-t/04-splice.t
+t/04-splice-atom.t
+t/04-splice-rss.t
 t/05-atom10-link.t
 t/06-atom10.t
 t/07-atom10-create.t
 t/08-convert-summary-bug.t
+t/09-missing-content-bug.t
+t/10-mix-and-match.t
+t/11-xml-base-atom.t
+t/11-xml-base-rss.t
 t/samples/atom-10-example.xml
 t/samples/atom-full.xml
 t/samples/atom.xml
+t/samples/base_atom.xml
+t/samples/base_rss.xml
 t/samples/rss10-invalid-date.xml
 t/samples/rss10.xml
 t/samples/rss20-no-summary.xml
