@@ -9,7 +9,7 @@ use URI::Fetch;
 use LWP::UserAgent;
 use Carp;
 
-our $VERSION = '0.22';
+our $VERSION = '0.23';
 
 sub new {
     my $class = shift;
