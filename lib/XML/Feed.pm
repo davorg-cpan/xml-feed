@@ -342,6 +342,46 @@ B<Note:> this will only work for parsing feeds, not creating feeds.
 
 =back
 
+=head1 VALID FEEDS
+
+For reference, this cgi script will create valid, albeit nonsensical feeds 
+(according to C<http://feedvalidator.org> anyway) for Atom 1.0 and RSS 0.90, 
+0.91, 1.0 and 2.0. 
+
+    #!perl -w
+
+    use strict;
+    use CGI;
+    use CGI::Carp qw(fatalsToBrowser);
+    use DateTime;
+    use XML::Feed;
+
+    my $cgi  = CGI->new;
+    my @args = ( $cgi->param('format') || "Atom" );
+    push @args, ( version => $cgi->param('version') ) if $cgi->param('version');
+
+    my $feed = XML::Feed->new(@args);
+    $feed->id("http://".time.rand()."/");
+    $feed->title('Test Feed');
+    $feed->link($cgi->url);
+    $feed->self_link($cgi->url( -query => 1, -full => 1, -rewrite => 1) );
+    $feed->modified(DateTime->now);
+
+    my $entry = XML::Feed::Entry->new();
+    $entry->id("http://".time.rand()."/");
+    $entry->link("http://example.com");
+    $entry->title("Test entry");
+    $entry->summary("Test summary");
+    $entry->content("Foo");
+    $entry->modified(DateTime->now);
+    $entry->author('test@example.com (Testy McTesterson)');
+    $feed->add_entry($entry);
+
+    my $mime = ("Atom" eq $feed->format) ? "application/atom+xml" : "application/rss+xml";
+    print $cgi->header($mime);
+    print $feed->as_xml;
+
+
 =head1 LICENSE
 
 I<XML::Feed> is free software; you may redistribute it and/or modify it
