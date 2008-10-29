@@ -147,6 +147,14 @@ A I<DateTime> object representing the last-modified date of the entry.
 
 If present, I<$modified> should be a I<DateTime> object.
 
+=head2 $entry->wrap
+
+Take an entry in its native format and turn it into an I<XML::Feed::Entry> object.
+
+=head2 $entry->unwrap
+
+Take an I<XML::Feed::Entry> object and turn it into its native format.
+
 =head1 AUTHOR & COPYRIGHT
 
 Please see the I<XML::Feed> manpage for author, copyright, and license

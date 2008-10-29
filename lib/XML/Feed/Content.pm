@@ -45,6 +45,14 @@ B<type> of data is useful.
 
 =head1 USAGE
 
+=head2 wrap
+
+Take params and turn them into a I<XML::Feed::Content> object.
+
+=head2 new
+
+A synonym for I<wrap>.
+
 =head2 $content->body
 
 The actual data.

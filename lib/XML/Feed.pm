@@ -238,7 +238,7 @@ A URI from which the feed XML will be retrieved.
 
 =back
 
-C<$format> allows you to override format guessing.
+I<$format> allows you to override format guessing.
 
 =head2 XML::Feed->find_feeds($uri)
 
@@ -246,6 +246,10 @@ Given a URI I<$uri>, use auto-discovery to find all of the feeds linked
 from that page (using I<E<lt>linkE<gt>> tags).
 
 Returns a list of feed URIs.
+
+=head2 XML::Feed->identify_format($xml)
+
+Given the xml of a feed return what format it is in (C<Atom>, or some version of C<RSS>).
 
 =head2 $feed->convert($format)
 
@@ -315,6 +319,10 @@ A string.
 
 A list of the entries/items in the feed. Returns an array containing
 I<XML::Feed::Entry> objects.
+
+=head2 $feed->items
+
+A synonym for I<$feed->entries>.
 
 =head2 $feed->add_entry($entry)
 
