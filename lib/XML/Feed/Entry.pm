@@ -20,10 +20,10 @@ sub new {
     my $class = shift;
     my($format) = @_;
     $format ||= 'Atom';
-    my $format_class = 'XML::Feed::' . $format;
+    my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
-    my $entry = bless {}, join('::', __PACKAGE__, $format);
+    my $entry = bless {}, join('::', __PACKAGE__, "Format", $format);
     $entry->init_empty or return $class->error($entry->errstr);
     $entry;
 }

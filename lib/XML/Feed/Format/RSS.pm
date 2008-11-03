@@ -1,6 +1,6 @@
 # $Id: RSS.pm 1934 2006-04-22 05:13:55Z btrott $
 
-package XML::Feed::RSS;
+package XML::Feed::Format::RSS;
 use strict;
 
 use base qw( XML::Feed );
@@ -133,7 +133,7 @@ sub entries {
     my $rss = $_[0]->{rss};
     my @entries;
     for my $item (@{ $rss->{items} }) {
-        push @entries, XML::Feed::Entry::RSS->wrap($item);
+        push @entries, XML::Feed::Entry::Format::RSS->wrap($item);
     }
     @entries;
 }
@@ -147,7 +147,7 @@ sub add_entry {
 
 sub as_xml { $_[0]->{rss}->as_string }
 
-package XML::Feed::Entry::RSS;
+package XML::Feed::Entry::Format::RSS;
 use strict;
 
 use XML::Feed::Content;

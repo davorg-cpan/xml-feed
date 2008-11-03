@@ -1,6 +1,6 @@
 # $Id: Atom.pm 1958 2006-08-14 05:31:27Z btrott $
 
-package XML::Feed::Atom;
+package XML::Feed::Format::Atom;
 use strict;
 
 use base qw( XML::Feed );
@@ -127,7 +127,7 @@ sub modified {
 sub entries {
     my @entries;
     for my $entry ($_[0]->{atom}->entries) {
-        push @entries, XML::Feed::Entry::Atom->wrap($entry);
+        push @entries, XML::Feed::Entry::Format::Atom->wrap($entry);
     }
 
     @entries;
@@ -142,7 +142,7 @@ sub add_entry {
 
 sub as_xml { $_[0]->{atom}->as_xml }
 
-package XML::Feed::Entry::Atom;
+package XML::Feed::Entry::Format::Atom;
 use strict;
 
 use base qw( XML::Feed::Entry );

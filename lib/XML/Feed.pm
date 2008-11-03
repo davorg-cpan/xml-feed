@@ -14,10 +14,10 @@ our $VERSION = '0.23';
 sub new {
     my $class = shift;
     my $format = shift || 'Atom';
-    my $format_class = 'XML::Feed::' . $format;
+    my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
-    my $feed = bless {}, join('::', __PACKAGE__, $format);
+    my $feed = bless {}, join('::', __PACKAGE__, "Format", $format);
     $feed->init_empty(@_) or return $class->error($feed->errstr);
     $feed;
 }
@@ -61,7 +61,7 @@ sub parse {
         $format = $feed->identify_format(\$xml) or return $class->error($feed->errstr);
     }
 
-    my $format_class = join '::', __PACKAGE__, $format;
+    my $format_class = join '::', __PACKAGE__, "Format", $format;
     eval "use $format_class";
     return $class->error("Unsupported format $format: $@") if $@;
     bless $feed, $format_class;
@@ -103,7 +103,7 @@ sub find_feeds {
 sub convert {
     my $feed = shift;
     my($format) = @_;
-    my $new = __PACKAGE__->new($format);
+    my $new = XML::Feed->new($format);
     for my $field (qw( title link description language author copyright modified generator )) {
         my $val = $feed->$field();
         next unless defined $val;
@@ -127,8 +127,8 @@ sub splice {
 sub _convert_entry {
     my $feed   = shift;
     my $entry  = shift;
-    my $feed_format  = ref($feed);   $feed_format  =~ s!^XML::Feed::!!;
-    my $entry_format = ref($entry);  $entry_format =~ s!^XML::Feed::Entry::!!;
+    my $feed_format  = ref($feed);   $feed_format  =~ s!^XML::Feed::Format::!!;
+    my $entry_format = ref($entry);  $entry_format =~ s!^XML::Feed::Entry::Format::!!;
     return $entry if $entry_format eq $feed_format;
     return $entry->convert($feed_format); 
 }
