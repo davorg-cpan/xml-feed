@@ -31,3 +31,5 @@ t/samples/rss10-invalid-date.xml
 t/samples/rss10.xml
 t/samples/rss20-no-summary.xml
 t/samples/rss20.xml
+t/pod.t
+t/pod-coverage.t
