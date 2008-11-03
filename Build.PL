@@ -15,7 +15,6 @@ my $build = Module::Build
                           'HTML::TokeParser'           => 0,
                           'List::Util'                 => 0,
                           'LWP::UserAgent'             => 0,
-                          'Module::Pluggable'          => 0,
                           'URI::Fetch'                 => 0,
                           'XML::Atom'                  => 0.23,
                           'XML::LibXML'                => 1.66,

@@ -14,13 +14,6 @@ XML::Atom::Entry->mk_elem_accessors(qw( lat long ), ['http://www.w3.org/2003/01/
 
 use XML::Atom::Content;
 
-sub identify {
-	my $class   = shift;
-	my $xml     = shift;
-	my $tag     = $class->_get_first_tag($xml);
-	return ($tag eq 'feed');
-}
-
 sub init_empty {
     my ($feed, %args) = @_;
     $args{'Version'} ||= '1.0';

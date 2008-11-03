@@ -9,14 +9,6 @@ use DateTime::Format::W3CDTF;
 
 our $PREFERRED_PARSER = "XML::RSS";
 
-
-sub identify {
-    my $class   = shift;
-    my $xml     = shift;
-    my $tag     = $class->_get_first_tag($xml);
-    return ($tag eq 'rss' || $tag eq 'RDF');
-}
-
 sub init_empty {
     my ($feed, %args) = @_;
     $args{'version'} ||= '2.0';
