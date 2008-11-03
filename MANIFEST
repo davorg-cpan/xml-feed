@@ -1,9 +1,9 @@
 Changes
 lib/XML/Feed.pm
-lib/XML/Feed/Atom.pm
 lib/XML/Feed/Content.pm
 lib/XML/Feed/Entry.pm
-lib/XML/Feed/RSS.pm
+lib/XML/Feed/Format/Atom.pm
+lib/XML/Feed/Format/RSS.pm
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
@@ -31,3 +31,5 @@ t/samples/rss10-invalid-date.xml
 t/samples/rss10.xml
 t/samples/rss20-no-summary.xml
 t/samples/rss20.xml
+t/pod.t
+t/pod-coverage.t

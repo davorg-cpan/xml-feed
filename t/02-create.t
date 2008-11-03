@@ -9,7 +9,7 @@ use DateTime;
 
 for my $format (qw( Atom RSS )) {
     my $feed = XML::Feed->new($format);
-    isa_ok($feed, 'XML::Feed::' . $format);
+    isa_ok($feed, 'XML::Feed::Format::' . $format);
     like($feed->format, qr/^$format/, 'Format is correct');
     $feed->title('My Feed');
     is($feed->title, 'My Feed', 'feed title is correct');
@@ -35,7 +35,7 @@ for my $format (qw( Atom RSS )) {
     ok($feed->as_xml, 'as_xml returns something');
 
     my $entry = XML::Feed::Entry->new($format);
-    isa_ok($entry, 'XML::Feed::Entry::' . $format);
+    isa_ok($entry, 'XML::Feed::Entry::Format::' . $format);
     $entry->title('Foo Bar');
     is($entry->title, 'Foo Bar', 'entry title is correct');
     $entry->link('http://www.example.com/foo/bar.html');

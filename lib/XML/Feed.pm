@@ -8,8 +8,15 @@ use Feed::Find;
 use URI::Fetch;
 use LWP::UserAgent;
 use Carp;
+use Module::Pluggable search_path => "XML::Feed::Format",
+                      require     => 1,
+                      sub_name    => 'formatters';
 
-our $VERSION = '0.23';
+our $VERSION = '0.3';
+our @formatters;
+BEGIN {
+	@formatters = __PACKAGE__->formatters;
+}
 
 sub new {
     my $class = shift;
@@ -70,8 +77,24 @@ sub parse {
 }
 
 sub identify_format {
-    my $feed = shift;
-    my($xml) = @_;
+    my $feed   = shift;
+    my($xml)   = @_;
+	foreach my $class (@formatters) {
+		my ($name) = ($class =~ m!([^:]+)$!);
+		# TODO ugly
+		my $tmp = $$xml;
+		return $name if eval { $class->identify(\$tmp) };
+		return $feed->error($@) if $@;
+	} 
+	die "$$xml\n";
+	return $feed->error("Cannot detect feed type");
+}
+
+sub _get_first_tag {
+	my $class  = shift;
+	my ($xml)  = @_;
+
+
     ## Auto-detect feed type based on first element. This is prone
     ## to breakage, but then again we don't want to parse the whole
     ## feed ourselves.
@@ -81,15 +104,9 @@ sub identify_format {
         my $first = substr $t, 0, 1;
         $tag = $t, last unless $first eq '?' || $first eq '!';
     }
-    return $feed->error("Cannot find first element") unless $tag;
+	die ("Cannot find first element") unless $tag;
     $tag =~ s/^.*://;
-    if ($tag eq 'rss' || $tag eq 'RDF') {
-        return 'RSS';
-    } elsif ($tag eq 'feed') {
-        return 'Atom';
-    } else {
-        return $feed->error("Cannot detect feed type");
-    }
+	return $tag;
 }
 
 sub find_feeds {
