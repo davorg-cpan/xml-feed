@@ -15,26 +15,26 @@ my %Feeds = (
 my $feed;
 my $file = 't/samples/atom.xml';
 $feed = XML::Feed->parse($file);
-isa_ok($feed, 'XML::Feed::Atom');
+isa_ok($feed, 'XML::Feed::Format::Atom');
 is($feed->title, 'First Weblog');
 open my $fh, $file or die "Can't open $file: $!";
 $feed = XML::Feed->parse($fh);
-isa_ok($feed, 'XML::Feed::Atom');
+isa_ok($feed, 'XML::Feed::Format::Atom');
 is($feed->title, 'First Weblog');
 seek $fh, 0, 0;
 my $xml = do { local $/; <$fh> };
 $feed = XML::Feed->parse(\$xml);
-isa_ok($feed, 'XML::Feed::Atom');
+isa_ok($feed, 'XML::Feed::Format::Atom');
 is($feed->title, 'First Weblog');
 $feed = XML::Feed->parse(URI->new("file:$file"));
-isa_ok($feed, 'XML::Feed::Atom');
+isa_ok($feed, 'XML::Feed::Format::Atom');
 is($feed->title, 'First Weblog');
 
 ## Then try calling all of the unified API methods.
 for my $file (sort keys %Feeds) {
     my $feed = XML::Feed->parse($file) or die XML::Feed->errstr;
     my($subclass) = $Feeds{$file} =~ /^(\w+)/;
-    isa_ok($feed, 'XML::Feed::' . $subclass);
+    isa_ok($feed, 'XML::Feed::Format::' . $subclass);
     is($feed->format, $Feeds{$file});
     is($feed->language, 'en-us');
     is($feed->title, 'First Weblog');
