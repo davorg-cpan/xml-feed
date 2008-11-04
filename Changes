@@ -2,6 +2,11 @@
 
 Revision history for XML::Feed
 
+0.3 
+    - Allow more flexible identification of Formats
+      https://rt.cpan.org/Ticket/Display.html?id=14725
+      (Brian Cassidy BRICAS)
+  
 0.23 2008-10-23
     - Fix mixing and matching of RSS and Atom
       http://rt.cpan.org/Ticket/Display.html?id=21335
