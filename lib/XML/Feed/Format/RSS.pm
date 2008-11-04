@@ -306,18 +306,18 @@ sub modified {
 sub lat {
     my $item = shift->{entry};
     if (@_) {
-   $item->{geo}{lat} = $_[0];
+        $item->{geo}{lat} = $_[0];
     } else {
-   return $item->{geo}{lat};
+        return $item->{geo}{lat};
     }
 }
 
 sub long {
     my $item = shift->{entry};
     if (@_) {
-   $item->{geo}{long} = $_[0];
+        $item->{geo}{long} = $_[0];
     } else {
-   return $item->{geo}{long};
+         return $item->{geo}{long};
     }
 }
 
