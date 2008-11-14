@@ -2,6 +2,12 @@
 
 Revision history for XML::Feed
 
+0.31
+    - Force v0.31 of XML::Atom to fix 
+      http://rt.cpan.org/Ticket/Display.html?id=40766
+      (Thanks to David Brownlee for the help in fixing)
+    - Add support for format() in Entry
+
 0.3 2008-11-04
     - Allow more flexible identification of Formats
       https://rt.cpan.org/Ticket/Display.html?id=14725
@@ -25,7 +31,7 @@ Revision history for XML::Feed
       (Kent Cowgill KCOWGILL)
     - Up the minimum requirement for XML::RSS to 1.31
       http://rt.cpan.org/Ticket/Display.html?id=23588
-      (Andreas König ANDK)    
+      (Andreas Knig ANDK)    
     - Created test for
       http://rt.cpan.org/Ticket/Display.html?id=18810
       (Ryan Tate)
