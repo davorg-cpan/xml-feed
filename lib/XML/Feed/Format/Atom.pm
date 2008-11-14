@@ -30,31 +30,6 @@ sub init_empty {
     $feed;
 }
 
-# monkey patch
-{
-    my $sub =  sub {
-        my $item = shift;
-        if (XML::Atom::LIBXML) {
-            my $elem = $item->elem;
-            if (@_) {
-                $elem->setAttributeNS('http://www.w3.org/XML/1998/namespace',
-                    'base', $_[0]);
-            }
-            return $elem->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'base');
-        } else {
-            if (@_) {
-                $item->elem->setAttribute('xml:base', $_[0]);
-            }
-            return $item->elem->getAttribute('xml:base');
-        }
-
-    };
-    no strict 'refs';
-    *XML::Atom::Feed::base    = $sub unless XML::Atom::Feed->can('base');
-    *XML::Atom::Entry::base   = $sub unless XML::Atom::Entry->can('base');
-    *XML::Atom::Content::base = $sub unless XML::Atom::Content->can('base');
-}
-
 sub init_string {
     my $feed = shift;
     my($str) = @_;
