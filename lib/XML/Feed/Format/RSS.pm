@@ -142,6 +142,7 @@ sub entries {
     my @entries;
     for my $item (@{ $rss->{items} }) {
         push @entries, XML::Feed::Entry::Format::RSS->wrap($item);
+		$entries[-1]->{_version} = $rss->{'version'};		
     }
     @entries;
 }
@@ -157,6 +158,8 @@ sub as_xml { $_[0]->{rss}->as_string }
 
 package XML::Feed::Entry::Format::RSS;
 use strict;
+
+sub format { 'RSS ' . $_[0]->{'_version'} }
 
 use XML::Feed::Content;
 

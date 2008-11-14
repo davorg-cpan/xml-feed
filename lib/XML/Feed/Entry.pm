@@ -54,6 +54,7 @@ sub issued;
 sub modified;
 sub lat;
 sub long;
+sub format;
 
 1;
 __END__
