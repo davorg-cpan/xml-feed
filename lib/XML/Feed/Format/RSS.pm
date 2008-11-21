@@ -34,7 +34,7 @@ sub init_string {
     my($str) = @_;
     $feed->init_empty;
     if ($str) {
-        $feed->{rss}->parse($$str);
+        $feed->{rss}->parse($$str, { hashrefs_instead_of_strings => 1 } );
     }
     $feed;
 }

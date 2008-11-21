@@ -12,7 +12,7 @@ use Module::Pluggable search_path => "XML::Feed::Format",
                       require     => 1,
                       sub_name    => 'formatters';
 
-our $VERSION = '0.3';
+our $VERSION = '0.40';
 our @formatters;
 BEGIN {
 	@formatters = __PACKAGE__->formatters;
