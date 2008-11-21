@@ -32,7 +32,7 @@ Revision history for XML::Feed
       (Kent Cowgill KCOWGILL)
     - Up the minimum requirement for XML::RSS to 1.31
       http://rt.cpan.org/Ticket/Display.html?id=23588
-      (Andreas Knig ANDK)    
+      (Andreas König ANDK)    
     - Created test for
       http://rt.cpan.org/Ticket/Display.html?id=18810
       (Ryan Tate)
