@@ -287,4 +287,16 @@ sub long {
     }
 }
 
+
+sub add_enclosure {
+    my($entry, $enclosure) = @_;
+    my $link = XML::Atom::Link->new;
+    $link->rel('enclosure');
+    $link->type($enclosure->type);
+    $link->href($enclosure->url);
+    $link->length($enclosure->length);
+    $entry->{entry}->add_link($link);
+};
+
+
 1;

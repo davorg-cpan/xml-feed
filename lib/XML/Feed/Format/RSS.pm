@@ -324,5 +324,15 @@ sub long {
     }
 }
 
+sub add_enclosure {
+    my($entry, $enclosure) = @_;
+    $entry->{entry}->{enclosure} = XML::RSS::LibXML::MagicElement->new(
+        attributes => {
+                 url    => $enclosure->{url},
+                 type   => $enclosure->{type},
+                 length => $enclosure->{length}
+        },
+    );
+}
 
 1;
