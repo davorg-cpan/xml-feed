@@ -1,4 +1,4 @@
-# $Id: RSS.pm 1934 2006-04-22 05:13:55Z btrott $
+# $Id$
 
 package XML::Feed::Format::RSS;
 use strict;

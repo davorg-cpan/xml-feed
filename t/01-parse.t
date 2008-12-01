@@ -1,4 +1,4 @@
-# $Id: 01-parse.t 1921 2006-02-28 02:50:52Z btrott $
+# $Id$
 
 use strict;
 use Test::More tests => 75;

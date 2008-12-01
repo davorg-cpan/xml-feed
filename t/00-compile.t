@@ -1,4 +1,4 @@
-# $Id: 00-compile.t 1867 2005-08-09 20:41:15Z btrott $
+# $Id$
 
 use strict;
 use Test::More tests => 4;

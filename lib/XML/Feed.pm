@@ -1,4 +1,4 @@
-# $Id: Feed.pm 1958 2006-08-14 05:31:27Z btrott $
+# $Id$
 
 package XML::Feed;
 use strict;

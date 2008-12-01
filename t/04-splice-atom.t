@@ -1,4 +1,4 @@
-# $Id: 04-splice.t 1958 2006-08-14 05:31:27Z btrott $
+# $Id$
 
 use strict;
 use Test::More tests => 3;
