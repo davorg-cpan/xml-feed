@@ -55,6 +55,7 @@ sub modified;
 sub lat;
 sub long;
 sub format;
+sub tags { shift->category(@_) }
 
 1;
 __END__
@@ -126,6 +127,13 @@ an I<XML::Feed::Content> object with an empty string in the I<body>.
 =head2 $entry->category([ $category ])
 
 The category in which the entry was posted.
+
+Returns a list of categories if called in array context or the first
+category if called in scalar context.
+
+=head2 $entry->tags([ $tag ])
+
+A synonym for I<category>;
 
 =head2 $entry->author([ $author ])
 

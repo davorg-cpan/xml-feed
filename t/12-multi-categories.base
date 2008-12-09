@@ -1,0 +1,26 @@
+use strict;
+use Test::More tests => 6;
+use XML::Feed;
+
+$field ||= "categories";
+ok(my $feed = XML::Feed->parse("t/samples/${type}-multiple-${field}.xml"), "Parsed $type file with multiple categories");
+my ($entry) = $feed->entries;
+
+is_deeply(
+        [$entry->category()],
+        ["foo", "bar", "quux", "simon's tags"],        
+"Got all categories");
+
+my $xml = $feed->as_xml;
+ok($feed = XML::Feed->parse(\$xml), "Reparsed $type from string");
+is_deeply(
+        [$entry->category()],
+        ["foo", "bar", "quux", "simon's tags"],        
+"Got all categories again");
+
+ok($entry->category("quirka fleeg"), "Added a category");
+is_deeply(
+        [$entry->category()],
+        ["foo", "bar", "quux", "simon's tags", "quirka fleeg"],        
+"Got new category");
+

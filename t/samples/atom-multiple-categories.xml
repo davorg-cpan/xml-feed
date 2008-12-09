@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Simon Wistow's blog</title>
+    <link rel="self" type="application/atom+xml" title="Simon Wistow.s blog (Atom)" href="http://deflatermouse.vox.com/library/posts/page/1/atom.xml" />
+    <updated>2008-12-09T06:37:07Z</updated> 
+    <id>tag:vox.com,2006:6p00c2252555dbf219/</id> 
+    <subtitle>One Drink Too Many and a Joke Gone Too Far</subtitle>  
+    <entry>
+        <title>Test With Categories</title>   
+        <published>2008-12-08T19:44:50Z</published>
+        <updated>2008-12-09T06:37:07Z</updated>
+        <content>content</content> 
+        <category term="foo"  /> 
+        <category term="bar"  /> 
+        <category term="quux" /> 
+        <category term="simon&#39;s tags" />
+    </entry> 
+</feed>

@@ -2,6 +2,10 @@
 
 Revision history for XML::Feed
 
+0.41
+    - Add handling for multiple categories/tags
+    - Force v1.40 of XML::RSS to get proper multiple category support
+
 0.40 
     - Force v1.37 of XML::RSS to get proper xml:base support
     - Force v0.32 of XML::Atom to fix 

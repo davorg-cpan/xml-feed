@@ -245,11 +245,16 @@ sub content {
 }
 
 sub category {
-    my $item = shift->{entry};
+    my $entry = shift;
+    my $item  = $entry->{entry};
     if (@_) {
-        $item->{category} = $item->{dc}{subject} = $_[0];
+        my @tmp = ($entry->category, @_);
+        $item->{category}    = [@tmp];
+        $item->{dc}{subject} = [@tmp];
     } else {
-        $item->{category} || $item->{dc}{subject};
+        my $r = $item->{category} || $item->{dc}{subject};
+        my @r = ref($r)? @$r : ($r);
+        return wantarray? @r : $r[0];
     }
 }
 

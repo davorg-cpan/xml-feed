@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Simon Wistow's blog</title>
+        <link>http://deflatermouse.vox.com/library/posts/page/1/</link>
+        <lastBuildDate>Mon, 08 Dec 2008 11:44:50 -0800</lastBuildDate>
+        <item>
+            <title>Test With Categories</title>
+            <pubDate>Mon, 08 Dec 2008 11:44:50 -0800</pubDate>         
+            <description>content</description>
+            <category>foo</category> 
+            <category>bar</category> 
+            <category>quux</category> 
+            <category>simon&#39;s tags</category> 
+        </item> 
+    </channel>
+</rss>
