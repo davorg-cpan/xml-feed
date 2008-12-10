@@ -5,7 +5,6 @@ lib/XML/Feed/Entry.pm
 lib/XML/Feed/Format/Atom.pm
 lib/XML/Feed/Format/RSS.pm
 MANIFEST			This list of files
-MANIFEST.bak
 MANIFEST.SKIP
 META.yml
 README
