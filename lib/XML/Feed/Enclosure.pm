@@ -32,7 +32,7 @@ XML::Feed::Enclosure - Wrapper for enclosure objects
 
 =head1 SYNOPSIS
 
-    my ($enclosure) = $entry->enclosures;
+    my ($enclosure) = $entry->enclosure;
     print $enclosure->type;
 
 =head1 DESCRIPTION

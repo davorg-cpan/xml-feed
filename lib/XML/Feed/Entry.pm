@@ -55,6 +55,7 @@ sub modified;
 sub lat;
 sub long;
 sub format;
+sub enclosure;
 
 1;
 __END__
