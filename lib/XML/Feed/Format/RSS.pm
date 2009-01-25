@@ -253,7 +253,7 @@ sub category {
         $item->{dc}{subject} = [@tmp];
     } else {
         my $r = $item->{category} || $item->{dc}{subject};
-        my @r = ref($r)? @$r : defined $r? ($r) : ();
+        my @r = ref($r) eq 'ARRAY' ? @$r : defined $r? ($r) : ();
         return wantarray? @r : $r[0];
     }
 }
