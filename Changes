@@ -2,6 +2,10 @@
 
 Revision history for XML::Feed
 
+0.42
+    - Fixed a bug where $e->category fails when XML::RSS::LibXML is preferred.
+      (Tatsuhiko Miyagawa)
+
 0.41
     - Add handling for multiple categories/tags, including
       patch from Shlomi Fish (SHLOMIF)
