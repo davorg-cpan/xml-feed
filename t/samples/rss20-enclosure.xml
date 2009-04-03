@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0"
+  xmlns:ent="http://www.purl.org/NET/ENT/1.0/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>Enclosure Demo</title>
+  <lastBuildDate>Mon, 13 Oct 2008 03:45:39 -0400</lastBuildDate>
+  <item>
+    <title>Attachment/Enclosure Example</title>
+    <pubDate>Tue, 02 Nov 2004 09:44:33 -0500</pubDate>
+    <description>description</description>
+    <enclosure url="http://example.com/sample_podcast.mp3" length="2478719" type="audio/mpeg" />
+  </item>
+</channel>
+</rss>
+

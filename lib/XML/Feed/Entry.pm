@@ -56,6 +56,7 @@ sub lat;
 sub long;
 sub format;
 sub tags { shift->category(@_) }
+sub enclosure;
 
 1;
 __END__

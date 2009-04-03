@@ -293,4 +293,23 @@ sub long {
     }
 }
 
+
+sub enclosure {
+    my $entry = shift;
+
+    if (@_) {
+        my $enclosure = shift;
+        # TODO Atom can have multiple enclosures
+        $entry->{entry}->link({ rel => 'enclosure', href => $enclosure->{url},
+                                length => $enclosure->{length},
+                                type   => $enclosure->{type} });
+        return 1;
+    } else {
+        my $l = first { defined $_->rel && $_->rel eq 'enclosure' } $entry->{entry}->link;
+        return undef unless $l;
+        return XML::Feed::Enclosure->new({ url => $l->href, length => $l->length, type => $l->type });
+    }
+}
+
+
 1;

@@ -329,5 +329,19 @@ sub long {
     }
 }
 
+sub enclosure {
+    my $entry  = shift;
+
+    if (@_) {
+        my $enclosure = shift;
+        $entry->{entry}->{enclosure} = {
+                 url    => $enclosure->{url},
+                 type   => $enclosure->{type},
+                 length => $enclosure->{length}
+            };
+    } else {
+        return XML::Feed::Enclosure->new($entry->{entry}->{enclosure});
+    }
+}
 
 1;

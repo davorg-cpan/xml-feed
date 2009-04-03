@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Enclosure Demo</title>
+  <updated>2008-10-13T07:45:39Z</updated>
+  <entry>
+    <title>Attachment/Enclosure Example</title>
+    <updated>2004-11-02T14:44:33</updated>
+    <content>description</content>
+    <link rel="enclosure" href="http://example.com/sample_podcast.mp3" length="2478719" type="audio/mpeg" />
+  </entry>
+</feed>
+
