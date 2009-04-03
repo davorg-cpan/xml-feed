@@ -364,6 +364,8 @@ package.
 
 B<Note:> this will only work for parsing feeds, not creating feeds.
 
+B<Note:> Only C<XML::RSS::LibXML> version 0.3004 is known to work at the moment.
+
 =back
 
 =head1 VALID FEEDS
