@@ -8,7 +8,7 @@
     <updated>2004-11-02T14:44:33</updated>
     <content>description</content>
     <link rel="enclosure" href="http://example.com/sample_podcast.mp3" length="2478719" type="audio/mpeg" />
-    <link rel="enclosure" href="http://example.com/sample_movie.mpg" length="2478719" type="video/mpeg" />
+    <link rel="enclosure" href="http://example.com/sample_movie.mpg" length="8888" type="video/mpeg" />
   </entry>
 </feed>
 

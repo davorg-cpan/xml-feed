@@ -299,15 +299,16 @@ sub enclosure {
 
     if (@_) {
         my $enclosure = shift;
-        # TODO Atom can have multiple enclosures
-        $entry->{entry}->link({ rel => 'enclosure', href => $enclosure->{url},
+        my $method    = ($XML::Feed::MULTIPLE_ENCLOSURES)? 'add_link' : 'link';
+        $entry->{entry}->$method({ rel => 'enclosure', href => $enclosure->{url},
                                 length => $enclosure->{length},
                                 type   => $enclosure->{type} });
         return 1;
     } else {
-        my $l = first { defined $_->rel && $_->rel eq 'enclosure' } $entry->{entry}->link;
-        return undef unless $l;
-        return XML::Feed::Enclosure->new({ url => $l->href, length => $l->length, type => $l->type });
+        my @links = grep { defined $_->rel && $_->rel eq 'enclosure' } $entry->{entry}->link;
+        return undef unless @links;
+        my @encs = map { XML::Feed::Enclosure->new({ url => $_->href, length => $_->length, type => $_->type }) } @links ;
+        return ($XML::Feed::MULTIPLE_ENCLOSURES)? @encs : $encs[-1];
     }
 }
 

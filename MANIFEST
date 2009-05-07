@@ -28,6 +28,7 @@ t/12-multi-categories.base
 t/12-multi-subjects-rss.t
 t/13-category-hash-bug.t
 t/14-enclosures.t
+t/14-multi-enclosures.t
 t/pod-coverage.t
 t/pod.t
 t/samples/atom-10-example.xml
