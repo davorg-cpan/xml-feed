@@ -48,3 +48,4 @@ t/samples/rss20-enclosure.xml
 t/samples/rss20-multi-enclosure.xml
 t/samples/rss20-no-summary.xml
 t/samples/rss20.xml
+Makefile.PL
