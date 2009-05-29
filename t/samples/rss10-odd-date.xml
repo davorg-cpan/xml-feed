@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:ns0="http://www.w3.org/2003/01/geo/wgs84_pos#"
+  xmlns:ns1="http://www.geonames.org/ontology#"
+  xmlns:gob="http://purl.org/ontology/last-fm/"
+  xmlns:mo="http://purl.org/ontology/mo/"
+  xmlns="http://purl.org/rss/1.0/">
+
+  <rdf:Description rdf:nodeID="arc0fb8b1">
+    <foaf:homepage rdf:resource="http://alpha.libre.fm"/>
+    <foaf:name xml:lang="en">Libre.fm</foaf:name>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://alpha.libre.fm/user/joeyhess">
+    <foaf:topic rdf:resource="http://alpha.libre.fm/user/joeyhess#acct"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://sws.geonames.org/4608657/">
+    <rdfs:comment xml:lang="en">Bristol TN</rdfs:comment>
+    <ns0:lat xml:lang="en">36.595</ns0:lat>
+    <ns0:long xml:lang="en">-82.189</ns0:long>
+    <ns1:inCountry rdf:resource="http://www.geonames.org/countries/#US"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://www.geonames.org/countries/#US">
+    <foaf:page rdf:resource="http://alpha.libre.fm/country/US"/>
+  </rdf:Description>
+
+  <channel rdf:nodeID="arc0fb8b6">
+    <link rdf:resource="http://alpha.libre.fm/user/joeyhess/recent-tracks#latest_plays"/>
+    <title xml:lang="en">joeyhess's Latest Plays</title>
+    <items rdf:nodeID="seq1"/>
+  </channel>
+
+  <item rdf:about="http://alpha.libre.fm/user/joeyhess#1243624627.2da3">
+    <rdf:type rdf:resource="http://purl.org/ontology/last-fm/ScrobbleEvent"/>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-05-29T20:17:07+01:00</dc:date>
+    <link xml:lang="en">http://alpha.libre.fm/artist/Tom%20Waits/album/Bone%20Machine/track/Black%20Wings</link>
+    <description xml:lang="en">Bone Machine</description>
+    <title xml:lang="en">Tom Waits: Black Wings</title>
+    <gob:track_played rdf:resource="http://alpha.libre.fm/user/joeyhess#1243624627.2da3.track"/>
+    <gob:user rdf:resource="http://alpha.libre.fm/user/joeyhess#me"/>
+  </item>
+
+</rdf:RDF>

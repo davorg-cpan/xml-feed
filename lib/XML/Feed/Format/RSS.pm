@@ -295,8 +295,8 @@ sub issued {
                 my $parser = DateTime::Format::Mail->new;
                 $parser->loose;
                 $date = $parser->parse_datetime($ts);
-            } elsif ($ts = $item->{dc}{date}) {
-                $date = DateTime::Format::W3CDTF->parse_datetime($ts);
+            } elsif ($ts = $item->{dc}{date} or $ts = $item->{dcterms}{date}) {
+               $date = DateTime::Format::W3CDTF->parse_datetime($ts);
             }
         };
         return $date;

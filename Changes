@@ -4,7 +4,9 @@ Revision history for XML::Feed
 
 0.43  
     - Add optional multi enclosure support
-
+    - Fix buglet with odd date terms
+      https://rt.cpan.org/Ticket/Display.html?id=46494
+      (Joey Hess)
 0.42
     - Fix conversion of multi value fields
       http://rt.cpan.org/Ticket/Display.html?id=41794 

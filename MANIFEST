@@ -29,6 +29,7 @@ t/12-multi-subjects-rss.t
 t/13-category-hash-bug.t
 t/14-enclosures.t
 t/14-multi-enclosures.t
+t/15-odd-date.t
 t/pod-coverage.t
 t/pod.t
 t/samples/atom-10-example.xml
@@ -43,9 +44,9 @@ t/samples/category-bug.xml
 t/samples/rss-multiple-categories.xml
 t/samples/rss-multiple-subjects.xml
 t/samples/rss10-invalid-date.xml
+t/samples/rss10-odd-date.xml
 t/samples/rss10.xml
 t/samples/rss20-enclosure.xml
 t/samples/rss20-multi-enclosure.xml
 t/samples/rss20-no-summary.xml
 t/samples/rss20.xml
-Makefile.PL
