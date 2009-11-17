@@ -6,6 +6,7 @@ use strict;
 use base qw( XML::Feed );
 use DateTime::Format::Mail;
 use DateTime::Format::W3CDTF;
+use XML::Atom::Util qw(iso2dt);
 
 our $PREFERRED_PARSER = "XML::RSS";
 
@@ -215,6 +216,10 @@ sub summary {
             ($item->{content}{encoded} ||
              $item->{'http://www.w3.org/1999/xhtml'}{body})) {
             $txt = $item->{description};
+        ## Blogspot's 'short' RSS feeds do this in the Atom namespace
+        ## for no obviously good reason.
+        } elsif ($item->{'http://www.w3.org/2005/Atom'}{summary}) {
+            $txt = $item->{'http://www.w3.org/2005/Atom'}{summary};
         }
         XML::Feed::Content->wrap({ type => 'text/plain', body => $txt });
     }
@@ -309,9 +314,9 @@ sub modified {
         $item->{dcterms}{modified} =
             DateTime::Format::W3CDTF->format_datetime($_[0]);
     } else {
-        if (my $ts = $item->{dcterms}{modified}) {
-            return eval { DateTime::Format::W3CDTF->parse_datetime($ts) };
-        }
+        if (my $ts = $item->{dcterms}{modified} || $item->{'http://www.w3.org/2005/Atom'}{updated}) {
+            return eval { DateTime::Format::W3CDTF->parse_datetime($ts) } || eval { XML::Atom::Util::iso2dt($ts) };
+        } 
     }
 }
 
