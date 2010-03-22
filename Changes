@@ -2,6 +2,11 @@
 
 Revision history for XML::Feed
 
+0.44
+    - Fix problem with HTML escaping in conversion
+      https://rt.cpan.org/Public/Bug/Display.html?id=44899
+      (Dave Cross & Shlomi Fish)
+
 0.43  
     - Add optional multi enclosure support
     - Fix buglet with odd date terms

@@ -214,14 +214,7 @@ sub content {
 			$orig_body = $_[0];
             %param = (Body => $_[0]);
         }
-        #if (!exists($param{Body}))
-        #{
-        #    $param{Body} = $orig_body;
-        #}
         $entry->{entry}->content(XML::Atom::Content->new(%param, Version => 1.0));
-        # Assigning again so the type will be normalized. This seems to be
-        # an XML-Atom do-what-I-don't-meannery.
-        #$entry->{entry}->content->body($orig_body);
         $entry->{entry}->content->base($base) if defined $base;
     } else {
         my $c = $entry->{entry}->content;
