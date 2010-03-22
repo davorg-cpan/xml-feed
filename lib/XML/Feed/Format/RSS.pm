@@ -50,6 +50,7 @@ sub format { 'RSS ' . $_[0]->{rss}->{'version'} }
 sub title       { shift->{rss}->channel('title', @_) }
 sub link        { shift->{rss}->channel('link', @_) }
 sub description { shift->{rss}->channel('description', @_) }
+sub updated     { shift->modified(@_) }
 
 # This doesn't exist in RSS
 sub id          { }
