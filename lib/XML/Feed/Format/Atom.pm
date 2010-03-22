@@ -8,6 +8,7 @@ use XML::Atom::Feed;
 use XML::Atom::Util qw( iso2dt );
 use List::Util qw( first );
 use DateTime::Format::W3CDTF;
+use HTML::Entities;
 
 use XML::Atom::Entry;
 XML::Atom::Entry->mk_elem_accessors(qw( lat long ), ['http://www.w3.org/2003/01/geo/wgs84_pos#']);
@@ -196,17 +197,31 @@ sub content {
     if (@_) {
         my %param;
         my $base;
+        my $orig_body;
         if (ref($_[0]) eq 'XML::Feed::Content') {
+            $orig_body = $_[0]->body;
 			if (defined $_[0]->type && defined $types{$_[0]->type}) {
 	            %param = (Body => $_[0]->body, Type => $types{$_[0]->type});
+
+                if ($param{'Type'} eq "html") {
+                    $param{'Body'} = HTML::Entities::encode_entities($param{'Body'});
+                }
 			} else {
-	            %param = (Body => $_[0]->body);
+				%param = (Body => $_[0]->body);
 			}
             $base = $_[0]->base if defined $_[0]->base;
         } else {
+			$orig_body = $_[0];
             %param = (Body => $_[0]);
         }
+        #if (!exists($param{Body}))
+        #{
+        #    $param{Body} = $orig_body;
+        #}
         $entry->{entry}->content(XML::Atom::Content->new(%param, Version => 1.0));
+        # Assigning again so the type will be normalized. This seems to be
+        # an XML-Atom do-what-I-don't-meannery.
+        #$entry->{entry}->content->body($orig_body);
         $entry->{entry}->content->base($base) if defined $base;
     } else {
         my $c = $entry->{entry}->content;
