@@ -12,6 +12,7 @@ my $build = Module::Build
                           'DateTime::Format::Mail'     => 0,
                           'DateTime::Format::W3CDTF'   => 0,
                           'Feed::Find'                 => 0,
+                          'HTML::Entities'             => 0,
                           'HTML::TokeParser'           => 0,
                           'List::Util'                 => 0,
                           'LWP::UserAgent'             => 0,
