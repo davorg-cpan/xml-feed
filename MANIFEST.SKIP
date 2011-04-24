@@ -5,3 +5,4 @@ _build
 Build
 blib
 Makefile
+^MYMETA.yml$

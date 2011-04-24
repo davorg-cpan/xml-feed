@@ -35,7 +35,7 @@ use File::Spec;
 
     # TEST
     like($rss_content->body, 
-         qr{\A\Q<div class='snap_preview'><br /><p style="text-align:justify;"><span style="color:#000000;">In an interesting, not to say quixotic},
+         qr{\Q<a href="http://search.cpan.org/perldoc?Dancer">Dancer</a>},
          'Contains HTML tags');
 
     unlike($rss->as_xml, qr{&amp;lt;}, 'No double encoding');
@@ -63,7 +63,7 @@ use File::Spec;
 
     # TEST
     like($atom_content->body, 
-        qr{\A\Q&lt;div class=&#39;snap_preview&#39;&gt;&lt;br /&gt;&lt;p style=&quot;text-align:justify;&quot;&gt;&lt;span style=&quot;color:#000000;&quot;&gt;In an interesting, not to say quixotic},
+        qr{\Q<a href="http://search.cpan.org/perldoc?Dancer">Dancer</a>},
         'Contains HTML tags');
 
     unlike($atom->as_xml, qr{&amp;lt;}, 'No double encoding');
