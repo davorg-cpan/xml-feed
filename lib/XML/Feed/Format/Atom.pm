@@ -200,19 +200,22 @@ sub content {
         my $orig_body;
         if (ref($_[0]) eq 'XML::Feed::Content') {
             $orig_body = $_[0]->body;
-			if (defined $_[0]->type && defined $types{$_[0]->type}) {
-	            %param = (Body => $_[0]->body, Type => $types{$_[0]->type});
+            if (defined $_[0]->type && defined $types{$_[0]->type}) {
+                %param = (Body => $orig_body, Type => $types{$_[0]->type});
 
-                if ($param{'Type'} eq "html") {
-                    $param{'Body'} = HTML::Entities::encode_entities($param{'Body'});
+                if ($param{Type} eq 'html') {
+                    $param{Body} = HTML::Entities::encode_entities($param{Body});
                 }
-			} else {
-				%param = (Body => $_[0]->body);
-			}
+            } else {
+                # %param = (Body => $_[0]->body);
+            }
             $base = $_[0]->base if defined $_[0]->base;
         } else {
-			$orig_body = $_[0];
-            %param = (Body => $_[0]);
+            $orig_body = $_[0];
+            # %param = (Body => $_[0]);
+        }
+        if (!exists $param{Body}) {
+            $param{Body} = $orig_body;
         }
         $entry->{entry}->content(XML::Atom::Content->new(%param, Version => 1.0));
         $entry->{entry}->content->base($base) if defined $base;

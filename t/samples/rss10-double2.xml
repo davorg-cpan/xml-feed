@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>RichardDawkins.net - All Content</title>
+    <description>All original and aggregated news articles, audio and videos on RichardDawkins.net</description>
+    <link>http://richarddawkins.net/archive/all_content/latest</link>
+    
+    <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/richarddawkins" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="richarddawkins" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+    <item>
+      <title>Neuroscientists uncover neural mechanisms of object recognition - - - medicalxpress.com</title>
+      <description>&lt;p&gt;&lt;img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" /&gt;&lt;em&gt;Certain brain injuries can cause people to lose the ability to visually recognize objects -- for example, confusing a harmonica for a cash register. Neuroscientists from Carnegie Mellon University and Princeton University examined the brain of a person with object agnosia, a deficit in the ability to recognize objects that does not include damage to the eyes or a general loss in intelligence, and have uncovered the neural mechanisms of object recognition. The results, published by Cell Press in the July 15th issue of the journal Neuron, describe the functional neuroanatomy of object agnosia and suggest that damage to the part of the brain critical for object recognition can have a widespread impact on remote parts of the cortex. These findings will force researchers to rethink basic assumptions of visual neuroscience. Credit: Carnegie Mellon University and Princeton University&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Certain brain injuries can cause people to lose the ability to visually recognize objects — for example, confusing a harmonica for a cash register.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Neuroscientists from Carnegie Mellon University and Princeton University examined the brain of a person with object agnosia, a deficit in the ability to recognize objects that does not include damage to the eyes or a general loss in intelligence, and have uncovered the neural mechanisms of object recognition. The results, published by Cell Press in the July 15th issue of the journal Neuron, describe the functional neuroanatomy of object agnosia and suggest that damage to the part of the brain critical for object recognition can have a widespread impact on remote parts of the cortex.&lt;br&gt;
+&lt;a href="http://medicalxpress.com/news/2011-07-neuroscientists-uncover-neural-mechanisms-recognition.html#share"&gt;Read more and watch video&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Thu, 14 Jul 2011 14:36:55 +0000</pubDate>
+      <link>http://richarddawkins.net/videos/642152-neuroscientists-uncover-neural-mechanisms-of-object-recognition</link>
+      <guid>http://richarddawkins.net/videos/642152-neuroscientists-uncover-neural-mechanisms-of-object-recognition</guid>
+      <category>Medicine</category>
+    </item>
+  </channel>
+</rss>
