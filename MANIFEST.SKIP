@@ -1,8 +1,10 @@
 \.tar\.gz$
 \.svn
+\.git
 \.bak$
 _build
 Build
 blib
 Makefile
 ^MYMETA.yml$
+^MYMETA\.json$

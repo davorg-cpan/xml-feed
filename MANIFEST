@@ -31,8 +31,10 @@ t/13-category-hash-bug.t
 t/14-enclosures.t
 t/14-multi-enclosures.t
 t/15-odd-date.t
+t/16-convert-mult-categories.t
 t/17-double.t
 t/18-double2.t
+t/19-double3.t
 t/pod-coverage.t
 t/pod.t
 t/samples/atom-10-example.xml
@@ -45,6 +47,7 @@ t/samples/base_atom.xml
 t/samples/base_rss.xml
 t/samples/category-bug.xml
 t/samples/rss10-double.xml
+t/samples/rss10-double2.xml
 t/samples/rss10-invalid-date.xml
 t/samples/rss10-odd-date.xml
 t/samples/rss10.xml

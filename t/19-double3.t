@@ -66,7 +66,6 @@ use File::Spec;
         qr{\Q<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />},
         'Contains HTML tags');
 
-    diag $atom->as_xml;
     unlike($atom->as_xml, qr{&amp;lt;}, 'No double encoding');
 }
 
