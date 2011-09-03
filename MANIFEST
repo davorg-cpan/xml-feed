@@ -62,3 +62,7 @@ Makefile.PL
 META.json
 t/19-double3.t
 t/samples/rss10-double2.xml
+t/20-no-enclosures.t
+t/21-rss2-permalinks.t
+t/samples/rss20-p.xml
+

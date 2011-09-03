@@ -12,7 +12,7 @@ use Module::Pluggable search_path => "XML::Feed::Format",
                       require     => 1,
                       sub_name    => 'formatters';
 
-our $VERSION = '0.45';
+our $VERSION = '0.46';
 our $MULTIPLE_ENCLOSURES = 0;
 our @formatters;
 BEGIN {
@@ -355,13 +355,13 @@ the current format of the I<$feed> object.
 
 =over 4
 
-=item C<$XML::Feed::RSS::PREFERRED_PARSER>
+=item C<$XML::Feed::Format::RSS::PREFERRED_PARSER>
 
 If you want to use another RSS parser class than XML::RSS (default), you can
-change the class by setting C<$PREFERRED_PARSER> variable in XML::Feed::RSS
-package.
+change the class by setting C<$PREFERRED_PARSER> variable in the
+XML::Feed::Format::RSS package.
 
-    $XML::Feed::RSS::PREFERRED_PARSER = "XML::RSS::LibXML";
+    $XML::Feed::Format::RSS::PREFERRED_PARSER = "XML::RSS::LibXML";
 
 B<Note:> this will only work for parsing feeds, not creating feeds.
 

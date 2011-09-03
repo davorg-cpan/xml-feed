@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:blogChannel="http://backend.userland.com/blogChannelModule">
+  <channel>
+    <title>Some title</title>
+    <link>http://creograf.ru/blog/4progr ammer</link>
+    <description>Some desc</description>
+    <language>ru-ru</language>
+    <pubDate>Sun, 3 Apr 2011 05:42:15 +0300</pubDate>
+    <lastBuildDate>Sun, 3 Apr 2011 05:42:15 +0300</lastBuildDate>
+
+    <item>
+      <title>Some entry</title>i
+      <description></description>
+      <guid isPermaLink="true">http://creograf.ru/post/regexp -js</guid>
+      <pubDate>Sun, 3 Apr 2011 05:42:12 +0300</pubDate>
+    </item>
+  </channel>
+</rss>

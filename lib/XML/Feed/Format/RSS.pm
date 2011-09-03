@@ -7,6 +7,7 @@ use base qw( XML::Feed );
 use DateTime::Format::Mail;
 use DateTime::Format::W3CDTF;
 use XML::Atom::Util qw(iso2dt);
+use XML::Feed::Enclosure;
 
 our $PREFERRED_PARSER = "XML::RSS";
 
@@ -190,7 +191,9 @@ sub link {
         ## For RSS 2.0 output from XML::RSS. Sigh.
         $entry->{entry}{permaLink} = $_[0];
     } else {
-        $entry->{entry}{link} || $entry->{entry}{guid};
+        $entry->{entry}{link} ||
+        $entry->{entry}{permaLink} ||
+        $entry->{entry}{guid};
     }
 }
 
@@ -356,8 +359,12 @@ sub enclosure {
         }
     } else {
         my $tmp  = $entry->{entry}->{enclosure};
-        my @encs = map { XML::Feed::Enclosure->new($_) } (ref $tmp eq 'ARRAY')? @$tmp : ($tmp);
-        return ($XML::Feed::MULTIPLE_ENCLOSURES)? @encs : $encs[-1];
+        if (defined $tmp) {
+            my @encs = map { XML::Feed::Enclosure->new($_) }
+              (ref $tmp eq 'ARRAY')? @$tmp : ($tmp);
+            return ($XML::Feed::MULTIPLE_ENCLOSURES)? @encs : $encs[-1];
+        }
+        return;
     }
 }
 
