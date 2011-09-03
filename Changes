@@ -2,6 +2,18 @@
 
 Revision history for XML::Feed
 
+0.46
+    - Method 'enclosure' doesn't work in feed without enclosures
+      https://rt.cpan.org/Ticket/Display.html?id=66685
+    - Documentation re PREFERRED_PARSER is wrong
+      https://rt.cpan.org/Ticket/Display.html?id=62129
+    - Add support for <guid isPermaLink> in RSS 2.0 feeds
+      https://rt.cpan.org/Ticket/Display.html?id=67349
+
+0.45
+    - Another go at fixing bug 44899
+      (Dave Cross & Shlomi Fish)
+
 0.44
     - Fix problem with HTML escaping in conversion
       https://rt.cpan.org/Public/Bug/Display.html?id=44899
