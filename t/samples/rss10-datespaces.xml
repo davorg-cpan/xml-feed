@@ -1,0 +1,80 @@
+<?xml version="1.0"?><!-- name="generator" content="bryar" -->
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:admin="http://webns.net/mvcb/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns="http://purl.org/rss/1.0/">
+
+  <channel rdf:about="http://www.cantrell.org.uk/david/journal">
+    <title>Dave's Free Press</title>
+    <link> http://www.cantrell.org.uk/david/journal </link>
+    <description>the Slightly Less Bad And Wrong Blog Edition</description>
+    <dc:language>en-us</dc:language>
+    <dc:date> 2011-12-06T22:36:07Z </dc:date>
+    <items>
+      <rdf:Seq>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/olympic-costs-yet-again"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/2011-nov-in-books"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/2011-oct-in-books"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/rugby-world-cup-roundup-2011"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/2011-sep-in-books"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/amazon-kindle-wireless"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/olympic-security-costs-2"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/the-tudors"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/2011-aug-in-books"/>      <rdf:li rdf:resource="http://www.cantrell.org.uk/david/journal/id/rum-tasting"/>      </rdf:Seq>
+    </items>
+  </channel>
+  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/olympic-costs-yet-again">
+    <title> Oh look, more Olympic financial incompetence </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/olympic-costs-yet-again </link>
+    <description></description>
+    <dc:date> 2011-12-06T22:36:07Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/2011-nov-in-books">
+    <title> November 2011 in books </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/2011-nov-in-books</link>
+    <description></description>
+    <dc:date> 2011-12-02T18:39:16Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/2011-oct-in-books">
+    <title> October 2011 in books </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/2011-oct-in-books</link>
+    <description></description>
+    <dc:date> 2011-10-30T15:32:43Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/rugby-world-cup-roundup-2011">
+    <title> Rugby World Cup roundup </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/rugby-world-cup-roundup-2011</link>
+    <description></description>
+    <dc:date> 2011-10-23T13:14:23Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/2011-sep-in-books">
+    <title> September 2011 in books </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/2011-sep-in-books</link>
+    <description></description>
+    <dc:date> 2011-10-02T11:30:30Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/amazon-kindle-wireless">
+    <title> Amazon Kindle wireless bug - and a bugfix </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/amazon-kindle-wireless</link>
+    <description></description>
+    <dc:date> 2011-09-29T19:21:32Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/olympic-security-costs-2">
+    <title> Olympic security costs - again </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/olympic-security-costs-2</link>
+    <description></description>
+    <dc:date> 2011-09-09T21:53:28Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/the-tudors">
+    <title> The Tudors </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/the-tudors</link>
+    <description></description>
+    <dc:date> 2011-09-08T21:15:48Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/2011-aug-in-books">
+    <title> August 2011 in books </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/2011-aug-in-books</link>
+    <description></description>
+    <dc:date> 2011-09-03T10:52:56Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item>  <item rdf:about="http://www.cantrell.org.uk/david/journal/id/rum-tasting">
+    <title> Rum tasting notes </title>
+    <link> http://www.cantrell.org.uk/david/journal/id/rum-tasting</link>
+    <description></description>
+    <dc:date> 2011-08-03T22:06:40Z </dc:date>
+    <dc:creator>  </dc:creator>
+  </item></rdf:RDF>

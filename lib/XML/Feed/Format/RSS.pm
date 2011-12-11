@@ -49,7 +49,12 @@ sub format { 'RSS ' . $_[0]->{rss}->{'version'} }
 
 ## The following elements are the same in all versions of RSS.
 sub title       { shift->{rss}->channel('title', @_) }
-sub link        { shift->{rss}->channel('link', @_) }
+sub link        {
+    my $link = shift->{rss}->channel('link', @_);
+    $link =~ s/^\s+//;
+    $link =~ s/\s+$//;
+    return $link;
+}
 sub description { shift->{rss}->channel('description', @_) }
 sub updated     { shift->modified(@_) }
 
@@ -135,8 +140,12 @@ sub modified {
         my $date;
         eval {
             if (my $ts = $rss->channel('pubDate')) {
+                $ts =~ s/^\s+//;
+                $ts =~ s/\s+$//;
                 $date = DateTime::Format::Mail->parse_datetime($ts);
             } elsif ($ts = $rss->channel->{dc}{date}) {
+                $ts =~ s/^\s+//;
+                $ts =~ s/\s+$//;
                 $date = DateTime::Format::W3CDTF->parse_datetime($ts);
             }
         };
@@ -191,9 +200,12 @@ sub link {
         ## For RSS 2.0 output from XML::RSS. Sigh.
         $entry->{entry}{permaLink} = $_[0];
     } else {
-        $entry->{entry}{link} ||
-        $entry->{entry}{permaLink} ||
-        $entry->{entry}{guid};
+        my $link = $entry->{entry}{link} ||
+            $entry->{entry}{permaLink} ||
+            $entry->{entry}{guid};
+        $link =~ s/^\s+//;
+        $link =~ s/\s+$//;
+        
     }
 }
 
@@ -303,9 +315,13 @@ sub issued {
             if (my $ts = $item->{pubDate}) {
                 my $parser = DateTime::Format::Mail->new;
                 $parser->loose;
+                $ts =~ s/^\s+//;
+                $ts =~ s/\s+$//;
                 $date = $parser->parse_datetime($ts);
             } elsif ($ts = $item->{dc}{date} or $ts = $item->{dcterms}{date}) {
-               $date = DateTime::Format::W3CDTF->parse_datetime($ts);
+                $ts =~ s/^\s+//;
+                $ts =~ s/\s+$//;
+                $date = DateTime::Format::W3CDTF->parse_datetime($ts);
             }
         };
         return $date;
@@ -318,7 +334,10 @@ sub modified {
         $item->{dcterms}{modified} =
             DateTime::Format::W3CDTF->format_datetime($_[0]);
     } else {
-        if (my $ts = $item->{dcterms}{modified} || $item->{'http://www.w3.org/2005/Atom'}{updated}) {
+        if (my $ts = $item->{dcterms}{modified} ||
+                $item->{'http://www.w3.org/2005/Atom'}{updated}) {
+            $ts =~ s/^\s+//;
+            $ts =~ s/\s+$//;
             return eval { DateTime::Format::W3CDTF->parse_datetime($ts) } || eval { XML::Atom::Util::iso2dt($ts) };
         } 
     }
