@@ -203,9 +203,11 @@ sub link {
         my $link = $entry->{entry}{link} ||
             $entry->{entry}{permaLink} ||
             $entry->{entry}{guid};
-        $link =~ s/^\s+//;
-        $link =~ s/\s+$//;
-        
+        if (defined $link) {
+            $link =~ s/^\s+//;
+            $link =~ s/\s+$//;
+        }
+        return $link;
     }
 }
 
