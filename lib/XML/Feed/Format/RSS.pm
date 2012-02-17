@@ -207,7 +207,7 @@ sub link {
             $link =~ s/^\s+//;
             $link =~ s/\s+$//;
         }
-        
+        return $link;
     }
 }
 
