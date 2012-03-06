@@ -213,10 +213,10 @@ the various syndication formats. The different flavors of RSS and Atom
 handle data in different ways: date handling; summaries and content;
 escaping and quoting; etc. This module attempts to remove those differences
 by providing a wrapper around the formats and the classes implementing
-those formats (I<XML::RSS> and I<XML::Atom::Feed>). For example, dates are
+those formats (L<XML::RSS> and L<XML::Atom::Feed>). For example, dates are
 handled differently in each of the above formats. To provide a unified API for
 date handling, I<XML::Feed> converts all date formats transparently into
-I<DateTime> objects, which it then returns to the caller.
+L<DateTime> objects, which it then returns to the caller.
 
 =head1 USAGE
 
@@ -232,7 +232,8 @@ Creates a new empty I<XML::Feed> object using the format I<$format>.
 
 =head2 XML::Feed->parse($stream, $format)
 
-Parses a syndication feed identified by I<$stream>. I<$stream> can be any
+Parses a syndication feed identified by I<$stream> and returns an
+I<XML::Feed> obhect. I<$stream> can be any
 one of the following:
 
 =over 4
@@ -335,15 +336,15 @@ A string.
 =head2 $feed->entries
 
 A list of the entries/items in the feed. Returns an array containing
-I<XML::Feed::Entry> objects.
+L<XML::Feed::Entry> objects.
 
 =head2 $feed->items
 
-A synonym for I<$feed->entries>.
+A synonym (alias) for <$feed-E<gt>entries>.
 
 =head2 $feed->add_entry($entry)
 
-Adds an entry to the feed. I<$entry> should be an I<XML::Feed::Entry>
+Adds an entry to the feed. I<$entry> should be an L<XML::Feed::Entry>
 object in the correct format for the feed.
 
 =head2 $feed->as_xml
