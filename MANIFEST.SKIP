@@ -3,8 +3,8 @@
 \.git
 \.bak$
 _build
-Build
+Build$
 blib
-Makefile
+Makefile$
 ^MYMETA.yml$
 ^MYMETA\.json$

@@ -79,7 +79,7 @@ XML::Feed::Entry - Entry/item in a syndication feed
 
 =head1 DESCRIPTION
 
-I<XML::Feed::Entry> represents an entry/item in an I<XML::Feed> syndication
+I<XML::Feed::Entry> represents an entry/item in an L<XML::Feed> syndication
 feed.
 
 =head1 USAGE
@@ -109,26 +109,26 @@ instead to an offsite URI referenced in the entry.
 
 =head2 $entry->content([ $content ])
 
-Bn I<XML::Feed::Content> object representing the full entry body, or as
+An L<XML::Feed::Content> object representing the full entry body, or as
 much as is available in the feed.
 
 In RSS feeds, this method will look first for
-I<http://purl.org/rss/1.0/modules/content/#encoded> and
-I<http://www.w3.org/1999/xhtml#body> elements, then fall back to a
+L<http://purl.org/rss/1.0/modules/content/#encoded> and
+L<http://www.w3.org/1999/xhtml#body> elements, then fall back to a
 I<E<lt>descriptionE<gt>> element.
 
 =head2 $entry->summary([ $summary ])
 
-An I<XML::Feed::Content> object representing a short summary of the entry.
+An L<XML::Feed::Content> object representing a short summary of the entry.
 Possibly.
 
 Since RSS feeds do not have the idea of a summary separate from the entry
 body, this may not always be what you want. If the entry contains both a
 I<E<lt>descriptionE<gt>> element B<and> another element typically used for
 the full content of the entry--either I<http://www.w3.org/1999/xhtml/body>
-or I<http://purl.org/rss/1.0/modules/content/#encoded>--we treat that as
+or L<http://purl.org/rss/1.0/modules/content/#encoded>--we treat that as
 the summary. Otherwise, we assume that there isn't a summary, and return
-an I<XML::Feed::Content> object with an empty string in the I<body>.
+an L<XML::Feed::Content> object with an empty string in the I<body>.
 
 =head2 $entry->category([ $category ])
 
@@ -142,7 +142,7 @@ I<add_category> instead.
 
 =head2 $entry->tags([ $tag ])
 
-A synonym for I<category>;
+A synonym (alias) for I<category>;
 
 =head2 $entry->author([ $author ])
 

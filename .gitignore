@@ -1,0 +1,7 @@
+Build
+MANIFEST.bak
+MYMETA.json
+MYMETA.yml
+_build/
+blib/
+*.swp
