@@ -145,7 +145,11 @@ sub issued {
     if (@_) {
         $entry->{entry}->issued(DateTime::Format::W3CDTF->format_datetime($_[0])) if $_[0];
     } else {
-        $entry->{entry}->issued ? iso2dt($entry->{entry}->issued) : undef;
+        return iso2dt($entry->{entry}->issued)
+            if $entry->{entry}->issued;
+        return iso2dt($entry->{entry}->published)
+            if $entry->{entry}->published;
+        return undef;
     }
 }
 
