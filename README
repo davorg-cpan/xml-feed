@@ -22,13 +22,16 @@ is set up, you should just be able to do
 
     % perl -MCPAN -e 'install XML::Feed'
 
-Download it, unpack it, then build it as per the usual:
+Alternatively, you can download it, unpack it, and then build it like this
+(using Module::Build):
 
-    % perl Makefile.PL
-    % make && make test
+    % perl Build.PL
+    % ./Build installdeps
+    % ./Build
+    % ./Build test
 
 Then install it:
 
-    % make install
+    % ./Build install
 
 Six Apart / cpan@sixapart.com
