@@ -431,12 +431,16 @@ under the same terms as Perl itself.
 =head1 AUTHOR & COPYRIGHT
 
 Except where otherwise noted, I<XML::Feed> is Copyright 2004-2008
-Six Apart, cpan@sixapart.com. All rights reserved.
+Six Apart. All rights reserved.
 
-=head1 SUBVERSION 
+=head1 SUPPORT
+
+For support contact the XML::Feed mailing list - xml-feed@perlhacks.com.
+
+=head1 SOURCE CODE
 
 The latest version of I<XML::Feed> can be found at
 
-    http://code.sixapart.com/svn/XML-Feed/trunk/
+    http://github.com/davorg/XML-Feed
 
 =cut
