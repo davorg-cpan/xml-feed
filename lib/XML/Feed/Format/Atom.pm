@@ -56,24 +56,42 @@ sub link {
     }
 }
 
-sub self_link {
+sub _rel_link {
     my $feed = shift;
+    my $rel  = shift;
     if (@_) {
         my $uri = shift;
-        $feed->{atom}->add_link({type => "application/atom+xml", rel => "self", href => $uri});
+        $feed->{atom}->add_link({type => "application/atom+xml", rel => $rel, href => $uri});
         return $uri;
     } 
     else
     {
-        my $l =
-            first
-            { !defined $_->rel || $_->rel eq 'self' }
-            $feed->{atom}->link;
-            ;
+        my $l;
+
+        if ($rel eq 'self') {
+            $l = first
+                { !defined $_->rel || $_->rel eq 'self' }
+                $feed->{atom}->link;
+                ;
+        } else {
+            $l = first
+                { !defined $_->rel || $_->rel eq $rel }
+                $feed->{atom}->link;
+                ;
+        }
 
         return $l ? $l->href : undef;
     }
 }
+
+sub self_link   { shift->_rel_link( 'self', @_ ) }
+sub first_link  { shift->_rel_link( 'first', @_ ) }
+sub last_link   { shift->_rel_link( 'last', @_ ) }
+sub next_link   { shift->_rel_link( 'next', @_ ) }
+sub previous_link     { shift->_rel_link( 'previous', @_ ) };
+sub current_link      { shift->_rel_link( 'current', @_ ) }
+sub prev_archive_link { shift->_rel_link( 'prev-archive', @_ ) }
+sub next_archive_link { shift->_rel_link( 'next-archive', @_ ) }
 
 sub description { shift->{atom}->tagline(@_) }
 sub copyright   { shift->{atom}->copyright(@_) }
