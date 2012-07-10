@@ -163,6 +163,7 @@ sub add_entry;
 sub entries;
 sub as_xml;
 sub id;
+sub image;
 
 sub tagline { shift->description(@_) }
 sub items   { $_[0]->entries     }

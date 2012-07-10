@@ -113,8 +113,9 @@ sub author {
     }
 }
 
-
-
+sub image {
+    return;
+}
 
 sub modified {
     my $feed = shift;

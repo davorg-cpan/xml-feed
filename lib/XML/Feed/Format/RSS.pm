@@ -162,6 +162,13 @@ sub modified {
     }
 }
 
+sub image {
+    my $self = shift;
+    my $rss = $self->{rss};
+
+    return @_ ? $rss->image(@_) : $rss->image('url');
+}
+
 sub entries {
     my $rss = $_[0]->{rss};
     my @entries;
