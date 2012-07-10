@@ -1,7 +1,5 @@
-# $Id$
-
 use strict;
-use Test::More tests => 72;
+use Test::More;
 use XML::Feed;
 use XML::Feed::Entry;
 use XML::Feed::Content;
@@ -112,3 +110,5 @@ for my $format (qw( Atom RSS )) {
     }
 
 }
+
+done_testing;
