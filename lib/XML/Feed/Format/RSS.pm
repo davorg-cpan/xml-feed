@@ -103,6 +103,14 @@ sub self_link {
     return $feed->{rss}->channel->{'atom'}{'link'};
 }
 
+# This doesn't exist in RSS
+sub first_link { };
+sub last_link { };
+sub previous_link { };
+sub next_link { };
+sub current_link { };
+sub prev_archive_link { };
+sub next_archive_link { };
 
 sub generator {
     my $feed = shift;

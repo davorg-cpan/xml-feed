@@ -1,3 +1,7 @@
+2012-04-10  Jakob Voss <voss@gbv.de>
+
+  * Add support for RFC 5005 Feed Paging and Archiving in Atom feeds
+
 2012-04-05  Dave Cross <dave@dave.org.uk>
 
   * lib/XML/Feed.pm: Remove svn tag.
