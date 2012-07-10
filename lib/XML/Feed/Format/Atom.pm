@@ -27,7 +27,7 @@ sub identify {
 sub init_empty {
     my ($feed, %args) = @_;
     $args{'Version'} ||= '1.0';
-    
+
     $feed->{atom} = XML::Atom::Feed->new(%args);
     $feed;
 }
@@ -63,7 +63,7 @@ sub _rel_link {
         my $uri = shift;
         $feed->{atom}->add_link({type => "application/atom+xml", rel => $rel, href => $uri});
         return $uri;
-    } 
+    }
     else
     {
         my $l;
@@ -113,8 +113,8 @@ sub author {
     }
 }
 
-
-
+# No icon or logo accessor for XML::Atom::Feed?
+sub image { ... }
 
 sub modified {
     my $feed = shift;
