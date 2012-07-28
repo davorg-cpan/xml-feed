@@ -24,6 +24,13 @@ my $build = Module::Build
                           'Test::More'                 => 0,
                         },
          create_makefile_pl => 'traditional',
+         meta_merge =>
+         {
+             resources =>
+             {
+                 repository => "https://github.com/davorg/xml-feed",
+             },
+         },
        );
 
 $build->create_build_script;
