@@ -1,3 +1,9 @@
+
+  * Change the User Agent to identify as XML::Feed  (SZABGAB)
+    as two sites refused to server the default user agent:
+      http://code.foo.no/feed gave 'Bad Behavior'
+      http://thorsen.pm/atom gave 'Forbidden'
+
 2012-04-10  Jakob Voss <voss@gbv.de>
 
   * Add support for RFC 5005 Feed Paging and Archiving in Atom feeds
