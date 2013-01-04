@@ -38,6 +38,7 @@ sub parse {
     my $xml = '';
     if (UNIVERSAL::isa($stream, 'URI')) {
         my $ua  = LWP::UserAgent->new;
+        $ua->agent(__PACKAGE__ . "/$VERSION");
         $ua->env_proxy; # force allowing of proxies
         my $res = URI::Fetch->fetch($stream, UserAgent => $ua)
             or return $class->error(URI::Fetch->errstr);
