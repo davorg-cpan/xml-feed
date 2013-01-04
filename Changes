@@ -1,67 +1,28 @@
+2012-07-10  Dave Cross <dave@dave.org.uk>
+
+  * lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm:
+  Added an image() method to Feed objects. Does something useful for RSS feeds;
+  not for Atom feeds currently.
+
 2012-04-10  Jakob Voss <voss@gbv.de>
 
-  * Add support for RFC 5005 Feed Paging and Archiving in Atom feeds
+  * Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/02-create.t: Add support for RFC 5005 Feed
+  Paging and Archiving in Atom feeds
 
-2012-04-05  Dave Cross <dave@dave.org.uk>
+2012-04-06  Dave Cross <dave@dave.org.uk>
 
-  * lib/XML/Feed.pm: Remove svn tag.
-
-  * lib/XML/Feed.pm: Changed contact details from non-working 6A email address.
-
-2012-03-28  sockmonk <wes.sheldahl@gmail.com>
-
-  * README: Updated README file with current and tested installation
-  instructions.  Hoping to clarify the confusion reflected in RT # 53884, maybe
-  even resolve it.  https://rt.cpan.org/Public/Bug/Display.html?id=53884
-
-2012-03-12  Dave Cross <dave@dave.org.uk>
-
-  * lib/XML/Feed.pm: Bump version for release.
-
-  * t/07-atom10-create.t: Fixed broken date test.
-
-  * lib/XML/Feed/Entry/Format/Atom.pm: Applying the missing bit of the patch
-  from https://rt.cpan.org/Ticket/Display.html?id=20763
-
-2012-03-10  Dave Cross <dave@dave.org.uk>
-
-  * lib/XML/Feed.pm: Bump version number for release.
-
-  * Build.PL: Increase XML::Atom dependency to 0.37 - see
-  https://rt.cpan.org/Ticket/Display.html?id=74703
+  * Changes, lib/XML/Feed.pm: Bump version for release.
 
 2012-03-06  Gabor Szabo <szabgab@gmail.com>
-
-  * MANIFEST.SKIP: fix MANIFEST.SKIP
-
-  * MANIFEST: update MANIFEST file
-
-  * eg/check_feed.pl: add example
 
   * lib/XML/Feed.pm, lib/XML/Feed/Entry.pm: add links to the POD
 
 2012-02-19  Gabor Szabo <szabgab@gmail.com>
 
-  * t/23-eval.t: add explicit tests for loading internal packages and failing
-  when it does not exist
-
   * lib/XML/Feed/Entry/Format/Atom.pm, lib/XML/Feed/Entry/Format/RSS.pm,
   lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm: split up files to
   individual packages
-
-  * .gitignore: ignore *.swp files
-
-2012-02-18  Gabor Szabo <szabgab@gmail.com>
-
-  * .gitignore: gitignore some generated files
-
-2012-02-17  Gabor Szabo <szabgab@gmail.com>
-
-  * lib/XML/Feed/Format/RSS.pm: add missing return call fixing the failures
-  introduced when trying to fix 73160
-
-  * lib/XML/Feed/Format/RSS.pm: eliminate warning generated in
-  t/16-convert-mult-categories.t
 
 2011-12-11  Dave Cross <dave@dave.org.uk>
 
@@ -70,8 +31,6 @@
   them pass.
 
 2011-09-03  Dave Cross <dave@dave.org.uk>
-
-  * Changes: Updated changed for 0.45 (oops) and 0.46.
 
   * MANIFEST, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
   lib/XML/Feed/Format/RSS.pm, t/20-no-enclosures.t, t/21-rss2-permalinks.t,
@@ -101,11 +60,7 @@
   * t/17-double.t, t/18-double2.t, t/samples/rss10-double.xml,
   t/samples/rss20-double.xml: Added new tests to prove what the problem is.
 
-  * t/15-odd-date.t: Force stringification so test passes.
-
 2010-03-22  Simon Wistow <simon@thegestalt.org>
-
-  * Build.PL: Force requiring HTML::Entities;
 
   * Build.PL, Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm: Fix bug in
   conversion process between RSS and Atom where HTML got double encoded 
@@ -113,27 +68,17 @@
 
   * MANIFEST, lib/XML/Feed/Format/Atom.pm: Fix double encoding bug?
 
-  * lib/XML/Feed/Format/RSS.pm: Add updated()
-
 2009-11-17  Simon Wistow <simon@thegestalt.org>
 
   * lib/XML/Feed/Entry.pm, t/16-convert-mult-categories.t: Fix a problem
   converting multiple categories thanks to Алексей Капранов
   (KAPPA) in bug 50125  https://rt.cpan.org/Ticket/Display.html?id=50125
 
-  * lib/XML/Feed/Format/RSS.pm: Fixing RT #47981 
-  https://rt.cpan.org/Ticket/Display.html?id=47981  Which is due to Blogspot
-  using unusual atom namespaced elements in short RSS feeds.
-
-  * MANIFEST: Add Build.PL
-
 2009-05-29  Simon Wistow <simon@thegestalt.org>
 
   * Changes, MANIFEST, lib/XML/Feed/Format/RSS.pm, t/15-odd-date.t,
   t/samples/rss10-odd-date.xml: Fix buglet to do with odd date terms
   https://rt.cpan.org/Ticket/Display.html?id=46494 (Joey Hess)
-
-  * MANIFEST: Add Makefile.PL
 
 2009-05-07  Simon Wistow <simon@thegestalt.org>
 
@@ -142,15 +87,7 @@
   t/samples/atom-multi-enclosure.xml, t/samples/rss20-multi-enclosure.xml:
   Multiple enclosure support
 
-2009-04-03  Simon Wistow <simon@thegestalt.org>
-
-  * Changes: Merge changes
-
-  * lib/XML/Feed.pm: Add a note about XML::RSS::LibXML
-
 2009-01-25  Tatsuhiko Miyagawa <miyagawa@bulknews.net>
-
-  * Changes: docs
 
   * lib/XML/Feed/Format/RSS.pm, t/13-category-hash-bug.t,
   t/samples/category-bug.xml: Fixed RSS multiple category with XML::RSS::LibXML
@@ -164,17 +101,9 @@
 
 2008-12-10  Simon Wistow <simon@thegestalt.org>
 
-  * MANIFEST: GAH
-
-  * MANIFEST: Whoops again
-
-  * MANIFEST: Whoops
-
   * Changes, lib/XML/Feed.pm, lib/XML/Feed/Entry.pm: Gte ready for release
 
 2008-12-09  Simon Wistow <simon@thegestalt.org>
-
-  * lib/XML/Feed/Format/RSS.pm: Fix bug with adding first category
 
   * Build.PL, Changes, lib/XML/Feed/Entry.pm, lib/XML/Feed/Format/Atom.pm,
   lib/XML/Feed/Format/RSS.pm, t/12-multi-categories-atom.t,
@@ -193,44 +122,20 @@
 
 2008-11-24  Simon Wistow <simon@thegestalt.org>
 
-  * lib/XML/Feed/Enclosure.pm: First cut at enclosure support
-
   * lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm: Add enclosure
   code.
 
-  * Build.PL: Update property
-
 2008-11-21  Simon Wistow <simon@thegestalt.org>
-
-  * Changes: UTF8 problem
-
-  * Changes: Fix Andreas' name
 
   * Build.PL, Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/RSS.pm,
   t/11-xml-base-rss.t: Fix base support with latest version of XML::RSS
 
 2008-11-14  Simon Wistow <simon@thegestalt.org>
 
-  * Changes: Add bug fix
-
   * lib/XML/Feed/Entry.pm, lib/XML/Feed/Format/Atom.pm,
   lib/XML/Feed/Format/RSS.pm: Add version to Entry
 
   * Build.PL, lib/XML/Feed/Format/Atom.pm: Fix 'base' stuff
-
-2008-11-11  Simon Wistow <simon@thegestalt.org>
-
-  * MANIFEST: Add Build.PL
-
-2008-11-04  Simon Wistow <simon@thegestalt.org>
-
-  * Changes: Add date into Changes
-
-  * lib/XML/Feed/Format/RSS.pm: Cleanup
-
-  * MANIFEST: Update for new status
-
-  * Changes: Add note about https://rt.cpan.org/Ticket/Display.html?id=14725
 
 2008-11-03  Simon Wistow <simon@thegestalt.org>
 
@@ -239,8 +144,6 @@
   look at
 
   * t/00-compile.t, t/01-parse.t, t/02-create.t: Update tests
-
-  * MANIFEST: Add pod*.t
 
   * Build.PL, MANIFEST, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
   lib/XML/Feed/Format/RSS.pm, t/00-compile.t, t/01-parse.t, t/02-create.t:
@@ -259,21 +162,7 @@
   * lib/XML/Feed.pm, lib/XML/Feed/Content.pm, lib/XML/Feed/Entry.pm,
   t/pod-coverage.t, t/pod.t: Add pod and coverage tests
 
-2008-10-24  Simon Wistow <simon@thegestalt.org>
-
-  * lib/XML/Feed.pm: Add note about makign a validating URL
-
-  * Changes: Add date
-
-  * MANIFEST: Update MANIFEST file with new tests
-
-  * lib/XML/Feed.pm: Up the version number
-
 2008-10-23  Simon Wistow <simon@thegestalt.org>
-
-  * Changes: Add xml:base work
-
-  * lib/XML/Feed/RSS.pm: Fix typo
 
   * lib/XML/Feed/RSS.pm, t/11-xml-base-rss.t, t/samples/base_rss.xml: Update
   xml:base parsing in RSS
@@ -286,15 +175,11 @@
   t/11-xml-base-rss.t, t/samples/base_atom.xml, t/samples/base_rss.xml:
   Initiali support for xml:base
 
-  * t/04-spice-atom.t: Misnamed
-
 2008-10-22  Simon Wistow <simon@thegestalt.org>
 
   * Changes, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/RSS.pm,
   t/04-spice-atom.t, t/04-splice-atom.t, t/04-splice-rss.t, t/04-splice.t,
   t/10-mix-and-match.t: Fix mixing and matching of RSS and Atom
-
-  * lib/XML/Feed.pm: Up version
 
   * Changes, lib/XML/Feed.pm: Fix fetching through proxies
 
@@ -310,9 +195,6 @@
   * Changes, t/09-missing-content-bug.t: Created test for
   http://rt.cpan.org/Ticket/Display.html?id=18810 (Ryan Tate)
 
-  * Build.PL: Up the minimum requirement for XML::RSS to 1.31
-  http://rt.cpan.org/Ticket/Display.html?id=23588 (Andreas König ANDK)
-
   * Changes, lib/XML/Feed/RSS.pm: Correct namespace for terms in RSS
   http://rt.cpan.org/Ticket/Display.html?id=25393 (Kent Cowgill KCOWGILL)
 
@@ -327,44 +209,16 @@
   inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm,
   inc/Test/More.pm, lib/XML/Feed.pm: Get rid of the inc directory
 
-  * Build.PL: Force a non-segfaulting version of XML::LibXML
-
   * MANIFEST, MANIFEST.SKIP: Shush
 
-  * lib/XML/Feed.pm: Add a note as to where to find this in subversion
-
   * t/06-atom10.t, t/07-atom10-create.t: Force stringification
-
-  * Changes: Add keywords
-
-2008-10-03  Simon Wistow <simon@thegestalt.org>
-
-  * lib/XML/Feed/Atom.pm: Fix broken summary behaviour
-
-2008-10-01  Simon Wistow <simon@thegestalt.org>
-
-  * lib/XML/Feed/Atom.pm: Feed fixes
-
-  * lib/XML/Feed/Atom.pm: Fix encoding problems
 
 2008-08-22  Simon Wistow <simon@thegestalt.org>
 
   * MANIFEST, MANIFEST.SKIP, Makefile.PL: Shush
 
-  * t/08-convert-summary-bug.t: Checking for conversion bug
-
-  * META.yml: Generated files shouldn't be in SVN
-
-  * Changes: Note the switch to module::build
-
-  * Build.PL: Switch to Module::Build
-
-  * lib/XML/Feed.pm: Update version
-
   * lib/XML/Feed/Atom.pm, t/01-parse.t: use wantarray for backwards
   compatability
-
-  * lib/XML/Feed.pm: Need to actually pick up the format. Doh
 
   * Changes, lib/XML/Feed/Atom.pm: Cope with "updated" and "published" elements
   http://rt.cpan.org/Public/Bug/Display.html?id=20763
@@ -387,12 +241,6 @@
 
   * Changes, lib/XML/Feed.pm: Allow specification of the parsing format.  Fix
   http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=477394
-
-2008-08-21  Simon Wistow <simon@thegestalt.org>
-
-  * lib/XML/Handler/Trees.pm: Wrong place for this
-
-  * lib/XML/Handler/Trees.pm: No rpm, no cpan, no svn so we include it here
 
 2008-04-22  Simon Wistow <simon@thegestalt.org>
 
