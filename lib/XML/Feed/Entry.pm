@@ -2,6 +2,9 @@
 
 package XML::Feed::Entry;
 use strict;
+
+our $VERSION = '0.51';
+
 use base qw( Class::ErrorHandler );
 
 use Scalar::Util qw( blessed );

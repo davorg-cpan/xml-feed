@@ -1,6 +1,8 @@
 package XML::Feed::Entry::Format::RSS;
 use strict;
 
+our $VERSION = '0.51';
+
 sub format { 'RSS ' . $_[0]->{'_version'} }
 
 use XML::Feed::Content;

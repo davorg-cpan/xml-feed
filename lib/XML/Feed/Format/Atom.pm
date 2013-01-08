@@ -3,6 +3,8 @@
 package XML::Feed::Format::Atom;
 use strict;
 
+our $VERSION = '0.51';
+
 use base qw( XML::Feed );
 use XML::Atom::Feed;
 use XML::Atom::Util qw( iso2dt );

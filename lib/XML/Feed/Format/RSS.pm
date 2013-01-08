@@ -3,6 +3,8 @@
 package XML::Feed::Format::RSS;
 use strict;
 
+our $VERSION = '0.51';
+
 use base qw( XML::Feed );
 use DateTime::Format::Mail;
 use DateTime::Format::W3CDTF;
