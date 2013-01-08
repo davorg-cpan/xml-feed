@@ -1,5 +1,3 @@
-# $Id$
-
 package XML::Feed::Entry;
 use strict;
 

@@ -1,5 +1,3 @@
-# $Id$
-
 package XML::Feed::Format::Atom;
 use strict;
 
