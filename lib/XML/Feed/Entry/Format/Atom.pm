@@ -1,5 +1,8 @@
 package XML::Feed::Entry::Format::Atom;
 use strict;
+use warnings;
+
+our $VERSION = '0.51';
 
 use base qw( XML::Feed::Entry );
 use XML::Atom::Util qw( iso2dt );

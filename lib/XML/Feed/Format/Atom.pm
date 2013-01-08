@@ -1,7 +1,8 @@
-# $Id$
-
 package XML::Feed::Format::Atom;
 use strict;
+use warnings;
+
+our $VERSION = '0.51';
 
 use base qw( XML::Feed );
 use XML::Atom::Feed;

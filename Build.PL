@@ -1,4 +1,3 @@
-# $Id$
 use Module::Build;
 
 my $build = Module::Build

@@ -1,7 +1,9 @@
-# $Id$
-
 package XML::Feed::Entry;
 use strict;
+use warnings;
+
+our $VERSION = '0.51';
+
 use base qw( Class::ErrorHandler );
 
 use Scalar::Util qw( blessed );

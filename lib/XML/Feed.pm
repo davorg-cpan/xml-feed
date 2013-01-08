@@ -1,5 +1,6 @@
 package XML::Feed;
 use strict;
+use warnings;
 
 use base qw( Class::ErrorHandler );
 use Feed::Find;
