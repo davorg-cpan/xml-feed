@@ -1,5 +1,6 @@
 package XML::Feed::Entry::Format::Atom;
 use strict;
+use warnings;
 
 our $VERSION = '0.51';
 
