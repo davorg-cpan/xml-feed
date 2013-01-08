@@ -1,7 +1,8 @@
-# $Id$
-
 package XML::Feed::Content;
 use strict;
+use warnings;
+
+our $VERSION = '0.51';
 
 use base qw( Class::ErrorHandler );
 

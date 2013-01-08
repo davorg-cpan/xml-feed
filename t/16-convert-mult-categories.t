@@ -1,5 +1,3 @@
-# $Id$
-
 use strict;
 use Test::More tests => 2;
 use XML::Feed;

@@ -1,7 +1,8 @@
 package XML::Feed::Enclosure;
 use strict;
+use warnings;
 
-use strict;
+our $VERSION = '0.51';
 
 use base qw( Class::ErrorHandler );
 
