@@ -2,6 +2,9 @@ Build
 MANIFEST.bak
 MYMETA.json
 MYMETA.yml
+META.*
+Makefile.PL
+XML-Feed-*
 _build/
 blib/
 *.swp
