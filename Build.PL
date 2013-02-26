@@ -2,7 +2,8 @@ use Module::Build;
 
 my $build = Module::Build
   ->new( module_name   => "XML::Feed",
-         dist_abstract => "XML Syndication Feed Support", 
+         dist_abstract => "XML Syndication Feed Support",
+         dist_author   => 'Six Apart',
          license       => 'perl',
          script_files  => [ ],
          requires      => {
@@ -29,6 +30,13 @@ my $build = Module::Build
              {
                  repository => "https://github.com/davorg/xml-feed",
              },
+             x_contributors => [
+                'Dave Cross <davecross@cpan.org>',
+                'Jakob Voss <voss@gbv.de>',
+                'Tatsuhiko Miyagawa <miyagawa@bulknews.net>',
+                'Simon Wistow <simon@thegestalt.org>',
+                'Gabor Szabo <szabgab@cpan.org>',
+             ],
          },
        );
 
