@@ -275,9 +275,10 @@ from that page (using I<E<lt>linkE<gt>> tags).
 
 Returns a list of feed URIs.
 
-=head2 XML::Feed->identify_format($xml)
+=head2 XML::Feed->identify_format(\$xml)
 
-Given the xml of a feed return what format it is in (C<Atom>, or some version of C<RSS>).
+Given the xml of a feed return what format it is in, with C<Atom> or C<RSS> for
+all versions of RSS.  Note that you pass in a scalar ref to the xml string.
 
 =head2 $feed->convert($format)
 
