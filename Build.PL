@@ -36,6 +36,7 @@ my $build = Module::Build
                 'Tatsuhiko Miyagawa <miyagawa@bulknews.net>',
                 'Simon Wistow <simon@thegestalt.org>',
                 'Gabor Szabo <szabgab@cpan.org>',
+                'Minty Walker <mintywalker@gmail.com>',
              ],
          },
        );
