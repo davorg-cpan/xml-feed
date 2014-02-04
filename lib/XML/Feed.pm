@@ -243,7 +243,7 @@ Creates a new empty I<XML::Feed> object using the format I<$format>.
 =head2 XML::Feed->parse($stream, $format)
 
 Parses a syndication feed identified by I<$stream> and returns an
-I<XML::Feed> obhect. I<$stream> can be any
+I<XML::Feed> object. I<$stream> can be any
 one of the following:
 
 =over 4
