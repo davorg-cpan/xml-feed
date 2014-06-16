@@ -15,6 +15,8 @@ use XML::Feed;
 my $src = shift;
 
 die "Usage: $0 FILE|URL\n" if not $src;
+binmode STDOUT, 'utf8';
+binmode STDERR, 'utf8';
 
 my $source = $src;
 if ($src =~ m{^https?://}) {
