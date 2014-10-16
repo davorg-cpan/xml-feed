@@ -7,6 +7,7 @@ use Feed::Find;
 use URI::Fetch;
 use LWP::UserAgent;
 use Carp;
+use Scalar::Util 'blessed';
 use Module::Pluggable search_path => "XML::Feed::Format",
                       require     => 1,
                       sub_name    => 'formatters';
@@ -37,7 +38,7 @@ sub parse {
     return $class->error("Stream parameter is required") unless $stream;
     my $feed = bless {}, $class;
     my $xml = '';
-    if (UNIVERSAL::isa($stream, 'URI')) {
+    if (blessed($stream) and $stream->isa('URI')) {
         my $ua  = LWP::UserAgent->new;
         $ua->agent(__PACKAGE__ . "/$VERSION");
         $ua->env_proxy; # force allowing of proxies
