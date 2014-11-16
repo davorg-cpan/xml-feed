@@ -22,6 +22,7 @@ my $build = Module::Build
                           'XML::LibXML'                => '1.66',
                           'XML::RSS'                   => '1.47',
                           'Test::More'                 => 0,
+                          'Scalar::Util'               => 0,
                         },
          create_makefile_pl => 'traditional',
          meta_merge =>
@@ -37,6 +38,7 @@ my $build = Module::Build
                 'Simon Wistow <simon@thegestalt.org>',
                 'Gabor Szabo <szabgab@cpan.org>',
                 'Minty Walker <mintywalker@gmail.com>',
+                'Karen Etheridge <ether@cpan.org>',
              ],
          },
        );
