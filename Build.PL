@@ -39,6 +39,7 @@ my $build = Module::Build
                 'Gabor Szabo <szabgab@cpan.org>',
                 'Minty Walker <mintywalker@gmail.com>',
                 'Karen Etheridge <ether@cpan.org>',
+                'Gerard Ribugent Navarro <ribugent@cpan.org>',
              ],
          },
        );

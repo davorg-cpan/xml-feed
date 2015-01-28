@@ -1,3 +1,8 @@
+2014-01-28  Gerard Ribugent Navarro <ribugent@cpan.org>
+
+  * Fix lib/XML/Feed/Entry/Format/RSS.pm crash
+  https://github.com/davorg/xml-feed/issues/16
+
 2012-07-10  Dave Cross <dave@dave.org.uk>
 
   * Change the User Agent to identify as XML::Feed  (SZABGAB)
@@ -78,7 +83,7 @@
 2010-03-22  Simon Wistow <simon@thegestalt.org>
 
   * Build.PL, Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm: Fix bug in
-  conversion process between RSS and Atom where HTML got double encoded 
+  conversion process between RSS and Atom where HTML got double encoded
   https://rt.cpan.org/Public/Bug/Display.html?id=44899
 
   * MANIFEST, lib/XML/Feed/Format/Atom.pm: Fix double encoding bug?
@@ -199,7 +204,7 @@
   * Changes, lib/XML/Feed.pm: Fix fetching through proxies
 
   * Changes, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm,
-  lib/XML/Feed/RSS.pm, t/02-create.t: Add support for self linking and GeoRSS 
+  lib/XML/Feed/RSS.pm, t/02-create.t: Add support for self linking and GeoRSS
   Patches from Shlomi Fish http://rt.cpan.org/Ticket/Display.html?id=39924  and
   Scott Gifford http://rt.cpan.org/Ticket/Display.html?id=40046
 
@@ -246,12 +251,12 @@
   * Changes, lib/XML/Feed/Atom.pm, t/07-atom10-create.t: Allow accessors to
   make sure things validate
 
-  * Changes, Makefile.PL: Force working version XML::Atom 
+  * Changes, Makefile.PL: Force working version XML::Atom
   http://rt.cpan.org/Public/Bug/Display.html?id=22548
   http://rt.cpan.org/Public/Bug/Display.html?id=19920
 
   * Changes, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/RSS.pm: Allow
-  passing through of initialisation options. 
+  passing through of initialisation options.
   http://rt.cpan.org/Public/Bug/Display.html?id=24729
 
   * Changes, lib/XML/Feed.pm: Allow specification of the parsing format.  Fix
