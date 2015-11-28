@@ -24,6 +24,9 @@ my $build = Module::Build
                           'Test::More'                 => 0,
                           'Scalar::Util'               => 0,
                         },
+         build_requires => {
+                          'URI'                        => 0,
+                        },
          create_makefile_pl => 'traditional',
          meta_merge =>
          {
