@@ -2,7 +2,7 @@ package XML::Feed::Format::RSS;
 use strict;
 use warnings;
 
-our $VERSION = '0.51';
+our $VERSION = '0.53';
 
 use base qw( XML::Feed );
 use DateTime::Format::Mail;
