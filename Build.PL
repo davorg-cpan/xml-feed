@@ -23,6 +23,7 @@ my $build = Module::Build
                           'XML::RSS'                   => '1.47',
                           'Test::More'                 => 0,
                           'Scalar::Util'               => 0,
+                          'perl'                       => '5.008001',
                         },
          build_requires => {
                           'URI'                        => 0,
