@@ -16,7 +16,7 @@ our $VERSION = '0.53';
 our $MULTIPLE_ENCLOSURES = 0;
 our @formatters;
 BEGIN {
-	@formatters = __PACKAGE__->formatters;
+    @formatters = __PACKAGE__->formatters;
 }
 
 sub new {
@@ -81,19 +81,19 @@ sub parse {
 sub identify_format {
     my $feed   = shift;
     my($xml)   = @_;
-	foreach my $class (@formatters) {
-		my ($name) = ($class =~ m!([^:]+)$!);
-		# TODO ugly
-		my $tmp = $$xml;
-		return $name if eval { $class->identify(\$tmp) };
-		return $feed->error($@) if $@;
-	}
-	return $feed->error("Cannot detect feed type");
+    foreach my $class (@formatters) {
+        my ($name) = ($class =~ m!([^:]+)$!);
+        # TODO ugly
+        my $tmp = $$xml;
+        return $name if eval { $class->identify(\$tmp) };
+        return $feed->error($@) if $@;
+    }
+    return $feed->error("Cannot detect feed type");
 }
 
 sub _get_first_tag {
-	my $class  = shift;
-	my ($xml)  = @_;
+    my $class  = shift;
+    my ($xml)  = @_;
 
 
     ## Auto-detect feed type based on first element. This is prone
@@ -105,9 +105,9 @@ sub _get_first_tag {
         my $first = substr $t, 0, 1;
         $tag = $t, last unless $first eq '?' || $first eq '!';
     }
-	die ("Cannot find first element") unless $tag;
+    die ("Cannot find first element") unless $tag;
     $tag =~ s/^.*://;
-	return $tag;
+    return $tag;
 }
 
 sub find_feeds {

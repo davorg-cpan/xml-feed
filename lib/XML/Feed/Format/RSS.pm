@@ -175,7 +175,7 @@ sub entries {
     my @entries;
     for my $item (@{ $rss->{items} }) {
         push @entries, XML::Feed::Entry::Format::RSS->wrap($item);
-		$entries[-1]->{_version} = $rss->{'version'};
+        $entries[-1]->{_version} = $rss->{'version'};
     }
     @entries;
 }
