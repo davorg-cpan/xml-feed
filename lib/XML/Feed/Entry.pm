@@ -139,7 +139,7 @@ The category in which the entry was posted.
 Returns a list of categories if called in array context or the first
 category if called in scalar context.
 
-B<WARNING> It's possible this API might change to have an 
+B<WARNING> It's possible this API might change to have an
 I<add_category> instead.
 
 =head2 $entry->tags([ $tag ])

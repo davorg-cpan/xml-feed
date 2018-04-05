@@ -107,7 +107,7 @@ sub content {
         }
 
         XML::Feed::Content->wrap({ type => $type,
-                                   base => $c ? $c->base : undef, 
+                                   base => $c ? $c->base : undef,
                                    body => $c ? $c->body : undef });
     }
 }

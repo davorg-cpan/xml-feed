@@ -8,12 +8,12 @@
         <lastBuildDate>Mon, 08 Dec 2008 11:44:50 -0800</lastBuildDate>
         <item>
             <title>Test With Categories</title>
-            <pubDate>Mon, 08 Dec 2008 11:44:50 -0800</pubDate>         
+            <pubDate>Mon, 08 Dec 2008 11:44:50 -0800</pubDate>
             <description>content</description>
-            <dc:subject>foo</dc:subject> 
-            <dc:subject>bar</dc:subject> 
-            <dc:subject>quux</dc:subject> 
-            <dc:subject>simon&#39;s tags</dc:subject> 
-        </item> 
+            <dc:subject>foo</dc:subject>
+            <dc:subject>bar</dc:subject>
+            <dc:subject>quux</dc:subject>
+            <dc:subject>simon&#39;s tags</dc:subject>
+        </item>
     </channel>
 </rss>

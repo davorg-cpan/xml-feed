@@ -9,7 +9,7 @@ use File::Spec;
 
 {
     my $rss = XML::Feed->parse(
-        File::Spec->catfile(File::Spec->curdir(), 
+        File::Spec->catfile(File::Spec->curdir(),
             "t", "samples", "rss10-double2.xml"
         )
     );
@@ -34,7 +34,7 @@ use File::Spec;
     like($rss_content->body, qr(<|&lt;), 'Contains HTML tags');
 
     # TEST
-    like($rss_content->body, 
+    like($rss_content->body,
          qr{\Q<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />},
          'Contains HTML tags');
 
@@ -62,7 +62,7 @@ use File::Spec;
     like($atom_content->body, qr(<|&lt;), 'Contains HTML tags');
 
     # TEST
-    like($atom_content->body, 
+    like($atom_content->body,
         qr{\Q<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />},
         'Contains HTML tags');
 

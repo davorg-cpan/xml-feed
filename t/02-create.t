@@ -103,7 +103,7 @@ for my $format (qw( Atom RSS )) {
         while ( my($name,$url) = each(%rfc5005) ) {
             $feed->$name($url);
             $name =~ s/_link$//;
-            $name =~ s/_/-/g; 
+            $name =~ s/_/-/g;
             like ($feed->as_xml(), qr{\Q<link rel="$name" href="$url" type="application/atom+xml"/>\E},
                 "Feed contains an RFC 5005 rel=\"$name\" link");
         }

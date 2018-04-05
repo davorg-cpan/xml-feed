@@ -1,7 +1,7 @@
 #!perl -w
 
 use strict;
-use Test::More; 
+use Test::More;
 use XML::Feed;
 use XML::Feed::Enclosure;
 

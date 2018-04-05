@@ -8,12 +8,12 @@
         <lastBuildDate>Mon, 08 Dec 2008 11:44:50 -0800</lastBuildDate>
         <item>
             <title>Test With Categories</title>
-            <pubDate>Mon, 08 Dec 2008 11:44:50 -0800</pubDate>         
+            <pubDate>Mon, 08 Dec 2008 11:44:50 -0800</pubDate>
             <description>content</description>
-            <category>foo</category> 
-            <category>bar</category> 
-            <category>quux</category> 
-            <category>simon&#39;s tags</category> 
-        </item> 
+            <category>foo</category>
+            <category>bar</category>
+            <category>quux</category>
+            <category>simon&#39;s tags</category>
+        </item>
     </channel>
 </rss>

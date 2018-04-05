@@ -39,7 +39,7 @@ XML::Feed::Enclosure - Wrapper for enclosure objects
 =head1 DESCRIPTION
 
 I<XML::Feed::Enclosure> represents a content object in an I<XML::Feed::Entry>
-entry in a syndication feed. 
+entry in a syndication feed.
 
 =head1 USAGE
 

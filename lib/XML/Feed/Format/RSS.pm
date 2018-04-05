@@ -27,7 +27,7 @@ sub init_empty {
     eval "use $PREFERRED_PARSER"; die $@ if $@;
     $feed->{rss} = $PREFERRED_PARSER->new(%args);
     $feed->{rss}->add_module(prefix => "content", uri => 'http://purl.org/rss/1.0/modules/content/');
-    $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/dc/terms/');    
+    $feed->{rss}->add_module(prefix => "dcterms", uri => 'http://purl.org/dc/terms/');
     $feed->{rss}->add_module(prefix => "atom", uri => 'http://www.w3.org/2005/Atom');
     $feed->{rss}->add_module(prefix => "geo", uri => 'http://www.w3.org/2003/01/geo/wgs84_pos#');
     $feed;
