@@ -54,7 +54,7 @@ sub parse {
             $xml .= $chunk;
         }
     } else {
-        open my $fh, $stream
+        open my $fh, '<', $stream
             or return $class->error("Can't open $stream: $!");
         while (read $fh, my($chunk), 8192) {
             $xml .= $chunk;
