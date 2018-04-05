@@ -199,7 +199,11 @@ sub enclosure {
     } else {
         my @links = grep { defined $_->rel && $_->rel eq 'enclosure' } $entry->{entry}->link;
         return unless @links;
-        my @encs = map { XML::Feed::Enclosure->new({ url => $_->href, length => $_->length, type => $_->type }) } @links ;
+        my @encs = map {
+            XML::Feed::Enclosure->new({
+                url => $_->href, length => $_->length, type => $_->type
+            })
+        } @links ;
         return ($XML::Feed::MULTIPLE_ENCLOSURES)? @encs : $encs[-1];
     }
 }
