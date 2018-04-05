@@ -117,7 +117,7 @@ sub category {
     my $ns = XML::Atom::Namespace->new(dc => 'http://purl.org/dc/elements/1.1/');
     if (@_) {
         $entry->{entry}->add_category({ term => $_ }) for @_;
-        return 1
+        return 1;
     } else {
 
 
