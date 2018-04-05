@@ -1,4 +1,5 @@
 use strict;
+use warnings;
 use XML::Feed;
 
 use Test::More;

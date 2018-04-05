@@ -1,4 +1,5 @@
 use strict;
+use warnings;
 use Test::More;
 
 eval { require XML::RSS::LibXML };

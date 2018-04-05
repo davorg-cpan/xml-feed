@@ -1,6 +1,7 @@
-#!perl -w
+#!perl
 
 use strict;
+use warnings;
 use Test::More tests => 13;
 
 use_ok("XML::Feed");

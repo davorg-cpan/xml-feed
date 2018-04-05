@@ -1,4 +1,7 @@
-#!perl -w
+#!perl
+
+use strict;
+use warnings;
 
 use vars qw($type $field);
 $type  = "rss";
