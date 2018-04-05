@@ -1,5 +1,5 @@
 use strict;
-sue warnings;
+use warnings;
 use Test::More tests => 13;
 use XML::Feed;
 
