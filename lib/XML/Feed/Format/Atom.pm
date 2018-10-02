@@ -97,7 +97,7 @@ sub copyright   { shift->{atom}->copyright(@_) }
 sub language    { shift->{atom}->language(@_) }
 sub generator   { shift->{atom}->generator(@_) }
 sub id          { shift->{atom}->id(@_) }
-sub updated     { shift->{atom}->updated(@_) }
+sub updated     { shift->modified(@_) }
 sub add_link    { shift->{atom}->add_link(@_) }
 sub base        { shift->{atom}->base(@_) }
 
