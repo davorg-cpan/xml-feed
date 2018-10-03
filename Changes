@@ -1,961 +1,671 @@
--------------------------------------------------------------------
-Mon Dec 14 11:14:09 CET 2015 - dave@dave.org.uk
+2018-10-03  Dave Cross <dave@dave.org.uk>
 
-- Bump versions for release.
-- commit c4d9cd4
+  * MANIFEST, lib/XML/Feed.pm: Bump version for release.
 
--------------------------------------------------------------------
-Sat Nov 28 10:18:08 CET 2015 - zhouzhen1@gmail.com
+2018-10-02  Matthew D. Miller <matthew.miller@okbu.edu>
 
-- add URI to build_requires in Build.PL
-- commit c65330d
+  * lib/XML/Feed/Entry/Format/Atom.pm, lib/XML/Feed/Format/Atom.pm: Fixes #21
+  by aliasing modified() as updated().
 
--------------------------------------------------------------------
-Sat Jul 18 13:10:39 CEST 2015 - dave@dave.org.uk
+  * t/25-date-format-bug.t: Added test for RFC 3339 date format in Atom feeds.
 
-- Updated .travis.yml
-- commit fe4e5e6
+2018-04-05  Dave Cross <dave@dave.org.uk>
 
--------------------------------------------------------------------
-Wed Jan 28 16:48:34 CET 2015 - ribugent@gmail.com
+  * lib/XML/Feed/Entry/Format/Atom.pm, t/02-create.t, t/14-multi-enclosures.t,
+  t/19-double3.t: Code tidy: Shorter lines
 
-- Fix lib/XML/Feed/Entry/Format/RSS.pm crash
-- commit b6f39ae
+  * t/11-xml-base-atom.t: Code tidy: fix typo :-(
 
--------------------------------------------------------------------
-Thu Oct 16 06:54:55 CEST 2014 - ether@cpan.org
+  * t/00-compile.t, t/01-parse.t, t/02-create.t, t/04-splice-atom.t,
+  t/04-splice-rss.t, t/05-atom10-link.t, t/06-atom10.t, t/07-atom10-create.t,
+  t/08-convert-summary-bug.t, t/09-missing-content-bug.t, t/10-mix-and-match.t,
+  t/11-xml-base-atom.t, t/11-xml-base-rss.t, t/12-multi-categories-atom.t,
+  t/12-multi-categories-rss.t, t/12-multi-subjects-rss.t,
+  t/13-category-hash-bug.t, t/14-enclosures.t, t/14-multi-enclosures.t,
+  t/15-odd-date.t, t/16-convert-mult-categories.t, t/17-double.t,
+  t/20-no-enclosures.t, t/24-identify-feed.t: Code tidy: ensure all tests
+  include 'strict' and 'warnings'
 
-- avoid deprecated form of isa()
-- commit cf84451
+  * lib/XML/Feed.pm, lib/XML/Feed/Format/RSS.pm: Code tidy: Remove indentation
+  tabs.
 
--------------------------------------------------------------------
-Mon Jun 16 10:06:51 CEST 2014 - gabor@szabgab.com
+  * lib/XML/Feed.pm, t/01-parse.t: Code tidy: Three-arg open.
 
-- utf8 encoding in helper script
-- commit a51d4e2
+  * lib/XML/Feed/Entry/Format/Atom.pm: Code tidy: Add missing semicolon.
 
--------------------------------------------------------------------
-Tue Feb  4 19:16:03 CET 2014 - x.github@chatterjee.net
+  * lib/XML/Feed/Format/RSS.pm: Code tidy: Missed a trailing space.
 
-- Fixed minor typo in docs ("obhect" -> "object")
-- commit 80b293c
+  * lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm: Cody tidy: Remove
+  unnecessary semicolons.
 
--------------------------------------------------------------------
-Fri Jan 10 15:10:53 CET 2014 - dave@dave.org.uk
+  * lib/XML/Feed.pm, lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/Entry/Format/Atom.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/02-create.t, t/12-multi-categories.base,
+  t/14-enclosures.t, t/14-multi-enclosures.t, t/15-odd-date.t,
+  t/16-convert-mult-categories.t, t/18-double2.t, t/19-double3.t,
+  t/samples/atom-multiple-categories.xml, t/samples/base_rss.xml,
+  t/samples/rss-multiple-categories.xml, t/samples/rss-multiple-subjects.xml,
+  t/samples/rss20.xml: Code tidy: Fix trailing spaces.
 
-- Added .travis.yml
-- commit f3f9a3f
+2016-02-02  Jason Hall <jayce@lug-nut.com>
 
--------------------------------------------------------------------
-Tue Mar 19 09:22:25 CET 2013 - szabgab@gmail.com
+  * Build.PL: used perlver on this module, and its top level deps 5.8.1 was the
+  highest explicit or syntax requirement.
 
-- add Minty to list of contributors
-- commit 3998e48
+2015-12-14  Dave Cross <dave@dave.org.uk>
 
--------------------------------------------------------------------
-Tue Mar 19 09:20:09 CET 2013 - szabgab@gmail.com
+  * Changes: Updated Changes
 
-- calculate plan from examples
-- commit c45da65
+  * lib/XML/Feed.pm, lib/XML/Feed/Content.pm, lib/XML/Feed/Enclosure.pm,
+  lib/XML/Feed/Entry.pm, lib/XML/Feed/Entry/Format/Atom.pm,
+  lib/XML/Feed/Entry/Format/RSS.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm: Bump versions for release.
 
--------------------------------------------------------------------
-Tue Mar 19 00:03:13 CET 2013 - murray@minty.org
+2015-11-28  zhouzhen1 <zhouzhen1@gmail.com>
 
-- Fix pod example usage for identify_format : it takes a scalar ref
-- commit b86b614
+  * Build.PL: add URI to build_requires in Build.PL
 
--------------------------------------------------------------------
-Tue Mar 19 00:00:40 CET 2013 - murray@minty.org
+2015-07-18  Dave Cross <dave@dave.org.uk>
 
-- Add test for XML::Feed->identify_format()
-- commit 09698b3
+  * .travis.yml: Updated .travis.yml
 
--------------------------------------------------------------------
-Tue Feb 26 20:51:08 CET 2013 - szabgab@gmail.com
+2015-01-28  Gerard Ribugent Navarro <ribugent@gmail.com>
 
-- add dist_author and x_contributors to META files
-- commit 69c2ffa
+  * Build.PL, Changes, lib/XML/Feed/Entry/Format/RSS.pm: Fix
+  lib/XML/Feed/Entry/Format/RSS.pm crash
 
--------------------------------------------------------------------
-Tue Feb 26 20:50:17 CET 2013 - szabgab@gmail.com
+2014-10-15  Karen Etheridge <ether@cpan.org>
 
-- ignore some generated files
-- commit 4ab99d5
+  * Build.PL, lib/XML/Feed.pm: avoid deprecated form of isa()
 
--------------------------------------------------------------------
-Tue Jan  8 10:31:35 CET 2013 - szabgab@gmail.com
+2014-06-16  Gabor Szabo <gabor@szabgab.com>
 
-- add use warnings to the modules
-- commit fb2ed13
+  * eg/check_feed.pl: utf8 encoding in helper script
 
--------------------------------------------------------------------
-Tue Jan  8 10:29:46 CET 2013 - szabgab@gmail.com
+2014-02-04  Anirvan Chatterjee <x.github@chatterjee.net>
 
-- remove Id tags from the times of Subversion
-- commit b6ca9a5
+  * lib/XML/Feed.pm: Fixed minor typo in docs ("obhect" -> "object")
 
--------------------------------------------------------------------
-Tue Jan  8 10:27:03 CET 2013 - szabgab@gmail.com
+2014-01-10  Dave Cross <dave@dave.org.uk>
 
-- add version number to all the modules
-- commit c569ee9
+  * .travis.yml: Added .travis.yml
 
--------------------------------------------------------------------
-Fri Jan  4 07:47:06 CET 2013 - dave@dave.org.uk
+2013-03-19  Gabor Szabo <szabgab@gmail.com>
 
-- Bump version for release
-- commit 43f0427
+  * Build.PL: add Minty to list of contributors
 
--------------------------------------------------------------------
-Fri Jan  4 07:45:09 CET 2013 - dave@dave.org.uk
+  * t/24-identify-feed.t: calculate plan from examples
 
-- Commit changes to Changes
-- commit 8a1d6c9
+2013-03-18  Murray <murray@minty.org>
 
--------------------------------------------------------------------
-Sun Dec 30 21:48:13 CET 2012 - szabgab@gmail.com
+  * lib/XML/Feed.pm: Fix pod example usage for identify_format : it takes a
+  scalar ref
 
-- change the User Agent string
-- commit eeff6c3
+  * t/24-identify-feed.t: Add test for XML::Feed->identify_format()
 
--------------------------------------------------------------------
-Sat Jul 28 16:43:02 CEST 2012 - shlomif@shlomifish.org
+2013-02-26  Gabor Szabo <szabgab@gmail.com>
 
-- Add a meta_merge link to the respository.
-  This way metacpan.org and other services will display it.
-- commit b7913ac
+  * Build.PL: add dist_author and x_contributors to META files
 
--------------------------------------------------------------------
-Tue Jul 10 22:17:33 CEST 2012 - dave@dave.org.uk
+  * .gitignore: ignore some generated files
 
-- Bump version for release.
-- commit dfeacbf
+2013-01-08  Gabor Szabo <szabgab@gmail.com>
 
--------------------------------------------------------------------
-Tue Jul 10 22:16:12 CEST 2012 - dave@dave.org.uk
+  * lib/XML/Feed.pm, lib/XML/Feed/Content.pm, lib/XML/Feed/Enclosure.pm,
+  lib/XML/Feed/Entry.pm, lib/XML/Feed/Entry/Format/Atom.pm,
+  lib/XML/Feed/Entry/Format/RSS.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm: add use warnings to the modules
 
-- Added an image() method to Feed objects.
-  Does something useful for RSS feeds; not for Atom feeds currently.
-- commit f251264
+  * Build.PL, lib/XML/Feed/Content.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm, t/00-compile.t,
+  t/01-parse.t, t/04-splice-atom.t, t/04-splice-rss.t,
+  t/08-convert-summary-bug.t, t/10-mix-and-match.t, t/11-xml-base-atom.t,
+  t/11-xml-base-rss.t, t/16-convert-mult-categories.t: remove Id tags from the
+  times of Subversion
 
--------------------------------------------------------------------
-Tue Jul 10 22:08:49 CEST 2012 - dave@dave.org.uk
+  * lib/XML/Feed/Content.pm, lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/Entry/Format/Atom.pm, lib/XML/Feed/Entry/Format/RSS.pm,
+  lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm, t/has-version.t: add
+  version number to all the modules
 
-- Fixed tests
-- commit fe6cfa8
+2013-01-04  Dave Cross <dave@dave.org.uk>
 
--------------------------------------------------------------------
-Tue Apr 10 15:19:49 CEST 2012 - voss@gbv.de
+  * lib/XML/Feed.pm: Bump version for release
 
-- Add support for RFC 5005 Feed Paging and Archiving in Atom feeds
-- commit 02de179
+  * Changes: Commit changes to Changes
 
--------------------------------------------------------------------
-Fri Apr  6 18:02:11 CEST 2012 - dave@dave.org.uk
+2012-12-30  Gabor Szabo <szabgab@gmail.com>
 
-- Bump version for release.
-- commit e46a668
+  * Changes, lib/XML/Feed.pm: change the User Agent string
 
--------------------------------------------------------------------
-Thu Apr  5 16:51:49 CEST 2012 - dave@dave.org.uk
+2012-07-28  Shlomi Fish <shlomif@shlomifish.org>
 
-- Remove svn tag.
-- commit ad4da28
+  * Build.PL: Add a meta_merge link to the respository.  This way metacpan.org
+  and other services will display it.
 
--------------------------------------------------------------------
-Thu Apr  5 16:48:54 CEST 2012 - dave@dave.org.uk
+2012-07-10  Dave Cross <dave@dave.org.uk>
 
-- Changed contact details from non-working 6A email address.
-- commit e933a73
+  * lib/XML/Feed.pm: Bump version for release.
 
--------------------------------------------------------------------
-Wed Mar 28 06:27:55 CEST 2012 - wes.sheldahl@gmail.com
+  * lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm:
+  Added an image() method to Feed objects. Does something useful for RSS feeds;
+  not for Atom feeds currently.
 
-- Updated README file with current and tested installation instructions.
-  Hoping to clarify the confusion reflected in RT # 53884, maybe even resolve it.
-  https://rt.cpan.org/Public/Bug/Display.html?id=53884
-- commit 6ab3d29
+  * t/02-create.t: Fixed tests
 
--------------------------------------------------------------------
-Mon Mar 12 20:49:31 CET 2012 - dave@dave.org.uk
+2012-04-10  Jakob Voss <voss@gbv.de>
 
-- Bump version for release.
-- commit 6c0ab45
+  * Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/02-create.t: Add support for RFC 5005 Feed
+  Paging and Archiving in Atom feeds
 
--------------------------------------------------------------------
-Mon Mar 12 20:39:46 CET 2012 - dave@dave.org.uk
+2012-04-06  Dave Cross <dave@dave.org.uk>
 
-- Fixed broken date test.
-- commit fb5c190
+  * Changes, lib/XML/Feed.pm: Bump version for release.
 
--------------------------------------------------------------------
-Mon Mar 12 15:36:45 CET 2012 - dave@dave.org.uk
+2012-04-05  Dave Cross <dave@dave.org.uk>
 
-- Applying the missing bit of the patch from https://rt.cpan.org/Ticket/Display.html?id=20763
-- commit bee3178
+  * lib/XML/Feed.pm: Remove svn tag.
 
--------------------------------------------------------------------
-Sat Mar 10 15:56:43 CET 2012 - dave@dave.org.uk
+  * lib/XML/Feed.pm: Changed contact details from non-working 6A email address.
 
-- Bump version number for release.
-- commit f8b9d33
+2012-03-28  sockmonk <wes.sheldahl@gmail.com>
 
--------------------------------------------------------------------
-Sat Mar 10 15:55:12 CET 2012 - dave@dave.org.uk
+  * README: Updated README file with current and tested installation
+  instructions.  Hoping to clarify the confusion reflected in RT # 53884, maybe
+  even resolve it.  https://rt.cpan.org/Public/Bug/Display.html?id=53884
 
-- Increase XML::Atom dependency to 0.37
-   - see https://rt.cpan.org/Ticket/Display.html?id=74703
-- commit 4e9cef3
+2012-03-12  Dave Cross <dave@dave.org.uk>
 
--------------------------------------------------------------------
-Tue Mar  6 11:21:01 CET 2012 - szabgab@gmail.com
+  * lib/XML/Feed.pm: Bump version for release.
 
-- fix MANIFEST.SKIP
-- commit 266eef5
+  * t/07-atom10-create.t: Fixed broken date test.
 
--------------------------------------------------------------------
-Tue Mar  6 11:19:39 CET 2012 - szabgab@gmail.com
+  * lib/XML/Feed/Entry/Format/Atom.pm: Applying the missing bit of the patch
+  from https://rt.cpan.org/Ticket/Display.html?id=20763
 
-- update MANIFEST file
-- commit 1a4ab1c
+2012-03-10  Dave Cross <dave@dave.org.uk>
 
--------------------------------------------------------------------
-Tue Mar  6 10:57:19 CET 2012 - szabgab@gmail.com
+  * lib/XML/Feed.pm: Bump version number for release.
 
-- add example
-- commit 4fd4f90
+  * Build.PL: Increase XML::Atom dependency to 0.37 - see
+  https://rt.cpan.org/Ticket/Display.html?id=74703
 
--------------------------------------------------------------------
-Tue Mar  6 10:26:07 CET 2012 - szabgab@gmail.com
+2012-03-06  Gabor Szabo <szabgab@gmail.com>
 
-- add links to the POD
-- commit 200ce86
+  * MANIFEST.SKIP: fix MANIFEST.SKIP
 
--------------------------------------------------------------------
-Sun Feb 19 08:52:00 CET 2012 - szabgab@gmail.com
+  * MANIFEST: update MANIFEST file
 
-- add explicit tests for loading internal packages and failing when it does not exist
-- commit e3322e1
+  * eg/check_feed.pl: add example
 
--------------------------------------------------------------------
-Sun Feb 19 08:26:03 CET 2012 - szabgab@gmail.com
+  * lib/XML/Feed.pm, lib/XML/Feed/Entry.pm: add links to the POD
 
-- split up files to individual packages
-- commit 8c43fc5
+2012-02-19  Gabor Szabo <szabgab@gmail.com>
 
--------------------------------------------------------------------
-Sun Feb 19 08:25:23 CET 2012 - szabgab@gmail.com
+  * t/23-eval.t: add explicit tests for loading internal packages and failing
+  when it does not exist
 
-- ignore *.swp files
-- commit b596637
+  * lib/XML/Feed/Entry/Format/Atom.pm, lib/XML/Feed/Entry/Format/RSS.pm,
+  lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm: split up files to
+  individual packages
 
--------------------------------------------------------------------
-Sat Feb 18 19:43:51 CET 2012 - szabgab@gmail.com
+  * .gitignore: ignore *.swp files
 
-- gitignore some generated files
-- commit 5522012
+2012-02-18  Gabor Szabo <szabgab@gmail.com>
 
--------------------------------------------------------------------
-Fri Feb 17 12:32:12 CET 2012 - szabgab@gmail.com
+  * .gitignore: gitignore some generated files
 
-- add missing return call fixing the failures introduced when trying to fix 73160
-- commit f9cc521
+2012-02-17  Gabor Szabo <szabgab@gmail.com>
 
--------------------------------------------------------------------
-Fri Feb 17 12:05:43 CET 2012 - szabgab@gmail.com
+  * lib/XML/Feed/Format/RSS.pm: add missing return call fixing the failures
+  introduced when trying to fix 73160
 
-- eliminate warning generated in t/16-convert-mult-categories.t
-- commit 3b96974
+  * lib/XML/Feed/Format/RSS.pm: eliminate warning generated in
+  t/16-convert-mult-categories.t
 
--------------------------------------------------------------------
-Sun Dec 11 13:47:52 CET 2011 - dave@dave.org.uk
+2011-12-11  Dave Cross <dave@dave.org.uk>
 
-- Added tests for bug 73160. And code to make them pass.
-- commit 710ed82
+  * MANIFEST, lib/XML/Feed/Format/RSS.pm, t/22-bug73160.t,
+  t/samples/rss10-datespaces.xml: Added tests for bug 73160. And code to make
+  them pass.
 
--------------------------------------------------------------------
-Sat Sep  3 12:58:59 CEST 2011 - dave@dave.org.uk
+2011-09-03  Dave Cross <dave@dave.org.uk>
 
-- Updated changed for 0.45 (oops) and 0.46.
-- commit 039dfec
+  * Changes: Updated changed for 0.45 (oops) and 0.46.
 
--------------------------------------------------------------------
-Sat Sep  3 12:53:34 CEST 2011 - dave@dave.org.uk
+  * MANIFEST, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/20-no-enclosures.t, t/21-rss2-permalinks.t,
+  t/samples/rss20-p.xml: Closed a few tickets from the RT queue as an excuse
+  for a new release. Bumped to version 0.46.
 
-- Closed a few tickets from the RT queue as an excuse for a new release. Bumped to version 0.46.
-- commit 7b5fccb
+2011-07-30  Dave Cross <dave@dave.org.uk>
 
--------------------------------------------------------------------
-Sat Jul 30 13:30:16 CEST 2011 - dave@dave.org.uk
-
-- Another round of changes to fix (and test) https://rt.cpan.org/Public/Bug/Display.html?id=44899
-- commit f4278e1
-
--------------------------------------------------------------------
-Sat Jul 16 18:03:27 CEST 2011 - dave@dave.org.uk
-
-- Added new (currently failing) test for the double-encoding bug.
-- commit 89495df
-
--------------------------------------------------------------------
-Sun Apr 24 16:07:53 CEST 2011 - dave@dave.org.uk
-
-- Tests to ensure that the double-encoding bug fix works.
-- commit cb30c63
-
--------------------------------------------------------------------
-Sun Mar 13 11:20:11 CET 2011 - dave@dave.org.uk
-
-- Added new tests to prove what the problem is.
-- commit b0d119a
-
--------------------------------------------------------------------
-Sun Mar 13 11:08:10 CET 2011 - dave@dave.org.uk
-
-- Force stringification so test passes.
-- commit 1809011
-
--------------------------------------------------------------------
-Mon Mar 22 22:07:55 CET 2010 - simon@thegestalt.org
-
-- Force requiring HTML::Entities;
-- commit 6f2c899
-
--------------------------------------------------------------------
-Mon Mar 22 22:04:05 CET 2010 - simon@thegestalt.org
-
-- Fix bug in conversion process between RSS and Atom where HTML got double encoded
+  * MANIFEST, MANIFEST.SKIP, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  t/18-double2.t, t/19-double3.t, t/samples/rss20-double.xml: Another round of
+  changes to fix (and test)
   https://rt.cpan.org/Public/Bug/Display.html?id=44899
-- commit 934ef9a
 
--------------------------------------------------------------------
-Mon Mar 22 21:50:41 CET 2010 - simon@thegestalt.org
+2011-07-16  Dave Cross <dave@dave.org.uk>
 
-- Fix double encoding bug?
-- commit b7c406f
+  * MANIFEST, lib/XML/Feed/Format/Atom.pm, t/19-double3.t,
+  t/samples/rss10-double2.xml: Added new (currently failing) test for the
+  double-encoding bug.
 
--------------------------------------------------------------------
-Mon Mar 22 21:50:20 CET 2010 - simon@thegestalt.org
+2011-04-24  Dave Cross <dave@dave.org.uk>
 
-- Add updated()
-- commit e23387f
+  * MANIFEST, MANIFEST.SKIP, t/18-double2.t, t/samples/rss20-double.xml: Tests
+  to ensure that the double-encoding bug fix works.
 
--------------------------------------------------------------------
-Tue Nov 17 03:00:00 CET 2009 - simon@thegestalt.org
+2011-03-13  Dave Cross <dave@dave.org.uk>
 
-- Fix a problem converting multiple categories thanks to Алексей Капранов (KAPPA) in bug 50125
-  https://rt.cpan.org/Ticket/Display.html?id=50125
-- commit ff32fd5
+  * t/17-double.t, t/18-double2.t, t/samples/rss10-double.xml,
+  t/samples/rss20-double.xml: Added new tests to prove what the problem is.
 
--------------------------------------------------------------------
-Tue Nov 17 02:50:53 CET 2009 - simon@thegestalt.org
+  * t/15-odd-date.t: Force stringification so test passes.
 
-- Fixing RT #47981
-  https://rt.cpan.org/Ticket/Display.html?id=47981
-  Which is due to Blogspot using unusual atom namespaced elements in short RSS feeds.
-- commit 723eaa1
+2010-03-22  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Tue Nov 17 02:17:55 CET 2009 - simon@thegestalt.org
+  * Build.PL: Force requiring HTML::Entities;
 
-- Add Build.PL
-- commit 7f58a36
+  * Build.PL, Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm: Fix bug in
+  conversion process between RSS and Atom where HTML got double encoded 
+  https://rt.cpan.org/Public/Bug/Display.html?id=44899
 
--------------------------------------------------------------------
-Fri May 29 23:19:14 CEST 2009 - simon@thegestalt.org
+  * MANIFEST, lib/XML/Feed/Format/Atom.pm: Fix double encoding bug?
 
-- Fix buglet to do with odd date terms
-  https://rt.cpan.org/Ticket/Display.html?id=46494
-  (Joey Hess)
-- commit daba724
+  * lib/XML/Feed/Format/RSS.pm: Add updated()
 
--------------------------------------------------------------------
-Fri May 29 23:17:05 CEST 2009 - simon@thegestalt.org
+2009-11-17  Simon Wistow <simon@thegestalt.org>
 
-- Add Makefile.PL
-- commit d83c0d6
+  * lib/XML/Feed/Entry.pm, t/16-convert-mult-categories.t: Fix a problem
+  converting multiple categories thanks to Алексей Капранов
+  (KAPPA) in bug 50125  https://rt.cpan.org/Ticket/Display.html?id=50125
 
--------------------------------------------------------------------
-Thu May  7 02:47:58 CEST 2009 - simon@thegestalt.org
+  * lib/XML/Feed/Format/RSS.pm: Fixing RT #47981 
+  https://rt.cpan.org/Ticket/Display.html?id=47981  Which is due to Blogspot
+  using unusual atom namespaced elements in short RSS feeds.
 
-- Multiple enclosure support
-- commit b1aa7a6
+  * MANIFEST: Add Build.PL
 
--------------------------------------------------------------------
-Fri Apr  3 17:16:38 CEST 2009 - simon@thegestalt.org
+2009-05-29  Simon Wistow <simon@thegestalt.org>
 
-- Merge changes
-- commit 3e19dc0
+  * Changes, MANIFEST, lib/XML/Feed/Format/RSS.pm, t/15-odd-date.t,
+  t/samples/rss10-odd-date.xml: Fix buglet to do with odd date terms
+  https://rt.cpan.org/Ticket/Display.html?id=46494 (Joey Hess)
 
--------------------------------------------------------------------
-Fri Apr  3 17:16:10 CEST 2009 - simon@thegestalt.org
+  * MANIFEST: Add Makefile.PL
 
-- Add a note about XML::RSS::LibXML
-- commit 0c20159
+2009-05-07  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Sun Jan 25 13:44:25 CET 2009 - miyagawa@bulknews.net
+  * Build.PL, Changes, MANIFEST, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/14-multi-enclosures.t,
+  t/samples/atom-multi-enclosure.xml, t/samples/rss20-multi-enclosure.xml:
+  Multiple enclosure support
 
-- docs
-- commit 75c12aa
+2009-04-03  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Sun Jan 25 13:42:08 CET 2009 - miyagawa@bulknews.net
+  * Changes: Merge changes
 
-- Fixed RSS multiple category with XML::RSS::LibXML
-- commit e5a65e5
+  * lib/XML/Feed.pm: Add a note about XML::RSS::LibXML
 
--------------------------------------------------------------------
-Thu Dec 11 02:55:52 CET 2008 - simon@thegestalt.org
+2009-01-25  Tatsuhiko Miyagawa <miyagawa@bulknews.net>
 
-- First cut at enclosures
-- commit 12a4079
+  * Changes: docs
 
--------------------------------------------------------------------
-Wed Dec 10 21:27:46 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed/Format/RSS.pm, t/13-category-hash-bug.t,
+  t/samples/category-bug.xml: Fixed RSS multiple category with XML::RSS::LibXML
 
-- GAH
-- commit f658a3b
+2008-12-11  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Wed Dec 10 21:26:41 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm, t/13-enclosures.t,
+  t/samples/atom-enclosure.xml, t/samples/rss20-enclosure.xml: First cut at
+  enclosures
 
-- Whoops again
-- commit 1c6eb9b
+2008-12-10  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Wed Dec 10 21:26:14 CET 2008 - simon@thegestalt.org
+  * MANIFEST: GAH
 
-- Whoops
-- commit ea0ac06
+  * MANIFEST: Whoops again
 
--------------------------------------------------------------------
-Wed Dec 10 21:15:44 CET 2008 - simon@thegestalt.org
+  * MANIFEST: Whoops
 
-- Gte ready for release
-- commit a759e13
+  * Changes, lib/XML/Feed.pm, lib/XML/Feed/Entry.pm: Gte ready for release
 
--------------------------------------------------------------------
-Wed Dec 10 00:48:16 CET 2008 - simon@thegestalt.org
+2008-12-09  Simon Wistow <simon@thegestalt.org>
 
-- Fix bug with adding first category
-- commit 4eb9395
+  * lib/XML/Feed/Format/RSS.pm: Fix bug with adding first category
 
--------------------------------------------------------------------
-Wed Dec 10 00:39:29 CET 2008 - simon@thegestalt.org
+  * Build.PL, Changes, lib/XML/Feed/Entry.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/12-multi-categories-atom.t,
+  t/12-multi-categories-rss.t, t/12-multi-categories.base,
+  t/12-multi-subjects-rss.t, t/samples/atom-multiple-categories.xml,
+  t/samples/rss-multiple-categories.xml, t/samples/rss-multiple-subjects.xml:
+  First cut at multiple category/tag support
 
-- First cut at multiple category/tag support
-- commit a0cca2a
+2008-12-01  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Mon Dec  1 22:17:51 CET 2008 - simon@thegestalt.org
+  * MANIFEST.SKIP, README, lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
+  lib/XML/Feed/Entry.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/00-compile.t, t/01-parse.t, t/04-splice-atom.t,
+  t/04-splice-rss.t, t/10-mix-and-match.t, t/11-xml-base-atom.t,
+  t/11-xml-base-rss.t: Set Id keyword on everything
 
-- Set Id keyword on everything
-- commit 3353d70
+2008-11-24  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Mon Nov 24 01:59:24 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed/Enclosure.pm: First cut at enclosure support
 
-- First cut at enclosure support
-- commit aa2dcd5
+  * lib/XML/Feed/Format/Atom.pm, lib/XML/Feed/Format/RSS.pm: Add enclosure
+  code.
 
--------------------------------------------------------------------
-Mon Nov 24 01:47:26 CET 2008 - simon@thegestalt.org
+  * Build.PL: Update property
 
-- Add enclosure code.
-- commit af6b00a
+2008-11-21  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Mon Nov 24 01:43:50 CET 2008 - simon@thegestalt.org
+  * Changes: UTF8 problem
 
-- Update property
-- commit f376357
+  * Changes: Fix Andreas' name
 
--------------------------------------------------------------------
-Fri Nov 21 21:41:06 CET 2008 - simon@thegestalt.org
+  * Build.PL, Changes, lib/XML/Feed.pm, lib/XML/Feed/Format/RSS.pm,
+  t/11-xml-base-rss.t: Fix base support with latest version of XML::RSS
 
-- UTF8 problem
-- commit 4c07283
+2008-11-14  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Fri Nov 21 21:37:23 CET 2008 - simon@thegestalt.org
+  * Changes: Add bug fix
 
-- Fix Andreas' name
-- commit c022ef2
+  * lib/XML/Feed/Entry.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm: Add version to Entry
 
--------------------------------------------------------------------
-Fri Nov 21 02:18:35 CET 2008 - simon@thegestalt.org
+  * Build.PL, lib/XML/Feed/Format/Atom.pm: Fix 'base' stuff
 
-- Fix base support with latest version of XML::RSS
-- commit f62087b
+2008-11-11  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Sat Nov 15 00:24:55 CET 2008 - simon@thegestalt.org
+  * MANIFEST: Add Build.PL
 
-- Add bug fix
-- commit c56795e
+2008-11-04  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Fri Nov 14 23:10:05 CET 2008 - simon@thegestalt.org
+  * Changes: Add date into Changes
 
-- Add version to Entry
-- commit 3bdbab6
+  * lib/XML/Feed/Format/RSS.pm: Cleanup
 
--------------------------------------------------------------------
-Fri Nov 14 23:05:54 CET 2008 - simon@thegestalt.org
+  * MANIFEST: Update for new status
 
-- Fix 'base' stuff
-- commit 4ad1301
+  * Changes: Add note about https://rt.cpan.org/Ticket/Display.html?id=14725
 
--------------------------------------------------------------------
-Tue Nov 11 19:17:25 CET 2008 - simon@thegestalt.org
+2008-11-03  Simon Wistow <simon@thegestalt.org>
 
-- Add Build.PL
-- commit 4c06eb3
+  * Build.PL, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm: Move to the Formats identifying what content to
+  look at
 
--------------------------------------------------------------------
-Tue Nov  4 23:09:14 CET 2008 - simon@thegestalt.org
+  * t/00-compile.t, t/01-parse.t, t/02-create.t: Update tests
 
-- Add date into Changes
-- commit e73bcbb
+  * MANIFEST: Add pod*.t
 
--------------------------------------------------------------------
-Tue Nov  4 23:07:39 CET 2008 - simon@thegestalt.org
+  * Build.PL, MANIFEST, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/00-compile.t, t/01-parse.t, t/02-create.t:
+  Rollback r92
 
-- Cleanup
-- commit bd19b44
+  * Build.PL, MANIFEST, lib/XML/Feed.pm, lib/XML/Feed/Format/Atom.pm,
+  lib/XML/Feed/Format/RSS.pm, t/00-compile.t, t/01-parse.t, t/02-create.t:
+  Update tests
 
--------------------------------------------------------------------
-Tue Nov  4 06:42:53 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/{ => Format}/Atom.pm,
+  lib/XML/Feed/{ => Format}/RSS.pm: Switch to different layout
 
-- Update for new status
-- commit 1ae2598
+2008-10-29  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Tue Nov  4 01:02:05 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed.pm, lib/XML/Feed/Content.pm, lib/XML/Feed/Entry.pm,
+  t/pod-coverage.t, t/pod.t: Add pod and coverage tests
 
-- Add note about
-  https://rt.cpan.org/Ticket/Display.html?id=14725
-- commit 60c04bc
+2008-10-24  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Tue Nov  4 00:54:28 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed.pm: Add note about makign a validating URL
 
-- Move to the Formats identifying what content to look at
-- commit 9b6bc91
+  * Changes: Add date
 
--------------------------------------------------------------------
-Tue Nov  4 00:53:48 CET 2008 - simon@thegestalt.org
+  * MANIFEST: Update MANIFEST file with new tests
 
-- Update tests
-- commit 4e7b539
+  * lib/XML/Feed.pm: Up the version number
 
--------------------------------------------------------------------
-Tue Nov  4 00:48:51 CET 2008 - simon@thegestalt.org
+2008-10-23  Simon Wistow <simon@thegestalt.org>
 
-- Add pod*.t
-- commit 72406e4
+  * Changes: Add xml:base work
 
--------------------------------------------------------------------
-Tue Nov  4 00:47:42 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed/RSS.pm: Fix typo
 
-- Rollback r92
-- commit 1d3481d
+  * lib/XML/Feed/RSS.pm, t/11-xml-base-rss.t, t/samples/base_rss.xml: Update
+  xml:base parsing in RSS
 
--------------------------------------------------------------------
-Tue Nov  4 00:43:32 CET 2008 - simon@thegestalt.org
+  * lib/XML/Feed/RSS.pm, t/11-xml-base-atom.t, t/11-xml-base-rss.t: Make base
+  work
 
-- Update tests
-- commit 948f935
+  * lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/Content.pm,
+  lib/XML/Feed/Entry.pm, lib/XML/Feed/RSS.pm, t/11-xml-base-atom.t,
+  t/11-xml-base-rss.t, t/samples/base_atom.xml, t/samples/base_rss.xml:
+  Initiali support for xml:base
 
--------------------------------------------------------------------
-Tue Nov  4 00:18:05 CET 2008 - simon@thegestalt.org
+  * t/04-spice-atom.t: Misnamed
 
-- Switch to different layout
-- commit 729cd7a
+2008-10-22  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Wed Oct 29 18:55:22 CET 2008 - simon@thegestalt.org
+  * Changes, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/RSS.pm,
+  t/{04-splice.t => 04-spice-atom.t}, t/04-splice-atom.t, t/04-splice-rss.t,
+  t/10-mix-and-match.t: Fix mixing and matching of RSS and Atom
 
-- Add pod and coverage tests
-- commit 8c30ad3
+  * lib/XML/Feed.pm: Up version
 
--------------------------------------------------------------------
-Fri Oct 24 20:54:39 CEST 2008 - simon@thegestalt.org
+  * Changes, lib/XML/Feed.pm: Fix fetching through proxies
 
-- Add note about makign a validating URL
-- commit b8bc97f
+  * Changes, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/RSS.pm, t/02-create.t: Add support for self linking and GeoRSS 
+  Patches from Shlomi Fish http://rt.cpan.org/Ticket/Display.html?id=39924  and
+  Scott Gifford http://rt.cpan.org/Ticket/Display.html?id=40046
 
--------------------------------------------------------------------
-Fri Oct 24 03:40:26 CEST 2008 - simon@thegestalt.org
+  * lib/XML/Feed.pm, lib/XML/Feed/RSS.pm: Make feed validate
 
-- Add date
-- commit 0d3e3b6
+2008-10-16  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Fri Oct 24 03:39:56 CEST 2008 - simon@thegestalt.org
+  * Changes, t/09-missing-content-bug.t: Created test for
+  http://rt.cpan.org/Ticket/Display.html?id=18810 (Ryan Tate)
 
-- Update MANIFEST file with new tests
-- commit bb5f785
+  * Build.PL: Up the minimum requirement for XML::RSS to 1.31
+  http://rt.cpan.org/Ticket/Display.html?id=23588 (Andreas König ANDK)
 
--------------------------------------------------------------------
-Fri Oct 24 03:37:54 CEST 2008 - simon@thegestalt.org
+  * Changes, lib/XML/Feed/RSS.pm: Correct namespace for terms in RSS
+  http://rt.cpan.org/Ticket/Display.html?id=25393 (Kent Cowgill KCOWGILL)
 
-- Up the version number
-- commit 5cc6e23
+2008-10-15  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Fri Oct 24 01:39:56 CEST 2008 - simon@thegestalt.org
+  * Changes, MANIFEST, inc/ExtUtils/AutoInstall.pm, inc/HTML/TokeParser.pm,
+  inc/LWP.pm, inc/Module/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm,
+  inc/Test/More.pm, lib/XML/Feed.pm: Get rid of the inc directory
 
-- Add xml:base work
-- commit a0793d5
+  * Build.PL: Force a non-segfaulting version of XML::LibXML
 
--------------------------------------------------------------------
-Fri Oct 24 01:32:52 CEST 2008 - simon@thegestalt.org
+  * MANIFEST, MANIFEST.SKIP: Shush
 
-- Fix typo
-- commit 0f71bfb
+  * lib/XML/Feed.pm: Add a note as to where to find this in subversion
 
--------------------------------------------------------------------
-Fri Oct 24 01:30:32 CEST 2008 - simon@thegestalt.org
+  * t/06-atom10.t, t/07-atom10-create.t: Force stringification
 
-- Update xml:base parsing in RSS
-- commit e3b96b9
+  * Changes: Add keywords
 
--------------------------------------------------------------------
-Fri Oct 24 00:43:52 CEST 2008 - simon@thegestalt.org
+2008-10-03  Simon Wistow <simon@thegestalt.org>
 
-- Make base work
-- commit 7c89fff
+  * lib/XML/Feed/Atom.pm: Fix broken summary behaviour
 
--------------------------------------------------------------------
-Thu Oct 23 02:45:43 CEST 2008 - simon@thegestalt.org
+2008-10-01  Simon Wistow <simon@thegestalt.org>
 
-- Initiali support for xml:base
-- commit 5383a56
+  * lib/XML/Feed/Atom.pm: Feed fixes
 
--------------------------------------------------------------------
-Thu Oct 23 02:45:12 CEST 2008 - simon@thegestalt.org
+  * lib/XML/Feed/Atom.pm: Fix encoding problems
 
-- Misnamed
-- commit d653dd2
+2008-08-22  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Thu Oct 23 01:44:24 CEST 2008 - simon@thegestalt.org
+  * MANIFEST, MANIFEST.SKIP, Makefile.PL: Shush
 
-- Fix mixing and matching of RSS and Atom
-- commit 33d4cb3
+  * t/08-convert-summary-bug.t: Checking for conversion bug
 
--------------------------------------------------------------------
-Wed Oct 22 22:48:19 CEST 2008 - simon@thegestalt.org
+  * META.yml: Generated files shouldn't be in SVN
 
-- Up version
-- commit f33453c
+  * Changes: Note the switch to module::build
 
--------------------------------------------------------------------
-Wed Oct 22 22:46:18 CEST 2008 - simon@thegestalt.org
+  * Build.PL: Switch to Module::Build
 
-- Fix fetching through proxies
-- commit d39809a
+  * lib/XML/Feed.pm: Update version
 
--------------------------------------------------------------------
-Wed Oct 22 22:41:42 CEST 2008 - simon@thegestalt.org
+  * lib/XML/Feed/Atom.pm, t/01-parse.t: use wantarray for backwards
+  compatability
 
-- Add support for self linking and GeoRSS
-  Patches from Shlomi Fish
-  http://rt.cpan.org/Ticket/Display.html?id=39924
-  and Scott Gifford
-  http://rt.cpan.org/Ticket/Display.html?id=40046
-- commit 9a36f82
+  * lib/XML/Feed.pm: Need to actually pick up the format. Doh
 
--------------------------------------------------------------------
-Wed Oct 22 21:10:08 CEST 2008 - simon@thegestalt.org
-
-- Make feed validate
-- commit 813f78d
-
--------------------------------------------------------------------
-Thu Oct 16 21:20:49 CEST 2008 - simon@thegestalt.org
-
-- Created test for
-  http://rt.cpan.org/Ticket/Display.html?id=18810
-  (Ryan Tate)
-- commit 5b3d39d
-
--------------------------------------------------------------------
-Thu Oct 16 21:13:07 CEST 2008 - simon@thegestalt.org
-
-- Up the minimum requirement for XML::RSS to 1.31
-  http://rt.cpan.org/Ticket/Display.html?id=23588
-  (Andreas König ANDK)
-- commit 1570cde
-
--------------------------------------------------------------------
-Thu Oct 16 21:02:10 CEST 2008 - simon@thegestalt.org
-
--  Correct namespace for terms in RSS
-   http://rt.cpan.org/Ticket/Display.html?id=25393
-   (Kent Cowgill KCOWGILL)
-- commit af62770
-
--------------------------------------------------------------------
-Wed Oct 15 20:11:12 CEST 2008 - simon@thegestalt.org
-
-- Get rid of the inc directory
-- commit 632e163
-
--------------------------------------------------------------------
-Wed Oct 15 20:04:55 CEST 2008 - simon@thegestalt.org
-
-- Force a non-segfaulting version of XML::LibXML
-- commit 457482d
-
--------------------------------------------------------------------
-Wed Oct 15 19:55:29 CEST 2008 - simon@thegestalt.org
-
-- Shush
-- commit aeec183
-
--------------------------------------------------------------------
-Wed Oct 15 19:53:48 CEST 2008 - simon@thegestalt.org
-
-- Add a note as to where to find this in subversion
-- commit 70f935c
-
--------------------------------------------------------------------
-Wed Oct 15 19:53:31 CEST 2008 - simon@thegestalt.org
-
-- Force stringification
-- commit a91dfb9
-
--------------------------------------------------------------------
-Wed Oct 15 19:16:01 CEST 2008 - simon@thegestalt.org
-
-- Add keywords
-- commit efef760
-
--------------------------------------------------------------------
-Fri Oct  3 21:18:01 CEST 2008 - simon@thegestalt.org
-
-- Fix broken summary behaviour
-- commit ac9492d
-
--------------------------------------------------------------------
-Thu Oct  2 00:24:30 CEST 2008 - simon@thegestalt.org
-
-- Feed fixes
-- commit 4f41343
-
--------------------------------------------------------------------
-Wed Oct  1 02:16:42 CEST 2008 - simon@thegestalt.org
-
-- Fix encoding problems
-- commit ccc9fe4
-
--------------------------------------------------------------------
-Sat Aug 23 00:48:46 CEST 2008 - simon@thegestalt.org
-
-- Shush
-- commit 43a7504
-
--------------------------------------------------------------------
-Sat Aug 23 00:48:24 CEST 2008 - simon@thegestalt.org
-
-- Checking for conversion bug
-- commit f7c452e
-
--------------------------------------------------------------------
-Sat Aug 23 00:48:03 CEST 2008 - simon@thegestalt.org
-
-- Generated files shouldn't be in SVN
-- commit a3b2ba1
-
--------------------------------------------------------------------
-Sat Aug 23 00:46:23 CEST 2008 - simon@thegestalt.org
-
-- Note the switch to module::build
-- commit f9e32c8
-
--------------------------------------------------------------------
-Sat Aug 23 00:39:30 CEST 2008 - simon@thegestalt.org
-
-- Switch to Module::Build
-- commit bfcc8cf
-
--------------------------------------------------------------------
-Sat Aug 23 00:29:40 CEST 2008 - simon@thegestalt.org
-
-- Update version
-- commit f422a85
-
--------------------------------------------------------------------
-Sat Aug 23 00:29:19 CEST 2008 - simon@thegestalt.org
-
-- use wantarray for backwards compatability
-- commit bf34c07
-
--------------------------------------------------------------------
-Sat Aug 23 00:29:04 CEST 2008 - simon@thegestalt.org
-
-- Need to actually pick up the format. Doh
-- commit 0c81cb2
-
--------------------------------------------------------------------
-Sat Aug 23 00:17:32 CEST 2008 - simon@thegestalt.org
-
-- Cope with "updated" and "published" elements
+  * Changes, lib/XML/Feed/Atom.pm: Cope with "updated" and "published" elements
   http://rt.cpan.org/Public/Bug/Display.html?id=20763
-  http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=380498
-  (Gregor Herrmann and Joey Hess)
-- commit 1ee56ab
+  http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=380498 (Gregor Herrmann and
+  Joey Hess)
 
--------------------------------------------------------------------
-Sat Aug 23 00:07:29 CEST 2008 - simon@thegestalt.org
+  * Changes, lib/XML/Feed/Entry.pm: Prevent empty content
+  http://rt.cpan.org/Public/Bug/Display.html?id=29684 (Dave Rolsky DROLSKY)
 
-- Prevent empty content
-  http://rt.cpan.org/Public/Bug/Display.html?id=29684
-  (Dave Rolsky DROLSKY)
-- commit 566afdf
+  * Changes, lib/XML/Feed/Atom.pm, t/07-atom10-create.t: Allow accessors to
+  make sure things validate
 
--------------------------------------------------------------------
-Fri Aug 22 23:52:12 CEST 2008 - simon@thegestalt.org
-
-- Allow accessors to make sure things validate
-- commit e8fcbc5
-
--------------------------------------------------------------------
-Fri Aug 22 21:56:17 CEST 2008 - simon@thegestalt.org
-
-- Force working version XML::Atom
+  * Changes, Makefile.PL: Force working version XML::Atom 
   http://rt.cpan.org/Public/Bug/Display.html?id=22548
   http://rt.cpan.org/Public/Bug/Display.html?id=19920
-- commit 4b70ec2
 
--------------------------------------------------------------------
-Fri Aug 22 21:54:30 CEST 2008 - simon@thegestalt.org
-
-- Allow passing through of initialisation options.
+  * Changes, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, lib/XML/Feed/RSS.pm: Allow
+  passing through of initialisation options. 
   http://rt.cpan.org/Public/Bug/Display.html?id=24729
-- commit 4e9c462
 
--------------------------------------------------------------------
-Fri Aug 22 21:39:09 CEST 2008 - simon@thegestalt.org
+  * Changes, lib/XML/Feed.pm: Allow specification of the parsing format.  Fix
+  http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=477394
 
-- Allow specification of the parsing format.
-  Fix http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=477394
-- commit 41e8c13
+2008-08-21  Simon Wistow <simon@thegestalt.org>
 
--------------------------------------------------------------------
-Thu Aug 21 22:00:37 CEST 2008 - simon@thegestalt.org
+  * lib/XML/Handler/Trees.pm: Wrong place for this
 
-- Wrong place for this
-- commit 633cb45
+  * lib/XML/Handler/Trees.pm: No rpm, no cpan, no svn so we include it here
 
--------------------------------------------------------------------
-Thu Aug 21 21:24:54 CEST 2008 - simon@thegestalt.org
+2008-04-22  Simon Wistow <simon@thegestalt.org>
 
-- No rpm, no cpan, no svn so we include it here
-- commit bfd6c84
+  * Changes, MANIFEST, META.yml, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm,
+  t/04-splice.t, t/06-atom10.t, t/07-atom10-create.t, t/samples/atom-full.xml:
+  Load XML-Feed-0.12 into trunk.
 
--------------------------------------------------------------------
-Tue Apr 22 20:01:00 CEST 2008 - simon@thegestalt.org
+  * Changes, MANIFEST, META.yml, Makefile.PL, inc/Test/More.pm,
+  lib/XML/Feed.pm, lib/XML/Feed/Atom.pm, t/05-atom10-link.t,
+  t/samples/atom-10-example.xml: Load XML-Feed-0.11 into trunk.
 
-- Load XML-Feed-0.12 into trunk.
-- commit c4d4c98
+  * Changes, META.yml, lib/XML/Feed.pm, t/samples/atom.xml: Load XML-Feed-0.10
+  into trunk.
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:55 CEST 2008 - simon@thegestalt.org
+  * Changes, META.yml, inc/ExtUtils/AutoInstall.pm, inc/HTML/TokeParser.pm,
+  inc/LWP.pm, inc/Module/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/RSS.pm, t/02-create.t: Load XML-Feed-0.09 into trunk.
 
-- Load XML-Feed-0.11 into trunk.
-- commit 4679cf3
+  * Changes, MANIFEST, META.yml, Makefile.PL, README,
+  inc/ExtUtils/AutoInstall.pm, inc/HTML/TokeParser.pm, inc/LWP.pm,
+  inc/Module/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/RSS.pm, t/01-parse.t,
+  t/samples/rss10-invalid-date.xml: Load XML-Feed-0.08 into trunk.
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:51 CEST 2008 - simon@thegestalt.org
+  * Changes, MANIFEST, META.yml, lib/XML/Feed.pm, lib/XML/Feed/Entry.pm,
+  t/04-splice.t: Load XML-Feed-0.07 into trunk.
 
-- Load XML-Feed-0.10 into trunk.
-- commit 4f6ca99
+  * Changes, MANIFEST, META.yml, Makefile.PL, README, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Content.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t, t/02-create.t: Load
+  XML-Feed-0.06 into trunk.
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:46 CEST 2008 - simon@thegestalt.org
+  * Changes, META.yml, lib/XML/Feed.pm: Load XML-Feed-0.05 into trunk.
 
-- Load XML-Feed-0.09 into trunk.
-- commit fe3b320
+  * Build.PL, Changes, META.yml, Makefile.PL, README, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Content.pm, lib/XML/Feed/Entry.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t: Load XML-Feed-0.04 into
+  trunk.
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:40 CEST 2008 - simon@thegestalt.org
+  * Changes, MANIFEST, META.yml, Makefile.PL, README, inc/Module/Install.pm,
+  inc/Module/Install/Include.pm, lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
+  lib/XML/Feed/ErrorHandler.pm: Load XML-Feed-0.03 into trunk.
 
-- Load XML-Feed-0.08 into trunk.
-- commit ecac864
+  * Changes, MANIFEST, META.yml, lib/XML/Feed.pm, lib/XML/Feed/Atom.pm,
+  lib/XML/Feed/Content.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/RSS.pm,
+  t/01-parse.t, t/samples/rss20-no-summary.xml: Load XML-Feed-0.02 into trunk.
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:37 CEST 2008 - simon@thegestalt.org
+  * Build.PL, Changes, MANIFEST, META.yml, Makefile.PL, README,
+  inc/ExtUtils/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/ErrorHandler.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t, t/samples/atom.xml,
+  t/samples/rss10.xml, t/samples/rss20.xml: Load XML-Feed-0.01 into trunk.
 
-- Load XML-Feed-0.07 into trunk.
-- commit 2310317
+  * Build.PL, Changes, MANIFEST, META.yml, Makefile.PL, README,
+  inc/ExtUtils/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/ErrorHandler.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t, t/samples/atom.xml,
+  t/samples/rss10.xml, t/samples/rss20.xml: Make
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:32 CEST 2008 - simon@thegestalt.org
+  * Build.PL, Changes, MANIFEST, META.yml, Makefile.PL, README,
+  inc/ExtUtils/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/ErrorHandler.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t, t/samples/atom.xml,
+  t/samples/rss10.xml, t/samples/rss20.xml: Load XML-Feed-0.01 into trunk.
 
-- Load XML-Feed-0.06 into trunk.
-- commit 973e1f9
+  * Build.PL, Changes, MANIFEST, META.yml, Makefile.PL, README,
+  inc/ExtUtils/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/ErrorHandler.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t, t/samples/atom.xml,
+  t/samples/rss10.xml, t/samples/rss20.xml: Create
 
--------------------------------------------------------------------
-Tue Apr 22 20:00:28 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.05 into trunk.
-- commit b3b6d2f
-
--------------------------------------------------------------------
-Tue Apr 22 20:00:22 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.04 into trunk.
-- commit fe71566
-
--------------------------------------------------------------------
-Tue Apr 22 20:00:17 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.03 into trunk.
-- commit 62d9277
-
--------------------------------------------------------------------
-Tue Apr 22 20:00:14 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.02 into trunk.
-- commit a749d9b
-
--------------------------------------------------------------------
-Tue Apr 22 20:00:06 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.01 into trunk.
-- commit 0d5e38d
-
--------------------------------------------------------------------
-Tue Apr 22 19:49:25 CEST 2008 - simon@thegestalt.org
-
-- Make
-- commit 0583180
-
--------------------------------------------------------------------
-Tue Apr 22 19:48:48 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.01 into trunk.
-- commit 5ec68b3
-
--------------------------------------------------------------------
-Tue Apr 22 19:48:07 CEST 2008 - simon@thegestalt.org
-
-- Create
-- commit 535e50d
-
--------------------------------------------------------------------
-Tue Apr 22 19:46:42 CEST 2008 - simon@thegestalt.org
-
-- Load XML-Feed-0.01 into trunk.
-- commit ba87bd3
-
--------------------------------------------------------------------
-Tue Apr 22 19:11:11 CEST 2008 - simon@thegestalt.org
-
-- Set up repo structure
-- commit cb6b911
-
+  * Build.PL, Changes, MANIFEST, META.yml, Makefile.PL, README,
+  inc/ExtUtils/AutoInstall.pm, inc/Module/Install.pm,
+  inc/Module/Install/AutoInstall.pm, inc/Module/Install/Base.pm,
+  inc/Module/Install/Build.pm, inc/Module/Install/Can.pm,
+  inc/Module/Install/Fetch.pm, inc/Module/Install/Include.pm,
+  inc/Module/Install/Makefile.pm, inc/Module/Install/Metadata.pm,
+  inc/Module/Install/Win32.pm, inc/Module/Install/WriteAll.pm, lib/XML/Feed.pm,
+  lib/XML/Feed/Atom.pm, lib/XML/Feed/Entry.pm, lib/XML/Feed/ErrorHandler.pm,
+  lib/XML/Feed/RSS.pm, t/00-compile.t, t/01-parse.t, t/samples/atom.xml,
+  t/samples/rss10.xml, t/samples/rss20.xml: Load XML-Feed-0.01 into trunk.
