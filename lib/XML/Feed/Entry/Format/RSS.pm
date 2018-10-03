@@ -2,11 +2,12 @@ package XML::Feed::Entry::Format::RSS;
 use strict;
 use warnings;
 
-our $VERSION = '0.53';
+our $VERSION = '0.54';
 
 sub format { 'RSS ' . $_[0]->{'_version'} }
 
 use XML::Feed::Content;
+use XML::Feed::Util qw( format_W3CDTF );
 
 use base qw( XML::Feed::Entry );
 
@@ -137,7 +138,7 @@ sub id {
 sub issued {
     my $item = shift->{entry};
     if (@_) {
-        $item->{dc}{date} = DateTime::Format::W3CDTF->format_datetime($_[0]);
+        $item->{dc}{date} = format_W3CDTF($_[0]);
         $item->{pubDate} = DateTime::Format::Mail->format_datetime($_[0]);
     } else {
         ## Either of these could die if the format is invalid.
@@ -162,8 +163,7 @@ sub issued {
 sub modified {
     my $item = shift->{entry};
     if (@_) {
-        $item->{dcterms}{modified} =
-            DateTime::Format::W3CDTF->format_datetime($_[0]);
+        $item->{dcterms}{modified} = format_W3CDTF($_[0]);
     } else {
         if (my $ts = $item->{dcterms}{modified} ||
                 $item->{'http://www.w3.org/2005/Atom'}{updated}) {

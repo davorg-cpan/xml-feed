@@ -9,9 +9,14 @@ use XML::Feed;
 use XML::Feed::Entry;
 
 # https://rt.cpan.org/Public/Bug/Display.html?id=48337
+# https://rt.cpan.org/Public/Bug/Display.html?id=103405
 
 my $feed = XML::Feed->new('Atom');
-my $dt = DateTime->now();
+
+# Bugs are with "floating" DateTime, so explicitly set time_zone.
+# DateTime->new() defaults to "floating" (usually) but DateTime->now()
+# defaults to "UTC".
+my $dt = DateTime->now(time_zone => 'floating');
 
 $feed->title("My Atom feed");
 $feed->link("http://www.example.com");

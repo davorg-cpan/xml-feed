@@ -2,11 +2,12 @@ package XML::Feed::Entry::Format::Atom;
 use strict;
 use warnings;
 
-our $VERSION = '0.53';
+our $VERSION = '0.54';
 
 use base qw( XML::Feed::Entry );
 use XML::Atom::Util qw( iso2dt );
 use XML::Feed::Content;
+use XML::Feed::Util qw( format_W3CDTF );
 use XML::Atom::Entry;
 use List::Util qw( first );
 
@@ -146,7 +147,7 @@ sub id { shift->{entry}->id(@_) }
 sub issued {
     my $entry = shift;
     if (@_) {
-        $entry->{entry}->issued(DateTime::Format::W3CDTF->format_datetime($_[0])) if $_[0];
+        $entry->{entry}->issued(format_W3CDTF($_[0])) if $_[0];
     } else {
         return iso2dt($entry->{entry}->issued)
             if $entry->{entry}->issued;
@@ -159,7 +160,7 @@ sub issued {
 sub modified {
     my $entry = shift;
     if (@_) {
-        $entry->{entry}->modified(DateTime::Format::W3CDTF->format_datetime($_[0])) if $_[0];
+        $entry->{entry}->modified(format_W3CDTF($_[0])) if $_[0];
     } else {
         return iso2dt($entry->{entry}->modified) if $entry->{entry}->modified;
         return iso2dt($entry->{entry}->updated)  if $entry->{entry}->updated;
