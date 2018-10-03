@@ -20,7 +20,7 @@ sub format { 'Atom' }
 
 sub title { shift->{entry}->title(@_) }
 sub source { shift->{entry}->source(@_) }
-sub updated { shift->{entry}->updated(@_) }
+sub updated { shift->modified(@_) }
 sub base { shift->{entry}->base(@_) }
 
 sub link {
