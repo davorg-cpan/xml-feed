@@ -1,8 +1,9 @@
 package XML::Feed::Entry::Format::Atom;
 use strict;
 use warnings;
+use v5.10;
 
-our $VERSION = '0.53';
+our $VERSION = '0.54';
 
 use base qw( XML::Feed::Entry );
 use XML::Atom::Util qw( iso2dt );
@@ -123,7 +124,7 @@ sub category {
 
         my @category = ($entry->{entry}->can('categories')) ? $entry->{entry}->categories : $entry->{entry}->category;
         my @return = @category
-            ? (map { $_->label || $_->term } @category)
+            ? (map { $_->label // $_->term } @category)
             : $entry->{entry}->getlist($ns, 'subject');
 
         return wantarray? @return : $return[0];

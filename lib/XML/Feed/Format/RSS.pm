@@ -1,8 +1,9 @@
 package XML::Feed::Format::RSS;
 use strict;
 use warnings;
+use v5.10;
 
-our $VERSION = '0.53';
+our $VERSION = '0.54';
 
 use base qw( XML::Feed );
 use DateTime::Format::Mail;
@@ -23,7 +24,7 @@ sub identify {
 
 sub init_empty {
     my ($feed, %args) = @_;
-    $args{'version'} ||= '2.0';
+    $args{'version'} //= '2.0';
     eval "use $PREFERRED_PARSER"; die $@ if $@;
     $feed->{rss} = $PREFERRED_PARSER->new(%args);
     $feed->{rss}->add_module(prefix => "content", uri => 'http://purl.org/rss/1.0/modules/content/');
@@ -82,7 +83,7 @@ sub language {
         $feed->{rss}->channel('language', $_[0]);
         $feed->{rss}->channel->{dc}{language} = $_[0];
     } else {
-        $feed->{rss}->channel('language') ||
+        $feed->{rss}->channel('language') //
         $feed->{rss}->channel->{dc}{language};
     }
 }
@@ -120,7 +121,7 @@ sub generator {
         $feed->{rss}->channel->{'http://webns.net/mvcb/'}{generatorAgent} =
             $_[0];
     } else {
-        $feed->{rss}->channel('generator') ||
+        $feed->{rss}->channel('generator') //
         $feed->{rss}->channel->{'http://webns.net/mvcb/'}{generatorAgent};
     }
 }
@@ -131,7 +132,7 @@ sub author {
         $feed->{rss}->channel('webMaster', $_[0]);
         $feed->{rss}->channel->{dc}{creator} = $_[0];
     } else {
-        $feed->{rss}->channel('webMaster') ||
+        $feed->{rss}->channel('webMaster') //
         $feed->{rss}->channel->{dc}{creator};
     }
 }

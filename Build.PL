@@ -23,7 +23,7 @@ my $build = Module::Build
                           'XML::RSS'                   => '1.47',
                           'Test::More'                 => 0,
                           'Scalar::Util'               => 0,
-                          'perl'                       => '5.008001',
+                          'perl'                       => '5.10.0',
                         },
          build_requires => {
                           'URI'                        => 0,
@@ -44,6 +44,7 @@ my $build = Module::Build
                 'Minty Walker <mintywalker@gmail.com>',
                 'Karen Etheridge <ether@cpan.org>',
                 'Gerard Ribugent Navarro <ribugent@cpan.org>',
+                'Matthew D. Miller <matthew.miller@okbu.edu>',
              ],
          },
        );

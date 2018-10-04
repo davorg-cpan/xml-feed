@@ -1,8 +1,9 @@
 package XML::Feed::Entry;
 use strict;
 use warnings;
+use v5.10;
 
-our $VERSION = '0.53';
+our $VERSION = '0.54';
 
 use base qw( Class::ErrorHandler );
 
@@ -21,7 +22,7 @@ sub unwrap { $_[0]->{entry} }
 sub new {
     my $class = shift;
     my($format) = @_;
-    $format ||= 'Atom';
+    $format //= 'Atom';
     my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;

@@ -1,6 +1,7 @@
 package XML::Feed;
 use strict;
 use warnings;
+use v5.10;
 
 use base qw( Class::ErrorHandler );
 use Feed::Find;
@@ -21,7 +22,7 @@ BEGIN {
 
 sub new {
     my $class = shift;
-    my $format = shift || 'Atom';
+    my $format = shift // 'Atom';
     my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
@@ -440,7 +441,7 @@ For reference, this cgi script will create valid, albeit nonsensical feeds
     use XML::Feed;
 
     my $cgi  = CGI->new;
-    my @args = ( $cgi->param('format') || "Atom" );
+    my @args = ( $cgi->param('format') // "Atom" );
     push @args, ( version => $cgi->param('version') ) if $cgi->param('version');
 
     my $feed = XML::Feed->new(@args);
