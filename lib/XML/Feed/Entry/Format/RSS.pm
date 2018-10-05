@@ -44,18 +44,11 @@ sub link {
 
 sub summary {
     my $entry = shift;
-    my $item = $entry->{entry};
+    my $item  = $entry->{entry};
     if (@_) {
         $item->{description} = ref($_[0]) eq 'XML::Feed::Content' ?
             $_[0]->body : $_[0];
-        ## Because of the logic below, we need to add some dummy content,
-        ## so that we'll properly recognize the description we enter as
-        ## the summary.
-        if (!$entry->_content &&
-            !$item->{'http://www.w3.org/1999/xhtml'}{body}) {
-            $item->{content}{encoded} = ' ';
-        }
-        $item->{description};
+        $entry->{description_is_summary} = 1;
     } else {
         ## Some RSS feeds use <description> for a summary, and some use it
         ## for the full content. Pretty gross. We don't want to return the
@@ -64,7 +57,8 @@ sub summary {
         ## typically used for the full content, use <description> as summary.
         my $txt;
         if ($item->{description} &&
-            ($entry->_content //
+            ($entry->{description_is_summary} ||
+             $entry->_content //
              $item->{'http://www.w3.org/1999/xhtml'}{body})) {
             $txt = $item->{description};
         ## Blogspot's 'short' RSS feeds do this in the Atom namespace
