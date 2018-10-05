@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0"
+ xmlns:atom="http://www.w3.org/2005/Atom"
+ xmlns:blogChannel="http://backend.userland.com/blogChannelModule"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+>
+
+<channel>
+<title>My RSS feed</title>
+<link>http://www.example.com</link>
+<description>Description</description>
+<pubDate>Thu,  4 Oct 2018 09:05:03 +0000</pubDate>
+<webMaster>Author</webMaster>
+
+<item>
+<title>First Title</title>
+<author>First Author</author>
+<guid isPermaLink="false">urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</guid>
+<pubDate>Thu,  4 Oct 2018 09:05:03 +0000</pubDate>
+<description>First Description</description>
+<content:encoded>First Content should get stored in $item->{content}{encoded} by XML::RSS</content:encoded>
+</item>
+
+<item>
+<title>Second Title</title>
+<author>Second Author</author>
+<guid isPermaLink="false">urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6b</guid>
+<pubDate>Thu,  4 Oct 2018 09:05:04 +0000</pubDate>
+<description>Second Description</description>
+<content>Second Content should get stored in $item->{content} by XML::RSS</content>
+</item>
+
+</channel>
+</rss>

@@ -8,8 +8,8 @@ our $VERSION = '0.54';
 use base qw( XML::Feed );
 use XML::Atom::Feed;
 use XML::Atom::Util qw( iso2dt );
+use XML::Feed::Util qw( format_W3CDTF );
 use List::Util qw( first );
-use DateTime::Format::W3CDTF;
 use HTML::Entities;
 
 use XML::Atom::Entry;
@@ -120,7 +120,7 @@ sub image {
 sub modified {
     my $feed = shift;
     if (@_) {
-        $feed->{atom}->modified(DateTime::Format::W3CDTF->format_datetime($_[0]));
+        $feed->{atom}->modified(format_W3CDTF($_[0]));
     } else {
         return iso2dt($feed->{atom}->modified) if $feed->{atom}->modified;
         return iso2dt($feed->{atom}->updated)  if $feed->{atom}->updated;
