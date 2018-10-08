@@ -1,6 +1,7 @@
 package XML::Feed::Entry::Format::RSS;
 use strict;
 use warnings;
+use v5.10;
 
 our $VERSION = '0.54';
 
@@ -30,8 +31,8 @@ sub link {
         ## For RSS 2.0 output from XML::RSS. Sigh.
         $entry->{entry}{permaLink} = $_[0];
     } else {
-        my $link = $entry->{entry}{link} ||
-            $entry->{entry}{permaLink} ||
+        my $link = $entry->{entry}{link} //
+            $entry->{entry}{permaLink} //
             $entry->{entry}{guid};
         if (defined $link) {
             $link =~ s/^\s+//;
@@ -63,7 +64,7 @@ sub summary {
         ## typically used for the full content, use <description> as summary.
         my $txt;
         if ($item->{description} &&
-            ($entry->_content ||
+            ($entry->_content //
              $item->{'http://www.w3.org/1999/xhtml'}{body})) {
             $txt = $item->{description};
         ## Blogspot's 'short' RSS feeds do this in the Atom namespace
@@ -101,8 +102,8 @@ sub content {
     } else {
         my $base;
         my $body =
-            $entry->_content ||
-            $item->{'http://www.w3.org/1999/xhtml'}{body} ||
+            $entry->_content //
+            $item->{'http://www.w3.org/1999/xhtml'}{body} //
             $item->{description};
         if ('HASH' eq ref($body)) {
             $base = $body->{'xml:base'};
@@ -120,7 +121,7 @@ sub category {
         $item->{category}    = [@tmp];
         $item->{dc}{subject} = [@tmp];
     } else {
-        my $r = $item->{category} || $item->{dc}{subject};
+        my $r = $item->{category} // $item->{dc}{subject};
         my @r = ref($r) eq 'ARRAY' ? @$r : defined $r? ($r) : ();
         return wantarray? @r : $r[0];
     }
@@ -131,7 +132,7 @@ sub author {
     if (@_) {
         $item->{author} = $item->{dc}{creator} = $_[0];
     } else {
-        $item->{author} || $item->{dc}{creator};
+        $item->{author} // $item->{dc}{creator};
     }
 }
 
@@ -142,7 +143,7 @@ sub id {
     if (@_) {
         $item->{guid} = $_[0];
     } else {
-        $item->{guid} || $item->{link};
+        $item->{guid} // $item->{link};
     }
 }
 
@@ -176,7 +177,7 @@ sub modified {
     if (@_) {
         $item->{dcterms}{modified} = format_W3CDTF($_[0]);
     } else {
-        if (my $ts = $item->{dcterms}{modified} ||
+        if (my $ts = $item->{dcterms}{modified} //
                 $item->{'http://www.w3.org/2005/Atom'}{updated}) {
             $ts =~ s/^\s+//;
             $ts =~ s/\s+$//;

@@ -1,6 +1,7 @@
 package XML::Feed::Format::Atom;
 use strict;
 use warnings;
+use v5.10;
 
 our $VERSION = '0.54';
 
@@ -27,7 +28,7 @@ sub identify {
 
 sub init_empty {
     my ($feed, %args) = @_;
-    $args{'Version'} ||= '1.0';
+    $args{'Version'} //= '1.0';
 
     $feed->{atom} = XML::Atom::Feed->new(%args);
     $feed;

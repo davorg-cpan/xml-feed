@@ -1,6 +1,7 @@
 package XML::Feed::Entry::Format::Atom;
 use strict;
 use warnings;
+use v5.10;
 
 our $VERSION = '0.54';
 
@@ -124,7 +125,7 @@ sub category {
 
         my @category = ($entry->{entry}->can('categories')) ? $entry->{entry}->categories : $entry->{entry}->category;
         my @return = @category
-            ? (map { $_->label || $_->term } @category)
+            ? (map { $_->label // $_->term } @category)
             : $entry->{entry}->getlist($ns, 'subject');
 
         return wantarray? @return : $return[0];
