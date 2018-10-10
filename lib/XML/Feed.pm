@@ -40,7 +40,7 @@ sub parse {
     my $feed = bless {}, $class;
     my $xml = '';
     if (blessed($stream) and $stream->isa('URI')) {
-	$xml = $class->parse_uri($stream);
+	$xml = $class->get_uri($stream);
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
     } elsif (ref($stream)) {
@@ -72,7 +72,7 @@ sub parse {
     $feed;
 }
 
-sub parse_uri {
+sub get_uri {
     my $class = shift;
     my ($stream) = @_;
 
@@ -276,6 +276,10 @@ A URI from which the feed XML will be retrieved.
 =back
 
 I<$format> allows you to override format guessing.
+
+=head2 XML::Feed->get_uri($uri)
+
+Gets a feed from a URI.
 
 =head2 XML::Feed->find_feeds($uri)
 
