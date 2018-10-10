@@ -4,16 +4,16 @@ use Test::More;
 use XML::Feed;
 use URI;
 
-my %Feeds = (
+my %feeds = (
     't/samples/atom.xml' => 'Atom',
     't/samples/rss10.xml' => 'RSS',
     't/samples/rss20.xml' => 'RSS',
 );
-plan tests => scalar keys %Feeds;
+plan tests => scalar keys %feeds;
 
-for my $file (keys %Feeds) {
+for my $file (keys %feeds) {
     my $feed = XML::Feed->parse($file);
     my $xml  = $feed->as_xml;
     my $format = XML::Feed->identify_format(\$xml);
-    is($format, $Feeds{$file});
+    is($format, $feeds{$file});
 }
