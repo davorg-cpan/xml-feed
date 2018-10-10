@@ -27,8 +27,11 @@ if ($src =~ m{^https?://}) {
   }
 }
 
-my @feed_attrs = qw[Title Tagline Format Author Link Base
-                    Language Copyright Modified Generator];
+my @feed_attrs  = qw[Title Tagline Format Author Link Base
+                     Language Copyright Modified Generator];
+
+my @entry_attrs = qw[Link Author Title Category Id Issued Modified
+                     Lat Long Format Tags Enclosure Summary Content];
 
 my $feed = XML::Feed->parse( $source ) or die XML::Feed->errstr;
 
@@ -38,20 +41,18 @@ for (@feed_attrs) {
 }
 
 for my $entry ($feed->entries) {
-	say '';
-	say '    Link:      ' . ($entry->link          // '');
-	say '    Author:    ' . ($entry->author        // '');
-	say '    Title:     ' . ($entry->title         // '');
-	say '    Caregory:  ' . ($entry->category      // '');
-	say '    Id:        ' . ($entry->id            // '');
-	say '    Issued:    ' . ($entry->issued        // ''); # DateTime object
-	say '    Modified:  ' . ($entry->modified      // ''); # DateTime object
-	say '    Lat:       ' . ($entry->lat           // '');
-	say '    Long:      ' . ($entry->long          // '');
-	say '    Format:    ' . ($entry->format        // '');
-	say '    Tags:      ' . ($entry->tags          // '');
-	say '    Enclosure: ' . ($entry->enclosure     // '');
-	say '    Summary:   ' . ($entry->summary->body // '');
-	say '    Content:   ' . ($entry->content->body // '');
+  say '';
+
+  for (@entry_attrs) {
+    my $method = lc $_;
+    my $data;
+    if (/^(Summary|Content)$/) {
+      $data = $entry->$method->body // '';
+    } else {
+      $data = $entry->$method // '';
+    }
+
+    printf(" * %-11s %s\n", "$_:", $data);
+  }
 }
 
