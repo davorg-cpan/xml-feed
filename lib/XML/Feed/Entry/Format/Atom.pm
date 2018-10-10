@@ -72,46 +72,58 @@ my %types = (
 sub content {
     my $entry = shift;
     if (@_) {
-        my %param;
-        my $base;
-        my $orig_body;
-        if (ref($_[0]) eq 'XML::Feed::Content') {
-            $orig_body = $_[0]->body;
-            if (defined $_[0]->type && defined $types{$_[0]->type}) {
-                %param = (Body => $orig_body, Type => $types{$_[0]->type});
-
-                if ($param{'Type'} eq "html") {
-                    $param{'Body'} = HTML::Entities::encode_entities($param{'Body'});
-                }
-            } else {
-            }
-            $base = $_[0]->base if defined $_[0]->base;
-        } else {
-            $orig_body = $_[0];
-        }
-        if (!exists($param{Body}))
-        {
-            $param{Body} = $orig_body;
-        }
-        $entry->{entry}->content(XML::Atom::Content->new(%param, Version => 1.0));
-        # Assigning again so the type will be normalized. This seems to be
-        # an XML-Atom do-what-I-don't-meannery.
-        $entry->{entry}->content->body($orig_body);
-        $entry->{entry}->content->base($base) if defined $base;
+        return $entry->set_content(@_);
     } else {
-        my $c = $entry->{entry}->content;
-
-        # map Atom types to MIME types
-        my $type = $c ? $c->type : undef;
-        if ($type) {
-            $type = 'text/html'  if $type eq 'xhtml' || $type eq 'html';
-            $type = 'text/plain' if $type eq 'text';
-        }
-
-        XML::Feed::Content->wrap({ type => $type,
-                                   base => $c ? $c->base : undef,
-                                   body => $c ? $c->body : undef });
+	return $entry->get_content;
     }
+}
+
+sub set_content {
+    my $entry = shift;
+
+    my %param;
+    my $base;
+    my $orig_body;
+    if (ref($_[0]) eq 'XML::Feed::Content') {
+        $orig_body = $_[0]->body;
+        if (defined $_[0]->type && defined $types{$_[0]->type}) {
+            %param = (Body => $orig_body, Type => $types{$_[0]->type});
+
+            if ($param{'Type'} eq "html") {
+                $param{'Body'} = HTML::Entities::encode_entities($param{'Body'});
+            }
+        } else {
+        }
+        $base = $_[0]->base if defined $_[0]->base;
+    } else {
+        $orig_body = $_[0];
+    }
+    if (!exists($param{Body}))
+    {
+        $param{Body} = $orig_body;
+    }
+    $entry->{entry}->content(XML::Atom::Content->new(%param, Version => 1.0));
+    # Assigning again so the type will be normalized. This seems to be
+    # an XML-Atom do-what-I-don't-meannery.
+    $entry->{entry}->content->body($orig_body);
+    $entry->{entry}->content->base($base) if defined $base;
+}
+
+sub get_content {
+    my $entry = shift;
+
+    my $c = $entry->{entry}->content;
+
+    # map Atom types to MIME types
+    my $type = $c ? $c->type : undef;
+    if ($type) {
+        $type = 'text/html'  if $type eq 'xhtml' || $type eq 'html';
+        $type = 'text/plain' if $type eq 'text';
+    }
+
+    XML::Feed::Content->wrap({ type => $type,
+                               base => $c ? $c->base : undef,
+                               body => $c ? $c->body : undef });
 }
 
 sub category {
