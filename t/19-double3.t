@@ -34,9 +34,10 @@ use File::Spec;
     like($rss_content->body, qr(<|&lt;), 'Contains HTML tags');
 
     # TEST
-    like($rss_content->body,
-      qr{\Q<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />},
-      'Contains HTML tags');
+    isnt(index($rss_content->body,
+               '<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />'),
+         -1,
+         'Contains HTML tags');
 
     unlike($rss->as_xml, qr{&amp;lt;}, 'No double encoding');
 
@@ -62,9 +63,10 @@ use File::Spec;
     like($atom_content->body, qr(<|&lt;), 'Contains HTML tags');
 
     # TEST
-    like($atom_content->body,
-      qr{\Q<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />},
-      'Contains HTML tags');
+    isnt(index($atom_content->body,
+               '<img src="http://s.ph-cdn.com/newman/gfx/news/2011/3-neuroscienti.jpg" width="300" class="articleImage" />'),
+         -1,
+         'Contains HTML tags');
 
     unlike($atom->as_xml, qr{&amp;lt;}, 'No double encoding');
 }

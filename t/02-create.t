@@ -83,15 +83,17 @@ for my $format (qw( Atom RSS )) {
 
     if ($format eq "RSS")
     {
-        like ($feed->as_xml(),
-            qr{\Q<atom:link href="http://tor.tld/my-feed.rss" rel="self" type="application/rss+xml"/>\E},
-            "Feed contains the atom:link");
+        isnt (index($feed->as_xml(),
+                    '<atom:link href="http://tor.tld/my-feed.rss" rel="self" type="application/rss+xml"/>'),
+	      -1,
+              "Feed contains the atom:link");
     }
     elsif ($format eq "Atom")
     {
-        like ($feed->as_xml(),
-            qr{\Q<link rel="self" href="http://tor.tld/my-feed.rss" type="application/atom+xml"/>\E},
-            "Feed contains the atom:link");
+        isnt (index($feed->as_xml(),
+                    '<link rel="self" href="http://tor.tld/my-feed.rss" type="application/atom+xml"/>'),
+	      -1,
+              "Feed contains the atom:link");
 
         my %rfc5005 = (
             first_link => "http://tor.tld/my-feed.xml?page=1",
@@ -107,9 +109,10 @@ for my $format (qw( Atom RSS )) {
             $feed->$name($url);
             $name =~ s/_link$//;
             $name =~ s/_/-/g;
-            like ($feed->as_xml(),
-                qr{\Q<link rel="$name" href="$url" type="application/atom+xml"/>\E},
-                "Feed contains an RFC 5005 rel=\"$name\" link");
+            isnt (index($feed->as_xml(),
+                        qq[<link rel="$name" href="$url" type="application/atom+xml"/>]),
+		  -1,
+                  "Feed contains an RFC 5005 rel=\"$name\" link");
         }
     }
 

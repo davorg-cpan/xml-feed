@@ -4,7 +4,7 @@ use Test::More tests => 75;
 use XML::Feed;
 use URI;
 
-my %Feeds = (
+my %feeds = (
     't/samples/atom.xml' => 'Atom',
     't/samples/rss10.xml' => 'RSS 1.0',
     't/samples/rss20.xml' => 'RSS 2.0',
@@ -30,11 +30,11 @@ isa_ok($feed, 'XML::Feed::Format::Atom');
 is($feed->title, 'First Weblog');
 
 ## Then try calling all of the unified API methods.
-for my $file (sort keys %Feeds) {
-    my $feed = XML::Feed->parse($file) or die XML::Feed->errstr;
-    my($subclass) = $Feeds{$file} =~ /^(\w+)/;
+for my $file (sort keys %feeds) {
+    $feed = XML::Feed->parse($file) or die XML::Feed->errstr;
+    my($subclass) = $feeds{$file} =~ /^(\w+)/;
     isa_ok($feed, 'XML::Feed::Format::' . $subclass);
-    is($feed->format, $Feeds{$file});
+    is($feed->format, $feeds{$file});
     is($feed->language, 'en-us');
     is($feed->title, 'First Weblog');
     is($feed->link, 'http://localhost/weblog/');
