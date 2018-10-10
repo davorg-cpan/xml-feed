@@ -20,24 +20,22 @@ binmode STDERR, ':encoding(UTF-8)';
 
 my $source = $src;
 if ($src =~ m{^https?://}) {
-	$source = URI->new($src);
+  $source = URI->new($src);
 } else {
-	if (not -f $source) {
-		die "'$source' does not look like a URL and it does not exist on the file-system either.\n";
-	}
+  if (not -f $source) {
+    die "'$source' does not look like a URL and it does not exist on the file-system either.\n";
+  }
 }
 
+my @feed_attrs = qw[Title Tagline Format Author Link Base
+                    Language Copyright Modified Generator];
+
 my $feed = XML::Feed->parse( $source ) or die XML::Feed->errstr;
-say 'Title:     ' . ($feed->title     // '');
-say 'Tagline:   ' . ($feed->tagline   // '');
-say 'Format:    ' . ($feed->format    // '');
-say 'Author:    ' . ($feed->author    // '');
-say 'Link:      ' . ($feed->link      // '');
-say 'Base:      ' . ($feed->base      // '');
-say 'Language:  ' . ($feed->language  // '');
-say 'Copyright: ' . ($feed->copyright // '');
-say 'Modified:  ' . ($feed->modified  // ''); # DateTime object
-say 'Generator: ' . ($feed->generator // '');
+
+for (@feed_attrs) {
+  my $method = lc $_;
+  printf "%-11s %s\n", "$_:", ($feed->$method // '');
+}
 
 for my $entry ($feed->entries) {
 	say '';
