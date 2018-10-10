@@ -40,14 +40,7 @@ sub parse {
     my $feed = bless {}, $class;
     my $xml = '';
     if (blessed($stream) and $stream->isa('URI')) {
-        my $ua  = LWP::UserAgent->new;
-        $ua->agent(__PACKAGE__ . "/$VERSION");
-        $ua->env_proxy; # force allowing of proxies
-        my $res = URI::Fetch->fetch($stream, UserAgent => $ua)
-            or return $class->error(URI::Fetch->errstr);
-        return $class->error("This feed has been permanently removed")
-            if $res->status == URI::Fetch::URI_GONE();
-        $xml = $res->content;
+	$xml = $class->parse_uri($stream);
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
     } elsif (ref($stream)) {
@@ -77,6 +70,20 @@ sub parse {
     bless $feed, $format_class;
     $feed->init_string(\$xml) or return $class->error($feed->errstr);
     $feed;
+}
+
+sub parse_uri {
+    my $class = shift;
+    my ($stream) = @_;
+
+    my $ua  = LWP::UserAgent->new;
+    $ua->agent(__PACKAGE__ . "/$VERSION");
+    $ua->env_proxy; # force allowing of proxies
+    my $res = URI::Fetch->fetch($stream, UserAgent => $ua)
+        or return $class->error(URI::Fetch->errstr);
+    return $class->error("This feed has been permanently removed")
+        if $res->status == URI::Fetch::URI_GONE();
+    return $res->content;
 }
 
 sub identify_format {
