@@ -137,7 +137,7 @@ sub id {
     if (@_) {
         $item->{guid} = $_[0];
     } else {
-        $item->{guid} // $item->{link};
+        $item->{guid} // $item->{permaLink} // $item->{link};
     }
 }
 

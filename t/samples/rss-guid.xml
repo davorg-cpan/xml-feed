@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<channel>
+<title>First Weblog</title>
+<link>http://localhost/weblog/</link>
+<description>This is a test weblog.</description>
+<language>en-us</language>
+<copyright>Copyright 2004</copyright>
+<lastBuildDate>Sat, 29 May 2004 23:39:25 -0800</lastBuildDate>
+<pubDate>Sat, 29 May 2004 23:39:57 -0800</pubDate>
+<generator>http://www.movabletype.org/?v=3.0D</generator>
+<docs>http://blogs.law.harvard.edu/tech/rss</docs> 
+<webMaster>Melody</webMaster>
+
+<item>
+<title>Entry Two - link and id differ, isPermaLink="true"</title>
+<description><![CDATA[Found id from "permaLink": <guid isPermaLink="true">]]></description>
+<xhtml:body><![CDATA[<p>Hello!</p>]]></xhtml:body>
+<link>http://localhost/weblog/2004/05/pets.html</link>
+<author>Melody</author>
+<guid isPermaLink="true">http://localhost/weblog/2004/05/cats.html</guid>
+<category>cats</category>
+<pubDate>Sat, 29 May 2004 23:39:25 -0800</pubDate>
+</item>
+
+<item>
+<title>Entry Two - link and id differ, isPermaLink="false"</title>
+<description><![CDATA[Found id from "guid": <guid isPermaLink="false">]]></description>
+<xhtml:body><![CDATA[<p>Hello!</p>]]></xhtml:body>
+<link>http://localhost/weblog/2004/05/pets.html</link>
+<author>Melody</author>
+<guid isPermaLink="false">http://localhost/weblog/2004/05/dogs.html</guid>
+<category>dogs</category>
+<pubDate>Sat, 29 May 2004 23:39:25 -0800</pubDate>
+</item>
+
+<item>
+<title>Entry Two - link and no id</title>
+<description><![CDATA[Found id from "link": no <guid>]]></description>
+<xhtml:body><![CDATA[<p>Hello!</p>]]></xhtml:body>
+<link>http://localhost/weblog/2004/05/pets.html</link>
+<author>Melody</author>
+<category>pets</category>
+<pubDate>Sat, 29 May 2004 23:39:25 -0800</pubDate>
+</item>
+
+</channel>
+</rss>
