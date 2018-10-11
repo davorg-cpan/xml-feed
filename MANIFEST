@@ -10,6 +10,7 @@ lib/XML/Feed/Entry/Format/Atom.pm
 lib/XML/Feed/Entry/Format/RSS.pm
 lib/XML/Feed/Format/Atom.pm
 lib/XML/Feed/Format/RSS.pm
+lib/XML/Feed/Util.pm
 MANIFEST			This list of files
 MANIFEST.SKIP
 META.json
