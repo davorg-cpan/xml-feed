@@ -29,7 +29,7 @@ sub format_w3cdtf {
 sub parse_datetime {
     my $ts = shift or return undef;
 
-    $ts = strip_spaces($ts);
+    $ts = _strip_spaces($ts);
 
     return eval { DateTime::Format::ISO8601->parse_datetime($ts) }
         || eval { DateTime::Format::Flexible->parse_datetime($ts) }
@@ -43,7 +43,7 @@ sub parse_datetime {
 sub parse_mail_date {
     my $ts = shift or return undef;
 
-    $ts = strip_spaces($ts);
+    $ts = _strip_spaces($ts);
 
     return eval { DateTime::Format::Mail(loose => 1)->parse_datetime($ts) }
         || parse_datetime($ts);
@@ -52,13 +52,13 @@ sub parse_mail_date {
 sub parse_w3cdtf_date {
     my $ts = shift or return undef;
 
-    $ts = strip_spaces($ts);
+    $ts = _strip_spaces($ts);
 
     return eval { DateTime::Format::W3CDTF->parse_datetime($ts) }
         || parse_datetime($ts);
 };
 
-sub strip_spaces {
+sub _strip_spaces {
     local $_ = shift;
     s/^\s+//, s/\s+$// if $_;
     return $_;
