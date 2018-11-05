@@ -47,6 +47,10 @@ t/22-bug73160.t
 t/23-eval.t
 t/24-identify-feed.t
 t/25-date-format-bug.t
+t/26-content-encoded.t
+t/27-dummy-content-encoded.t
+t/28-rss-guid.t
+t/29-date-parsing.t
 t/pod-coverage.t
 t/pod.t
 t/samples/atom-10-example.xml

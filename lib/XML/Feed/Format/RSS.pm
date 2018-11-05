@@ -8,12 +8,11 @@ our $VERSION = '0.55';
 use base qw( XML::Feed );
 use DateTime::Format::Mail;
 use DateTime::Format::W3CDTF;
-use XML::Atom::Util qw(iso2dt);
 use XML::Feed::Enclosure;
 use XML::Feed::Entry::Format::RSS;
+use XML::Feed::Util qw( parse_mail_date parse_w3cdtf_date );
 
 our $PREFERRED_PARSER = "XML::RSS";
-
 
 sub identify {
     my $class   = shift;
@@ -148,19 +147,8 @@ sub modified {
         #$rss->channel->{dc}{date} =
         #    DateTime::Format::W3CDTF->format_datetime($_[0]);
     } else {
-        my $date;
-        eval {
-            if (my $ts = $rss->channel('pubDate')) {
-                $ts =~ s/^\s+//;
-                $ts =~ s/\s+$//;
-                $date = DateTime::Format::Mail->parse_datetime($ts);
-            } elsif ($ts = $rss->channel->{dc}{date}) {
-                $ts =~ s/^\s+//;
-                $ts =~ s/\s+$//;
-                $date = DateTime::Format::W3CDTF->parse_datetime($ts);
-            }
-        };
-        return $date;
+        return parse_mail_date($rss->channel('pubDate'))
+            || parse_w3cdtf_date($rss->channel->{dc}{date});
     }
 }
 

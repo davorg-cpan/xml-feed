@@ -6,5 +6,5 @@ _build
 Build$
 blib
 Makefile$
-^MYMETA.yml$
+^MYMETA\.yml$
 ^MYMETA\.json$

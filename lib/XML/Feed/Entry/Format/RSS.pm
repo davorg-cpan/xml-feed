@@ -8,7 +8,7 @@ our $VERSION = '0.55';
 sub format { 'RSS ' . $_[0]->{'_version'} }
 
 use XML::Feed::Content;
-use XML::Feed::Util qw( format_W3CDTF );
+use XML::Feed::Util qw( format_w3cdtf parse_mail_date parse_w3cdtf_date );
 
 use base qw( XML::Feed::Entry );
 
@@ -144,39 +144,22 @@ sub id {
 sub issued {
     my $item = shift->{entry};
     if (@_) {
-        $item->{dc}{date} = format_W3CDTF($_[0]);
+        $item->{dc}{date} = format_w3cdtf($_[0]);
         $item->{pubDate} = DateTime::Format::Mail->format_datetime($_[0]);
     } else {
-        ## Either of these could die if the format is invalid.
-        my $date;
-        eval {
-            if (my $ts = $item->{pubDate}) {
-                my $parser = DateTime::Format::Mail->new;
-                $parser->loose;
-                $ts =~ s/^\s+//;
-                $ts =~ s/\s+$//;
-                $date = $parser->parse_datetime($ts);
-            } elsif ($ts = $item->{dc}{date} or $ts = $item->{dcterms}{date}) {
-                $ts =~ s/^\s+//;
-                $ts =~ s/\s+$//;
-                $date = DateTime::Format::W3CDTF->parse_datetime($ts);
-            }
-        };
-        return $date;
+        return parse_mail_date($item->{pubDate})
+            || parse_w3cdtf_date($item->{dc}{date} || $item->{dcterms}{date});
     }
 }
 
 sub modified {
     my $item = shift->{entry};
     if (@_) {
-        $item->{dcterms}{modified} = format_W3CDTF($_[0]);
+        $item->{dcterms}{modified} = format_w3cdtf($_[0]);
     } else {
-        if (my $ts = $item->{dcterms}{modified} //
-                $item->{'http://www.w3.org/2005/Atom'}{updated}) {
-            $ts =~ s/^\s+//;
-            $ts =~ s/\s+$//;
-            return eval { DateTime::Format::W3CDTF->parse_datetime($ts) } || eval { XML::Atom::Util::iso2dt($ts) };
-        }
+        return parse_w3cdtf_date(
+            $item->{dcterms}{modified} || $item->{atom}{updated}
+        );
     }
 }
 
