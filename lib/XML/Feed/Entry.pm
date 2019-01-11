@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use v5.10;
 
-our $VERSION = '0.55';
+our $VERSION = '0.56';
 
 use base qw( Class::ErrorHandler );
 

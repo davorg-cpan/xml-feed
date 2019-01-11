@@ -2,7 +2,7 @@ package XML::Feed::Util;
 use strict;
 use warnings;
 
-our $VERSION = '0.55';
+our $VERSION = '0.56';
 
 use base qw( Exporter );
 use DateTime::Format::Flexible;

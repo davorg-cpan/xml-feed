@@ -13,7 +13,7 @@ use Module::Pluggable search_path => "XML::Feed::Format",
                       require     => 1,
                       sub_name    => 'formatters';
 
-our $VERSION = '0.55';
+our $VERSION = '0.56';
 our $MULTIPLE_ENCLOSURES = 0;
 our @formatters;
 BEGIN {
