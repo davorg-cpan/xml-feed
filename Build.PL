@@ -36,7 +36,12 @@ my $build = Module::Build
          {
              resources =>
              {
-                 repository => "https://github.com/davorg/xml-feed",
+                  bugtracker => { web => 'https://github.com/davorg/xml-feed/issues' },
+                  repository => {
+                    url  => 'https://github.com/davorg/xml-feed.git',
+                    web  => 'https://github.com/davorg/xml-feed',
+                    type => 'git',
+                  }
              },
              x_contributors => [
                 'Dave Cross <davecross@cpan.org>',
