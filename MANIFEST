@@ -53,6 +53,7 @@ t/28-rss-guid.t
 t/29-date-parsing.t
 t/pod-coverage.t
 t/pod.t
+t/relative-links.t
 t/samples/atom-10-example.xml
 t/samples/atom-enclosure.xml
 t/samples/atom-full.xml
