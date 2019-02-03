@@ -1,8 +1,7 @@
-# $Id: 01-parse.t 115 2008-12-01 21:17:51Z swistow $
 
 use strict;
-use Test::More tests => 322;
-#use Test::More 'no_plan';
+use warnings;
+use Test::More;
 use XML::Feed;
 
 my ($rss, $atom) = split /\n---\n/, join '', <DATA>;
@@ -87,6 +86,8 @@ for my $spec (
     is $entry->issued,   $dt, 'Atom entry published date should be correct';
     is $entry->modified, $dt, 'Atom entry updated date should be correct';
 }
+
+done_testing;
 
 __DATA__
 <?xml version="1.0" encoding="UTF-8"?>
