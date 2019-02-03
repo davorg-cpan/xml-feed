@@ -33,6 +33,8 @@ my @feed_attrs  = qw[Title Tagline Format Author Link Base
 my @entry_attrs = qw[Link Author Title Category Id Issued Modified
                      Lat Long Format Tags Enclosure Summary Content];
 
+my %use_body_attrs = map { $_ => 1 } qw[Summary Content];
+
 my $feed = XML::Feed->parse( $source ) or die XML::Feed->errstr;
 
 for (@feed_attrs) {
@@ -46,7 +48,7 @@ for my $entry ($feed->entries) {
   for (@entry_attrs) {
     my $method = lc $_;
     my $data;
-    if (/^(Summary|Content)$/) {
+    if ($use_body_attrs{$_}) {
       $data = $entry->$method->body // '';
     } else {
       $data = $entry->$method // '';
