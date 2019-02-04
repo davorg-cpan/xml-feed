@@ -1,5 +1,51 @@
+2019-02-03  Dave Cross <dave@dave.org.uk>
+
+	* eg/check_feed.pl: Improve one of the example programs
+	* t/29-date-parsing.t: Improved tests
+
+2019-01-11  Nicolas R <atoomic@cpan.org>
+
+	* MANIFEST, t/relative-links.t: Add a unit test for relative links
+	  RT 53661 - GH #45  This is adding a unit test from an upstream
+	  ticket. Not really a bug, more a question about behavior and
+	  relative links.  Make sure we are processing correctly.
+
+2019-01-11  Dave Cross <dave@dave.org.uk>
+
+	* lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
+	  lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
+	  lib/XML/Feed/Entry/Format/Atom.pm,
+	  lib/XML/Feed/Entry/Format/RSS.pm, lib/XML/Feed/Format/Atom.pm,
+	  lib/XML/Feed/Format/RSS.pm, lib/XML/Feed/Util.pm: Bump version
+	  numbers
+
+2019-01-11  Nicolas R <atoomic@cpan.org>
+
+	* Build.PL: Advertise GitHub as default bugtracker  Also set repo url
+	  and web entries
+
+2019-01-10  Nicolas R <atoomic@cpan.org>
+
+	* .travis.yml: add Perl 5.22 to 5.26 to travis
+
+2018-10-28  Tim Gim Yee <tim.gim.yee@gmail.com>
+
+	* lib/XML/Feed/Util.pm: Rename undocumented private subroutine for
+	  Pod::Coverage
+
+2018-10-26  Tim Gim Yee <tim.gim.yee@gmail.com>
+
+	* Build.PL, MANIFEST, MANIFEST.SKIP,
+	  lib/XML/Feed/Entry/Format/Atom.pm,
+	  lib/XML/Feed/Entry/Format/RSS.pm, lib/XML/Feed/Format/Atom.pm,
+	  lib/XML/Feed/Format/RSS.pm, lib/XML/Feed/Util.pm, t/29-date-
+	  parsing.t, t/samples/rss10-invalid-date.xml: Parse incorrectly
+	  formatted dates
+
 2018-10-11  Dave Cross <dave@dave.org.uk>
 
+	* MANIFEST: Added missing module to MANIFEST
+	* Changes: New ChangeLog
 	* lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
 	  lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
 	  lib/XML/Feed/Entry/Format/Atom.pm,
