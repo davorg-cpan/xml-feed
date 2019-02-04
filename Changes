@@ -1,3 +1,20 @@
+2019-02-04  Dave Cross <dave@dave.org.uk>
+
+	* lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
+	  lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
+	  lib/XML/Feed/Entry/Format/Atom.pm,
+	  lib/XML/Feed/Entry/Format/RSS.pm, lib/XML/Feed/Format/Atom.pm,
+	  lib/XML/Feed/Format/RSS.pm, lib/XML/Feed/Util.pm: Bump versions for
+	  release.
+
+2019-02-04  Mohammad S Anwar <mohammad.anwar@yahoo.com>
+
+	* Build.PL: Fixed github repo meta not showing up.
+
+2019-02-04  Dave Cross <dave@dave.org.uk>
+
+	* Changes: Update Changes
+
 2019-02-03  Dave Cross <dave@dave.org.uk>
 
 	* eg/check_feed.pl: Improve one of the example programs
