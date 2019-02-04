@@ -1,4 +1,3 @@
-$Id$
 
 This is XML::Feed, an abstraction above the RSS and Atom syndication
 feed formats. It supports both parsing and autodiscovery of feeds.
