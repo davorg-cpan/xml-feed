@@ -34,6 +34,7 @@ my $build = Module::Build
          create_makefile_pl => 'traditional',
          meta_merge =>
          {
+             'meta-spec' => { version => 2 },
              resources =>
              {
                   bugtracker => { web => 'https://github.com/davorg/xml-feed/issues' },
