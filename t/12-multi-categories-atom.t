@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use FindBin '$Bin';
 use vars qw($type $field);
 $type = "atom";
-require 't/12-multi-categories.base';
+require "$Bin/12-multi-categories.base";
