@@ -1,5 +1,17 @@
+2019-02-05  Dave Cross <dave@dave.org.uk>
+
+	* lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
+	  lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
+	  lib/XML/Feed/Entry/Format/Atom.pm,
+	  lib/XML/Feed/Entry/Format/RSS.pm, lib/XML/Feed/Format/Atom.pm,
+	  lib/XML/Feed/Format/RSS.pm, lib/XML/Feed/Util.pm: Bump version
+	* t/12-multi-categories-atom.t, t/12-multi-categories-rss.t, t/12
+	  -multi-subjects-rss.t: Don't hard-code 'require' paths.
+
 2019-02-04  Dave Cross <dave@dave.org.uk>
 
+	* README: Remove CVS/SVN tag from README
+	* Changes: Update Changes
 	* lib/XML/Feed.pm, lib/XML/Feed/Content.pm,
 	  lib/XML/Feed/Enclosure.pm, lib/XML/Feed/Entry.pm,
 	  lib/XML/Feed/Entry/Format/Atom.pm,
