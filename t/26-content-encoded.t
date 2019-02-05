@@ -3,10 +3,11 @@ use warnings;
 
 use Test::More;
 use XML::Feed;
+use FindBin '$Bin';
 
 # https://rt.cpan.org/Public/Bug/Display.html?id=76738
 
-my $feed = XML::Feed->parse('t/samples/rss-content-encoded.xml');
+my $feed = XML::Feed->parse("$Bin/samples/rss-content-encoded.xml");
 
 my @items = $feed->items;
 my @labels = qw/ First Second /;
