@@ -61,7 +61,7 @@ The MIME type of the item referred to in I<url>.
 
 =head2 $enclosure->length
 
-The length of object refereed to in I<url>
+The length of object referred to in I<url>
 
 =head1 AUTHOR & COPYRIGHT
 
