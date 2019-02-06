@@ -1,5 +1,4 @@
 Build.PL
-Makefile.PL
 Changes
 eg/check_feed.pl
 lib/XML/Feed.pm
@@ -11,6 +10,7 @@ lib/XML/Feed/Entry/Format/RSS.pm
 lib/XML/Feed/Format/Atom.pm
 lib/XML/Feed/Format/RSS.pm
 lib/XML/Feed/Util.pm
+Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
 META.json
@@ -51,6 +51,7 @@ t/26-content-encoded.t
 t/27-dummy-content-encoded.t
 t/28-rss-guid.t
 t/29-date-parsing.t
+t/has-version.t
 t/pod-coverage.t
 t/pod.t
 t/relative-links.t
@@ -63,6 +64,8 @@ t/samples/atom.xml
 t/samples/base_atom.xml
 t/samples/base_rss.xml
 t/samples/category-bug.xml
+t/samples/rss-content-encoded.xml
+t/samples/rss-guid.xml
 t/samples/rss-multiple-categories.xml
 t/samples/rss-multiple-subjects.xml
 t/samples/rss10-datespaces.xml
