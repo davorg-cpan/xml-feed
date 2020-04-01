@@ -364,7 +364,7 @@ L<XML::Feed::Entry> objects.
 
 =head2 $feed->items
 
-A synonym (alias) for <$feed-E<gt>entries>.
+A synonym (alias) for C<$feed-E<gt>entries>.
 
 =head2 $feed->add_entry($entry)
 
