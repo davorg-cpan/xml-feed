@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.60] - 2021-01-14
+
+### Added
+
+* CI improvements
+* Started a real ChangeLog
+
 ## [0.59] - 2019-02-06
 
 ## [0.58] - 2019-02-05

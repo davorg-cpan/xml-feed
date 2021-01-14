@@ -1,5 +1,6 @@
 Build.PL
 Changes
+ChangeLog.md
 eg/check_feed.pl
 lib/XML/Feed.pm
 lib/XML/Feed/Content.pm

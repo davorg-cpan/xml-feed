@@ -30,6 +30,7 @@ my $build = Module::Build
                         },
          build_requires => {
                           'URI'                        => 0,
+                          'XML::XPath'                 => 0,
                         },
          create_makefile_pl => 'traditional',
          meta_merge =>
