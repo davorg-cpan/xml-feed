@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.61] - 2021-01-28
+
+### Fixed
+
+* Reformated Build.PL
+
 ## [0.60] - 2021-01-14
 
 ### Added

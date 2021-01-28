@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use v5.10;
 
-our $VERSION = '0.60';
+our $VERSION = '0.61';
 
 sub format { 'RSS ' . $_[0]->{'_version'} }
 
