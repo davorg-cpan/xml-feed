@@ -44,16 +44,9 @@ sub parse {
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
     } elsif (ref($stream)) {
-        while (read($stream, my($chunk), 8192)) {
-            $xml .= $chunk;
-        }
+        $xml = $class->get_fh($stream);
     } else {
-        open my $fh, '<', $stream
-            or return $class->error("Can't open $stream: $!");
-        while (read $fh, my($chunk), 8192) {
-            $xml .= $chunk;
-        }
-        close $fh;
+        $xml = $class->get_file($stream);
     }
     return $class->error("Can't get feed XML content from $stream")
         unless $xml;
@@ -70,6 +63,30 @@ sub parse {
     bless $feed, $format_class;
     $feed->init_string(\$xml) or return $class->error($feed->errstr);
     $feed;
+}
+
+sub get_file {
+    my $class = shift;
+    my ($filename) = @_;
+
+    open my $fh, '<', $filename
+        or return $class->error("Can't open $filename: $!");
+    my $xml = $class->get_fh($fh);
+    close $fh;
+
+    return $xml;
+}
+
+sub get_fh {
+    my $class = shift;
+    my ($fh) = @_;
+
+    my $xml;
+    while (read $fh, my($chunk), 8192) {
+        $xml .= $chunk;
+    }
+
+    return $xml;
 }
 
 sub get_uri {
@@ -276,6 +293,14 @@ A URI from which the feed XML will be retrieved.
 =back
 
 I<$format> allows you to override format guessing.
+
+=head2 XML::Feed->get_file($filename)
+
+Gets a feed from a file.
+
+=head3 CML::Feed->get_fh($fh)
+
+Gets a feed from pre-opened filehandle.
 
 =head2 XML::Feed->get_uri($uri)
 
