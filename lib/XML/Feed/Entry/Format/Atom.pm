@@ -37,6 +37,13 @@ sub link {
 
 sub summary {
     my $entry = shift;
+
+    my %type_correction = (
+        html  => 'text/html',
+        text  => 'text/plain',
+        xhtml => 'text/html',
+    );
+
     if (@_) {
         my %param;
         if (ref($_[0]) eq 'XML::Feed::Content') {
@@ -49,9 +56,8 @@ sub summary {
         my $s = $entry->{entry}->summary;
         # map Atom types to MIME types
         my $type = ($s && ref($s) eq 'XML::Feed::Content') ? $s->type : undef;
-        if ($type) {
-            $type = 'text/html'  if $type eq 'xhtml' || $type eq 'html';
-            $type = 'text/plain' if $type eq 'text';
+        if ($type and exists $type_correction{$type}) {
+            $type = $type_correction{$type};
         }
         my $body = $s;
         if (defined $s && ref($s) eq 'XML::Feed::Content') {
