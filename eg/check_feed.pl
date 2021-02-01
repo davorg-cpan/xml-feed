@@ -46,15 +46,20 @@ for my $entry ($feed->entries) {
   say '';
 
   for (@entry_attrs) {
-    my $method = lc $_;
-    my $data;
-    if ($use_body_attrs{$_}) {
-      $data = $entry->$method->body // '';
-    } else {
-      $data = $entry->$method // '';
-    }
-
-    printf(" * %-11s %s\n", "$_:", $data);
+    say get_attribute($entry, $_);
   }
 }
 
+sub get_attribute {
+  my ($entry, $attr) = @_;
+
+  my $method = lc $attr;
+  my $data;
+  if ($use_body_attrs{$attr}) {
+    $data = $entry->$method->body // '';
+  } else {
+    $data = $entry->$method // '';
+  }
+
+  return sprintf(" * %-11s %s", "$attr:", $data);
+}
