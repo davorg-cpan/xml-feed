@@ -28,8 +28,8 @@ jobs:
           perl-version: ${{ matrix.perl }}
       - name: Perl version
         run: perl -V
-      - name: Install libraries
-        run: sudo apt-get update && sudo apt install libexpat1-dev
+      - name: Install packages
+        run: sudo apt-get update && sudo apt install libexpat1-dev make
       - name: Install modules
         run: cpanm --installdeps --notest .
       - name: Run tests
