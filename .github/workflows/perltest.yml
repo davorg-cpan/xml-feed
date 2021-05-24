@@ -29,7 +29,7 @@ jobs:
       - name: Perl version
         run: perl -V
       - name: Install libraries
-        run: apt-get update && apt install libexpat1-dev
+        run: sudo apt-get update && sudo apt install libexpat1-dev
       - name: Install modules
         run: cpanm --installdeps --notest .
       - name: Run tests
