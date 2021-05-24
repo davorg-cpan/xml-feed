@@ -9,6 +9,7 @@ use DateTime::Format::Flexible;
 use DateTime::Format::ISO8601;
 use DateTime::Format::Natural;
 use DateTime::Format::W3CDTF;
+use DateTime::Format::Mail;
 
 our @EXPORT_OK = qw(
     format_w3cdtf
@@ -45,7 +46,7 @@ sub parse_mail_date {
 
     $ts = _strip_spaces($ts);
 
-    return eval { DateTime::Format::Mail(loose => 1)->parse_datetime($ts) }
+    return eval { DateTime::Format::Mail->new(loose => 1)->parse_datetime($ts) }
         || parse_datetime($ts);
 };
 
