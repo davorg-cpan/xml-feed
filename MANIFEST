@@ -52,6 +52,7 @@ t/26-content-encoded.t
 t/27-dummy-content-encoded.t
 t/28-rss-guid.t
 t/29-date-parsing.t
+t/30-date-format-timezone.t
 t/has-version.t
 t/pod-coverage.t
 t/pod.t
