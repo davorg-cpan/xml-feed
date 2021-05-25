@@ -19,10 +19,12 @@ our @EXPORT_OK = qw(
 );
 
 sub format_w3cdtf {
-    my $date = DateTime::Format::W3CDTF->format_datetime(shift);
+    my $dt = shift;
+
+    my $date = DateTime::Format::W3CDTF->format_datetime($dt);
 
     # Add timezone "Z" if "floating" DateTime.
-    $date =~ s/(:\d\d(?:\.\d+)?)\s*$/$1Z/;
+    $date .= 'Z' if $dt->time_zone->is_floating;
 
     return $date;
 }
