@@ -36,7 +36,7 @@ jobs:
         run: prove -lv t
       - name: Archive CPAN logs
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cpan_log
           path: .cpanm/work/*/build.log
