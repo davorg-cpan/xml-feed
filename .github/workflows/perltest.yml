@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install packages
-        run: sudo apt-get update && sudo apt install libexpat1-dev make
+        run: apt-get update && apt install libexpat1-dev make
       - name: Install modules
         run: cpanm -n --installdeps .
       - name: Coverage
