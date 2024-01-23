@@ -36,11 +36,11 @@ my $build = Module::Build->new( module_name   => "XML::Feed",
     'meta-spec' => { version => 2 },
     resources => {
       bugtracker => {
-        web => 'https://github.com/davorg/xml-feed/issues',
+        web => 'https://github.com/davorg-cpan/xml-feed/issues',
       },
       repository => {
-        url  => 'https://github.com/davorg/xml-feed.git',
-        web  => 'https://github.com/davorg/xml-feed',
+        url  => 'https://github.com/davorg-cpan/xml-feed.git',
+        web  => 'https://github.com/davorg-cpan/xml-feed',
         type => 'git',
       }
     },
