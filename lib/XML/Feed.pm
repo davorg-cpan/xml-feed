@@ -48,7 +48,11 @@ sub parse {
     } else {
         $xml = $class->get_file($stream);
     }
-    return $class->error("Can't get feed XML content from $stream")
+    my $errstr = "Can't get feed XML content from $stream";
+    if ($class->errstr) {
+        $errstr .= ": " . $class->errstr;
+    }
+    return $class->error($errstr)
         unless $xml;
     my $format;
     if ($specified_format) {
