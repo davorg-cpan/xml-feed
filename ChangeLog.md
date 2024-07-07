@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.64] - 2024-07-07
+
+### Added 
+
+* Include parse error message in output (thanks @renderorange)
+
 ## [0.63] - 2021-05-25
 
 ### Fixed
