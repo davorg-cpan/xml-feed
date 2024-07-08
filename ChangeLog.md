@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.65] - 2024-07-08
+
+### Fixed
+
+* Packaging errors in version 0.64 (thanks @perlpunk for spotting them)
+
 ## [0.64] - 2024-07-07
 
 ### Added 

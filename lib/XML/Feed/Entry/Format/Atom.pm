@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use v5.10;
 
-our $VERSION = '0.63';
+our $VERSION = '0.65';
 
 use base qw( XML::Feed::Entry );
 use XML::Feed::Content;

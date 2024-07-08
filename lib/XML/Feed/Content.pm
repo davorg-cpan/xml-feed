@@ -2,7 +2,7 @@ package XML::Feed::Content;
 use strict;
 use warnings;
 
-our $VERSION = '0.63';
+our $VERSION = '0.65';
 
 use base qw( Class::ErrorHandler );
 
