@@ -23,10 +23,32 @@ BEGIN {
 sub new {
     my $class = shift;
     my $format = shift // 'Atom';
+    
+    # Handle optional args hash
+    my %args;
+    if (@_ && ref($_[-1]) eq 'HASH' && exists $_[-1]->{useragent}) {
+        %args = %{pop @_};
+        # Validate useragent parameter
+        if (exists $args{useragent}) {
+            unless (blessed($args{useragent}) && $args{useragent}->isa('LWP::UserAgent')) {
+                Carp::croak("useragent must be an LWP::UserAgent object");
+            }
+        }
+        # Only useragent is allowed for now
+        my @invalid_keys = grep { $_ ne 'useragent' } keys %args;
+        if (@invalid_keys) {
+            Carp::croak("Invalid argument(s): " . join(', ', @invalid_keys));
+        }
+    }
+    
     my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
     my $feed = bless {}, join('::', __PACKAGE__, "Format", $format);
+    
+    # Store useragent if provided
+    $feed->{useragent} = $args{useragent} if exists $args{useragent};
+    
     $feed->init_empty(@_) or return $class->error($feed->errstr);
     $feed;
 }
@@ -40,13 +62,13 @@ sub parse {
     my $feed = bless {}, $class;
     my $xml = '';
     if (blessed($stream) and $stream->isa('URI')) {
-	$xml = $class->get_uri($stream);
+	$xml = $feed->get_uri($stream);
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
     } elsif (ref($stream)) {
-        $xml = $class->get_fh($stream);
+        $xml = $feed->get_fh($stream);
     } else {
-        $xml = $class->get_file($stream);
+        $xml = $feed->get_file($stream);
     }
     my $errstr = "Can't get feed XML content from $stream";
     if ($class->errstr) {
@@ -97,9 +119,16 @@ sub get_uri {
     my $class = shift;
     my ($stream) = @_;
 
-    my $ua  = LWP::UserAgent->new;
-    $ua->agent(__PACKAGE__ . "/$VERSION");
-    $ua->env_proxy; # force allowing of proxies
+    # Get or create UserAgent
+    my $ua;
+    if (blessed($class) && $class->{useragent}) {
+        $ua = $class->{useragent};
+    } else {
+        $ua = LWP::UserAgent->new;
+        $ua->agent(__PACKAGE__ . "/$VERSION");
+        $ua->env_proxy; # force allowing of proxies
+    }
+    
     my $res = URI::Fetch->fetch($stream, UserAgent => $ua)
         or return $class->error(URI::Fetch->errstr);
     return $class->error("This feed has been permanently removed")
@@ -178,6 +207,27 @@ sub _convert_entry {
     my $entry_format = ref($entry);  $entry_format =~ s!^XML::Feed::Entry::Format::!!;
     return $entry if $entry_format eq $feed_format;
     return $entry->convert($feed_format);
+}
+
+sub useragent {
+    my $feed = shift;
+    if (@_) {
+        # Setter: validate the useragent
+        my $ua = shift;
+        unless (blessed($ua) && $ua->isa('LWP::UserAgent')) {
+            Carp::croak("useragent must be an LWP::UserAgent object");
+        }
+        $feed->{useragent} = $ua;
+        return $ua;
+    } else {
+        # Getter: return existing or create new one
+        unless ($feed->{useragent}) {
+            $feed->{useragent} = LWP::UserAgent->new;
+            $feed->{useragent}->agent(__PACKAGE__ . "/$VERSION");
+            $feed->{useragent}->env_proxy;
+        }
+        return $feed->{useragent};
+    }
 }
 
 sub base;
@@ -262,11 +312,30 @@ L<DateTime> objects, which it then returns to the caller.
 
 =head2 XML::Feed->new($format)
 
+=head2 XML::Feed->new($format, \%args)
+
 Creates a new empty I<XML::Feed> object using the format I<$format>.
 
     $feed = XML::Feed->new('Atom');
     $feed = XML::Feed->new('RSS');
     $feed = XML::Feed->new('RSS', version => '0.91');
+
+An optional hashref of arguments can be provided as the last parameter:
+
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(30);
+    $feed = XML::Feed->new('Atom', { useragent => $ua });
+
+Currently supported arguments:
+
+=over 4
+
+=item * useragent
+
+An L<LWP::UserAgent> object (or subclass) to use for fetching feeds via URI.
+If not provided, a default UserAgent will be created when needed.
+
+=back
 
 =head2 XML::Feed->parse($stream)
 
@@ -404,6 +473,23 @@ object in the correct format for the feed.
 
 Returns an XML representation of the feed, in the format determined by
 the current format of the I<$feed> object.
+
+=head2 $feed->useragent([ $ua ])
+
+Get or set the L<LWP::UserAgent> object used for fetching feeds.
+
+If called without arguments, returns the current UserAgent object,
+creating a default one if it doesn't exist.
+
+If called with an L<LWP::UserAgent> object (or subclass), sets it as
+the UserAgent for this feed.
+
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(30);
+    $feed->useragent($ua);
+    
+    # Later, retrieve it
+    my $current_ua = $feed->useragent;
 
 =head2 $feed->first_link ([ $uri ])
 
