@@ -35,7 +35,7 @@ use LWP::UserAgent;
     eval {
         my $feed = XML::Feed->new('Atom', { invalid_arg => 'value' });
     };
-    like($@, qr/Invalid argument/, 'Dies with invalid argument');
+    like($@, qr/No valid keys passed to/, 'Dies with invalid argument');
 }
 
 # Test 5: useragent() getter creates one if it doesn't exist

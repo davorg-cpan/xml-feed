@@ -25,28 +25,25 @@ sub new {
     my $format = shift // 'Atom';
     
     # Handle optional args hash
-    my %args;
+    my $args = {};
+    my @valid_args = qw[useragent];
+
     if (@_ && ref($_[-1]) eq 'HASH') {
-        my $potential_args = $_[-1];
-        # Check if this looks like our args hash (has known keys)
-        my @known_keys = qw(useragent);
-        my @hash_keys = keys %$potential_args;
-        
-        # If any key matches our known args, treat it as args hash
-        if (grep { my $k = $_; grep { $k eq $_ } @known_keys } @hash_keys) {
-            %args = %{pop @_};
-            
-            # Validate useragent parameter if provided
-            if (exists $args{useragent}) {
-                unless (blessed($args{useragent}) && $args{useragent}->isa('LWP::UserAgent')) {
-                    Carp::croak("useragent must be an LWP::UserAgent object");
-                }
-            }
-            
-            # Only known keys are allowed
-            my @invalid_keys = grep { my $k = $_; !grep { $k eq $_ } @known_keys } keys %args;
-            if (@invalid_keys) {
-                Carp::croak("Invalid argument(s): " . join(', ', @invalid_keys));
+        my $possible_args = pop @_;
+
+        for (@valid_args) {
+          $args->{$_} = delete $possible_args->{$_}
+            if exists $possible_args->{$_};    
+        }
+
+        unless (keys %$args) {
+            Carp::croak('No valid keys passed to ' . __PACKAGE__ . 'new()');
+        }
+
+        # Validate useragent parameter if provided
+        if (exists $args->{useragent}) {
+            unless (blessed($args->{useragent}) && $args->{useragent}->isa('LWP::UserAgent')) {
+                Carp::croak("useragent must be an LWP::UserAgent object");
             }
         }
     }
@@ -54,10 +51,7 @@ sub new {
     my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
-    my $feed = bless {}, join('::', __PACKAGE__, "Format", $format);
-    
-    # Store useragent if provided
-    $feed->{useragent} = $args{useragent} if exists $args{useragent};
+    my $feed = bless $args, join('::', __PACKAGE__, "Format", $format);
     
     $feed->init_empty(@_) or return $class->error($feed->errstr);
     $feed;
