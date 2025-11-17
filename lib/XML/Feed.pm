@@ -13,11 +13,37 @@ use Module::Pluggable search_path => "XML::Feed::Format",
                       require     => 1,
                       sub_name    => 'formatters';
 
-our $VERSION = '0.65';
+our $VERSION = 'v1.0.0';
 our $MULTIPLE_ENCLOSURES = 0;
 our @formatters;
 BEGIN {
     @formatters = __PACKAGE__->formatters;
+}
+
+sub _parse_args {
+    my $class = shift;
+    my ($possible_args) = @_;
+
+    my @valid_args = qw[useragent];
+    my $args = {};
+
+    for (@valid_args) {
+        $args->{$_} = delete $possible_args->{$_}
+            if exists $possible_args->{$_};
+    }
+
+    unless (keys %$args) {
+        Carp::croak('No valid keys passed to ' . __PACKAGE__ . 'new()');
+        }
+
+    # Validate useragent parameter if provided
+    if (exists $args->{useragent}) {
+        unless (blessed($args->{useragent}) && $args->{useragent}->isa('LWP::UserAgent')) {
+            Carp::croak("useragent must be an LWP::UserAgent object");
+        }
+    }
+
+    return $args;
 }
 
 sub new {
@@ -26,26 +52,9 @@ sub new {
     
     # Handle optional args hash
     my $args = {};
-    my @valid_args = qw[useragent];
 
     if (@_ && ref($_[-1]) eq 'HASH') {
-        my $possible_args = pop @_;
-
-        for (@valid_args) {
-          $args->{$_} = delete $possible_args->{$_}
-            if exists $possible_args->{$_};    
-        }
-
-        unless (keys %$args) {
-            Carp::croak('No valid keys passed to ' . __PACKAGE__ . 'new()');
-        }
-
-        # Validate useragent parameter if provided
-        if (exists $args->{useragent}) {
-            unless (blessed($args->{useragent}) && $args->{useragent}->isa('LWP::UserAgent')) {
-                Carp::croak("useragent must be an LWP::UserAgent object");
-            }
-        }
+        $args = $class->_parse_args(pop @_);
     }
     
     my $format_class = 'XML::Feed::Format::' . $format;
@@ -61,12 +70,29 @@ sub init_empty { 1 }
 
 sub parse {
     my $class = shift;
-    my($stream, $specified_format) = @_;
+    my($stream) = @_;
     return $class->error("Stream parameter is required") unless $stream;
-    my $feed = bless {}, $class;
+
+    my ($specified_format, $args) = (undef, {});
+
+    if (@_ == 3) {
+        ($specified_format, $args) = @_[1, 2];
+    } elsif (@_ == 2) {
+        if (ref($_[-1]) eq 'HASH') {
+          $args = $_[1];
+        } else {
+          $specified_format = $_[1];
+        }
+    }
+
+    if (keys %$args) {
+        $args = $class->_parse_args($args);
+    }
+
+    my $feed = bless $args, $class;
     my $xml = '';
     if (blessed($stream) and $stream->isa('URI')) {
-	$xml = $feed->get_uri($stream);
+        $xml = $feed->get_uri($stream);
     } elsif (ref($stream) eq 'SCALAR') {
         $xml = $$stream;
     } elsif (ref($stream)) {
@@ -343,7 +369,11 @@ If not provided, a default UserAgent will be created when needed.
 
 =head2 XML::Feed->parse($stream)
 
+=head2 XML::Feed->parse($stream, \%args)
+
 =head2 XML::Feed->parse($stream, $format)
+
+=head2 XML::Feed->parse($stream, $format, \%args)
 
 Parses a syndication feed identified by I<$stream> and returns an
 I<XML::Feed> object. I<$stream> can be any
@@ -370,6 +400,23 @@ A URI from which the feed XML will be retrieved.
 =back
 
 I<$format> allows you to override format guessing.
+
+An optional hashref of arguments can be provided as the last parameter:
+
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(30);
+    $feed = XML::Feed->parse('https://example.com/feed', { useragent => $ua });
+
+Currently supported arguments:
+
+=over 4
+
+=item * useragent
+
+An L<LWP::UserAgent> object (or subclass) to use for fetching feeds via URI.
+If not provided, a default UserAgent will be created when needed.
+
+=back
 
 =head2 XML::Feed->get_file($filename)
 
