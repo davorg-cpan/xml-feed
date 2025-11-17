@@ -93,7 +93,18 @@ use LWP::UserAgent;
     is($feed->useragent->agent, 'RSSTestAgent/1.0', 'UserAgent preserved in RSS feed');
 }
 
-# Test 10: LWP::UserAgent subclass should be accepted
+# Test 10: RSS feed with both version and useragent
+{
+    my $ua = LWP::UserAgent->new;
+    $ua->agent('RSSTestAgent/2.0');
+    
+    my $feed = XML::Feed->new('RSS', version => '0.91', { useragent => $ua });
+    isa_ok($feed, 'XML::Feed::Format::RSS', 'RSS feed created with version and useragent');
+    like($feed->format, qr/0\.91/, 'RSS version is correct');
+    is($feed->useragent->agent, 'RSSTestAgent/2.0', 'UserAgent preserved');
+}
+
+# Test 11: LWP::UserAgent subclass should be accepted
 SKIP: {
     skip "Creating subclass inline for testing", 2;
     

@@ -26,18 +26,28 @@ sub new {
     
     # Handle optional args hash
     my %args;
-    if (@_ && ref($_[-1]) eq 'HASH' && exists $_[-1]->{useragent}) {
-        %args = %{pop @_};
-        # Validate useragent parameter
-        if (exists $args{useragent}) {
-            unless (blessed($args{useragent}) && $args{useragent}->isa('LWP::UserAgent')) {
-                Carp::croak("useragent must be an LWP::UserAgent object");
+    if (@_ && ref($_[-1]) eq 'HASH') {
+        my $potential_args = $_[-1];
+        # Check if this looks like our args hash (has known keys)
+        my @known_keys = qw(useragent);
+        my @hash_keys = keys %$potential_args;
+        
+        # If any key matches our known args, treat it as args hash
+        if (grep { my $k = $_; grep { $k eq $_ } @known_keys } @hash_keys) {
+            %args = %{pop @_};
+            
+            # Validate useragent parameter if provided
+            if (exists $args{useragent}) {
+                unless (blessed($args{useragent}) && $args{useragent}->isa('LWP::UserAgent')) {
+                    Carp::croak("useragent must be an LWP::UserAgent object");
+                }
             }
-        }
-        # Only useragent is allowed for now
-        my @invalid_keys = grep { $_ ne 'useragent' } keys %args;
-        if (@invalid_keys) {
-            Carp::croak("Invalid argument(s): " . join(', ', @invalid_keys));
+            
+            # Only known keys are allowed
+            my @invalid_keys = grep { my $k = $_; !grep { $k eq $_ } @known_keys } keys %args;
+            if (@invalid_keys) {
+                Carp::croak("Invalid argument(s): " . join(', ', @invalid_keys));
+            }
         }
     }
     
