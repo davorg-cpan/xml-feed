@@ -422,7 +422,7 @@ If not provided, a default UserAgent will be created when needed.
 
 Gets a feed from a file.
 
-=head3 CML::Feed->get_fh($fh)
+=head3 XML::Feed->get_fh($fh)
 
 Gets a feed from pre-opened filehandle.
 
