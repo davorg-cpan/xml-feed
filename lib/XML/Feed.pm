@@ -13,11 +13,16 @@ use Module::Pluggable search_path => "XML::Feed::Format",
                       require     => 1,
                       sub_name    => 'formatters';
 
-our $VERSION = 'v1.0.0';
+our $VERSION = '1.0.1';
 our $MULTIPLE_ENCLOSURES = 0;
 our @formatters;
+our %formatters;
 BEGIN {
     @formatters = __PACKAGE__->formatters;
+    for my $formatter (@formatters) {
+        (my $name = $formatter) =~ s/^XML::Feed::Format:://;
+        $formatters{$name} = 1;
+    }
 }
 
 sub _parse_args {
@@ -57,6 +62,8 @@ sub new {
         $args = $class->_parse_args(pop @_);
     }
     
+    Carp::croak("Unsupported format $format: not a recognised feed format")
+        unless $formatters{$format};
     my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
@@ -114,6 +121,8 @@ sub parse {
     }
 
     my $format_class = join '::', __PACKAGE__, "Format", $format;
+    return $class->error("Unsupported format $format: not a recognised feed format")
+        unless $formatters{$format};
     eval "use $format_class";
     return $class->error("Unsupported format $format: $@") if $@;
     bless $feed, $format_class;
