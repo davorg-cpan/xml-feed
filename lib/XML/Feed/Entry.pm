@@ -11,6 +11,8 @@ use Scalar::Util qw( blessed );
 
 use Carp;
 
+use XML::Feed ();
+
 sub wrap {
     my $class = shift;
     my($item) = @_;
@@ -23,6 +25,8 @@ sub new {
     my $class = shift;
     my($format) = @_;
     $format //= 'Atom';
+    Carp::croak("Unsupported format $format: not a recognised feed format")
+        unless $XML::Feed::formatters{$format};
     my $format_class = 'XML::Feed::Format::' . $format;
     eval "use $format_class";
     Carp::croak("Unsupported format $format: $@") if $@;
