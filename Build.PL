@@ -45,7 +45,7 @@ my $build = Module::Build->new( module_name   => "XML::Feed",
       }
     },
     x_contributors => [
-      'Dave Cross <davecross@cpan.org>',
+      'Dave Cross <dave@perlhacks.com>',
       'Jakob Voss <voss@gbv.de>',
       'Tatsuhiko Miyagawa <miyagawa@bulknews.net>',
       'Simon Wistow <simon@thegestalt.org>',
